@@ -3,7 +3,12 @@
 
 Header header
 
-# Monitoring the stop loop
+# Times since MCU power-on and MCU rosserial connection, respectively.
+duration mcu_uptime
+duration connection_uptime
+
+# Monitoring the run/stop loop. Changes in these values trigger an immediate
+# publish, outside the ordinarily-scheduled 1Hz updates.
 bool drivers_active
 bool driver_external_stop_present
 bool driver_external_stop_stopped
