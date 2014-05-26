@@ -11,8 +11,8 @@ float32 pcb_temperature
 float32 mcu_temperature
 
 # Commanded control mode, use the TYPE_ constants from jackal_msgs/Drive.
-uint8 commanded_mode
+int8 commanded_mode
 
 # Actual control mode. This may differ from the commanded in cases where
 # the motor enable is off, the motors are in over-current, etc.
-uint8 actual_mode
+int8 actual_mode
