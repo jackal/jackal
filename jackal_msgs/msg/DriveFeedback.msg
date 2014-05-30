@@ -3,6 +3,9 @@
 # Current flowing from battery into the MOSFET bridge.
 float32 current
 
+# Instantaneous duty cycle of MOSFET bridge.
+float32 duty_cycle
+
 # Temperatures measured in the MOSFET bridge and on the motor casing, in deg C.
 float32 bridge_temperature
 float32 motor_temperature
