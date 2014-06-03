@@ -38,19 +38,19 @@ public:
   explicit SimpleJoy(ros::NodeHandle* nh);
   void init();
   void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
-  void timeoutCallback(const ros::TimerEvent&);
 
 private:
   ros::NodeHandle* nh_;
   ros::Subscriber joy_sub_;
   ros::Publisher drive_pub_;
-  ros::Timer timeout_timer_;
 
   int deadman_button_;
   int axis_linear_;
   int axis_angular_;
   float scale_linear_;
   float scale_angular_;
+
+  bool sent_deadman_msg_;
 };
 
 SimpleJoy::SimpleJoy(ros::NodeHandle* nh) : nh_(nh)
@@ -61,49 +61,41 @@ void SimpleJoy::init()
 {
   joy_sub_ = nh_->subscribe<sensor_msgs::Joy>("joy", 1, &SimpleJoy::joyCallback, this);
   drive_pub_ = nh_->advertise<jackal_msgs::Drive>("cmd_drive", 1, true);
-  timeout_timer_ = nh_->createTimer(ros::Duration(0), &SimpleJoy::timeoutCallback, this, true);
 
   ros::param::param("~deadman_button", deadman_button_, 0);
-  ros::param::param("~axis_linear", axis_linear_, 0);
-  ros::param::param("~axis_angular", axis_angular_, 1);
+  ros::param::param("~axis_linear", axis_linear_, 1);
+  ros::param::param("~axis_angular", axis_angular_, 0);
   ros::param::param("~scale_linear", scale_linear_, 1.0f);
-  ros::param::param("~scale_linear", scale_angular_, 1.0f);
+  ros::param::param("~scale_angular", scale_angular_, 1.0f);
+
+  sent_deadman_msg_ = false;
 }
 
 void SimpleJoy::joyCallback(const sensor_msgs::Joy::ConstPtr& joy_msg)
 {
-  // New message arrived, stop the previous timeout timer.
-  timeout_timer_.stop();
+  jackal_msgs::Drive drive_msg;
 
   if (joy_msg->buttons[deadman_button_])
   {
-    jackal_msgs::Drive drive_msg;
     drive_msg.mode = jackal_msgs::Drive::MODE_PWM;
     float linear = joy_msg->axes[axis_linear_] * scale_linear_;
     float angular = joy_msg->axes[axis_angular_] * scale_angular_;
     drive_msg.drivers[jackal_msgs::Drive::LEFT] = boost::algorithm::clamp(linear - angular, -1.0, 1.0);
     drive_msg.drivers[jackal_msgs::Drive::RIGHT] = boost::algorithm::clamp(linear + angular, -1.0, 1.0);
     drive_pub_.publish(drive_msg);
-
-    // If there hasn't been another Joy message in 100ms, time out and transmit
-    // a zero velocity message.
-    timeout_timer_.setPeriod(ros::Duration(0.1));
+    sent_deadman_msg_ = false;
   }
   else
   {
-    // Immediately time out and transmit a zero-motion message.
-    timeout_timer_.setPeriod(ros::Duration());
+    // When deadman button is released, immediately send a single no-motion command
+    // in order to stop the robot.
+    if (!sent_deadman_msg_)
+    {
+      drive_msg.mode = jackal_msgs::Drive::MODE_NONE;
+      drive_pub_.publish(drive_msg);
+      sent_deadman_msg_ = true;
+    }
   }
-
-  // Start the timeout ticking.
-  timeout_timer_.start();
-}
-
-void SimpleJoy::timeoutCallback(const ros::TimerEvent&)
-{
-  jackal_msgs::Drive drive_msg;
-  drive_msg.mode = jackal_msgs::Drive::MODE_NONE;
-  drive_pub_.publish(drive_msg);
 }
 
 }  // namespace jackal_teleop
