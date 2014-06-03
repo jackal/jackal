@@ -11,8 +11,8 @@ float32 bridge_temperature
 float32 motor_temperature
 
 # Encoder data
-float32 measured_speed   # rad/s
-float32 measured_travel  # rad
+float32 measured_velocity   # rad/s
+float32 measured_travel     # rad
 
 # True if the underlying driver chip reports a fault condition.
 bool driver_fault
