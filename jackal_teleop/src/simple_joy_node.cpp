@@ -35,7 +35,7 @@ namespace jackal_teleop
 class SimpleJoy
 {
 public:
-  SimpleJoy(ros::NodeHandle* nh);
+  explicit SimpleJoy(ros::NodeHandle* nh);
   void init();
   void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
   void timeoutCallback(const ros::TimerEvent&);
@@ -106,7 +106,7 @@ void SimpleJoy::timeoutCallback(const ros::TimerEvent&)
   drive_pub_.publish(drive_msg);
 }
 
-}
+}  // namespace jackal_teleop
 
 int main(int argc, char *argv[])
 {

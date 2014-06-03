@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(jackal_teleop)
 
-find_package(catkin REQUIRED COMPONENTS roscpp)
+find_package(catkin REQUIRED COMPONENTS roscpp roslint)
 
 catkin_package()
 
@@ -20,3 +20,5 @@ install(TARGETS ${PROJECT_NAME}_simple_joy_node ${PROJECT_NAME}_sixpair
 
 install(DIRECTORY launch config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}) 
+
+roslint_cpp()
