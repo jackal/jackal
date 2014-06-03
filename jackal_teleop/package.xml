@@ -12,9 +12,11 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>boost</build_depend>
+  <build_depend>libusb-dev</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>sensor_msgs</build_depend>
   <run_depend>joy</run_depend>
+  <run_depend>libusb-dev</run_depend>
   <run_depend>sensor_msgs</run_depend>
 
   <export>

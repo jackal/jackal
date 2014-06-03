@@ -63,7 +63,7 @@ void SimpleJoy::init()
   drive_pub_ = nh_->advertise<jackal_msgs::Drive>("cmd_drive", 1, true);
   timeout_timer_ = nh_->createTimer(ros::Duration(0), &SimpleJoy::timeoutCallback, this, true);
 
-  ros::param::param("~deadman_button", deadman_button_, 7);
+  ros::param::param("~deadman_button", deadman_button_, 0);
   ros::param::param("~axis_linear", axis_linear_, 0);
   ros::param::param("~axis_angular", axis_angular_, 1);
   ros::param::param("~scale_linear", scale_linear_, 1.0f);
