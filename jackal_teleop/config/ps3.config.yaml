@@ -1,0 +1,5 @@
+axis_linear: 1
+axis_angular: 0
+scale_linear: 1.0
+scale_angular: 0.4
+deadman_button: 8
