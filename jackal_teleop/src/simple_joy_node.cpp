@@ -36,10 +36,10 @@ class SimpleJoy
 {
 public:
   explicit SimpleJoy(ros::NodeHandle* nh);
-  void init();
-  void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
 
 private:
+  void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
+
   ros::NodeHandle* nh_;
   ros::Subscriber joy_sub_;
   ros::Publisher drive_pub_;
@@ -54,10 +54,6 @@ private:
 };
 
 SimpleJoy::SimpleJoy(ros::NodeHandle* nh) : nh_(nh)
-{
-}
-
-void SimpleJoy::init()
 {
   joy_sub_ = nh_->subscribe<sensor_msgs::Joy>("joy", 1, &SimpleJoy::joyCallback, this);
   drive_pub_ = nh_->advertise<jackal_msgs::Drive>("cmd_drive", 1, true);
@@ -103,9 +99,9 @@ void SimpleJoy::joyCallback(const sensor_msgs::Joy::ConstPtr& joy_msg)
 int main(int argc, char *argv[])
 {
   ros::init(argc, argv, "jackal_teleop_joy_pwm");
+
   ros::NodeHandle nh;
   jackal_teleop::SimpleJoy simple_joy(&nh);
-  simple_joy.init();
 
   ros::spin();
 }
