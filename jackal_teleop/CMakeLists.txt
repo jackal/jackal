@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(jackal_teleop)
 
 find_package(catkin REQUIRED COMPONENTS roscpp roslint)
+find_package(Boost)
 
 catkin_package()
+include_directories(${Boost_INCLUDE_DIR})
 
 add_executable(${PROJECT_NAME}_simple_joy_node src/simple_joy_node.cpp)
 target_link_libraries(${PROJECT_NAME}_simple_joy_node ${catkin_LIBRARIES})
