@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Constants for robot dimensions -->
-  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="PI" value="3.1415926535897931" />
 
   <xacro:property name="wheelbase" value="0.240" /> 
   <xacro:property name="track" value="0.37559" /> 
-  <xacro:property name="wheel_vertical_offset" value="-0.0345" />
+  <xacro:property name="wheel_vertical_offset" value="0.0345" />
   <xacro:property name="base_stl_vertical_offset" value="-0.0655" />
 
   <xacro:property name="wheel_radius" value="0.098" /> 
@@ -15,6 +15,10 @@
   <xacro:property name="chassis_width" value="0.310" /> 
   <xacro:property name="chassis_height" value="0.184" /> 
 
+  <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
+  <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
+  <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+
   <xacro:macro name="wheel" params="prefix *joint_pose">
     <link name="${prefix}_wheel">
       <inertial>
@@ -23,10 +27,11 @@
         <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="0.2"/>
       </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
         <geometry>
           <mesh filename="package://jackal_description/meshes/jackal-wheel.stl"/>
         </geometry>
+        <material name="black" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
@@ -37,9 +42,9 @@
     </link>
     <joint name="${prefix}_wheel_joint" type="continuous">
       <parent link="base_link"/>
-      <child link="${prefix}_wheel"/>
-      <xacro:insert_block name="joint_pose"/>
-      <axis xyz="0 1 0"/>
+      <child link="${prefix}_wheel" />
+      <xacro:insert_block name="joint_pose" />
+      <axis xyz="0 1 0" />
     </joint>
     <gazebo reference="${prefix}_wheel">
       <material>Gazebo/Yellow</material>
@@ -48,32 +53,33 @@
   </xacro:macro>
 
   <xacro:wheel prefix="front_left">
-    <origin xyz="${track/2} ${wheelbase/2} ${wheel_vertical_offset}" rpy="0 0 0"/>
+    <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:wheel>
   <xacro:wheel prefix="front_right">
-    <origin xyz="${track/2} ${-wheelbase/2} ${wheel_vertical_offset}" rpy="0 0 0"/>
+    <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:wheel>
   <xacro:wheel prefix="rear_left">
-    <origin xyz="${-track/2} ${wheelbase/2} ${wheel_vertical_offset}" rpy="0 0 0"/>
+    <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:wheel>
   <xacro:wheel prefix="rear_right">
-    <origin xyz="${-track/2} ${-wheelbase/2} ${wheel_vertical_offset}" rpy="0 0 0"/>
+    <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:wheel>
 
   <link name="base_link">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="20"/>
-      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="20" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 ${base_stl_vertical_offset}" rpy="${PI/2} 0 ${PI/2}"/>
       <geometry>
         <mesh filename="package://jackal_description/meshes/jackal-base.stl"/>
       </geometry>
+      <material name="dark_grey" />
     </visual>
     <collision>
-      <origin xyz="0 0 0"/>
+      <origin xyz="0 0 ${chassis_height/2}"/>
       <geometry>
         <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
       </geometry>
@@ -83,28 +89,20 @@
     <selfCollide>false</selfCollide>
   </gazebo>
  
-  <!-- <link name="base_link">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="20"/>
-      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
-    </inertial>
+  <link name="fenders_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 ${base_stl_vertical_offset}" rpy="${PI/2} 0 ${PI/2}"/>
       <geometry>
-        <mesh filename="$(find jackal_description)/meshes/jackal-base.stl"/>
+        <mesh filename="package://jackal_description/meshes/jackal-fenders.stl"/>
       </geometry>
+      <material name="yellow" />
     </visual>
-    <collision>
-      <origin xyz="0 0 0"/>
-      <geometry>
-        <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
-      </geometry>
-    </collision>
   </link>
-  <gazebo reference="base_link">
-    <selfCollide>false</selfCollide>
-  </gazebo> -->
+  <joint name="$fenders_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="fenders_link" />
+    <origin xyz="0 0 0" />
+  </joint>
   
   <!-- <gazebo>
     <plugin name="" filename="">
