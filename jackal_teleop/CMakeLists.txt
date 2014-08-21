@@ -11,6 +11,7 @@ add_executable(${PROJECT_NAME}_simple_joy_node src/simple_joy_node.cpp)
 target_link_libraries(${PROJECT_NAME}_simple_joy_node ${catkin_LIBRARIES})
 set_target_properties(${PROJECT_NAME}_simple_joy_node
   PROPERTIES OUTPUT_NAME simple_joy_node PREFIX "")
+add_dependencies(${PROJECT_NAME}_simple_joy_node jackal_msgs_gencpp)
 
 add_executable(${PROJECT_NAME}_sixpair src/sixpair.c)
 target_link_libraries(${PROJECT_NAME}_sixpair usb ${catkin_LIBRARIES})
