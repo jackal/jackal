@@ -2,7 +2,7 @@
 <robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="PI" value="3.1415926535897931" />
 
-  <xacro:property name="wheelbase" value="0.240" /> 
+  <xacro:property name="wheelbase" value="0.262" />
   <xacro:property name="track" value="0.37559" /> 
   <xacro:property name="wheel_vertical_offset" value="0.0345" />
   <xacro:property name="footprint_vertical_offset" value="-0.0655" />
@@ -15,7 +15,6 @@
   <xacro:property name="chassis_height" value="0.184" /> 
 
   <xacro:property name="mount_spacing" value="0.120" />
-  <xacro:property name="mount_standoff_height" value="0.0075" />
 
   <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
@@ -120,7 +119,7 @@
   <joint name="mid_mount_joint" type="fixed">
     <parent link="base_link" />
     <child link="mid_mount" />
-    <origin xyz="0 0 ${chassis_height+mount_standoff_height}" />
+    <origin xyz="0 0 ${chassis_height}" />
   </joint>
 
   <link name="rear_mount"></link>
