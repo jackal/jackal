@@ -14,6 +14,6 @@
   </group>
 
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
-    <remap from="cmd_vel" to="/cmd_vel" />
+    <remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
   </node> 
 </launch>
