@@ -9,18 +9,37 @@
 
   <xacro:property name="wheel_radius" value="0.098" /> 
   <xacro:property name="wheel_width" value="0.040" /> 
+  <xacro:property name="wheel_mass" value="0.477"/>
+  <xacro:property name="wheel_ixx" value="1253420.30e-09"/>
+  <xacro:property name="wheel_ixy" value="0.00"/>
+  <xacro:property name="wheel_ixz" value="0.00"/>
+  <xacro:property name="wheel_iyy" value="1253462.44e-09"/>
+  <xacro:property name="wheel_iyz" value="18.77e-09"/>
+  <xacro:property name="wheel_izz" value="2358919.20e-09"/>
 
   <xacro:property name="chassis_length" value="0.420" />
   <xacro:property name="chassis_width" value="0.310" /> 
   <xacro:property name="chassis_height" value="0.184" /> 
+  <xacro:property name="chassis_mass" value="16523.98e-03"/>
+
+  <xacro:property name="chassis_ixx" value="392236674.19e-09"/>
+  <xacro:property name="chassis_ixy" value="-856992.99e-09"/>
+  <xacro:property name="chassis_ixz" value="-782275.61e-09"/>
+  <xacro:property name="chassis_iyy" value="448518333.08e-09"/>
+  <xacro:property name="chassis_iyz" value="16413049.38e-09"/>
+  <xacro:property name="chassis_izz" value="313604474.79e-09"/>
+
+  <xacro:property name="dummy_inertia" value="1e-09"/>
 
   <xacro:property name="mount_spacing" value="0.120" />
+
 
   <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
   <xacro:macro name="wheel" params="prefix *joint_pose">
+
     <link name="${prefix}_wheel_link">
       <visual>
         <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
@@ -36,12 +55,12 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.6"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <mass value="${wheel_mass}"/>
         <inertia
-          ixx="1.0" ixy="0.0" ixz="0.0"
-          iyy="1.0" iyz="0.0"
-          izz="1.0"/>
+          ixx="${wheel_ixx}" ixy="${wheel_ixy}" ixz="${wheel_ixz}"
+          iyy="${wheel_iyy}" iyz="${wheel_iyz}"
+          izz="${wheel_izz}"/>
       </inertial>
     </link>
 
@@ -85,6 +104,7 @@
   <link name="base_link">
     <visual>
       <origin xyz="0 0 ${footprint_vertical_offset}" rpy="${PI/2} 0 ${PI/2}"/>
+      <!-- <origin xyz="0 0 ${chassis_height/2}" rpy="${PI/2} 0 ${PI/2}"/> -->
       <geometry>
         <mesh filename="package://jackal_description/meshes/jackal-base.stl"/>
       </geometry>
@@ -98,17 +118,19 @@
     </collision>
     <inertial>
       <origin xyz="0 0 ${chassis_height/2}" rpy="0 0 0"/>
-      <mass value="16"/>
+      <!-- <origin xyz="1.91e-03 66.60e-03 11.92e-03" rpy="0 0 0"/> -->
+      <mass value="${chassis_mass}"/>
       <inertia
-        ixx="1.0" ixy="0.0" ixz="0.0"
-        iyy="1.0" iyz="0.0"
-        izz="1.0"/>
+        ixx="${chassis_ixx}" ixy="${chassis_ixy}" ixz="${chassis_ixz}"
+        iyy="${chassis_iyy}" iyz="${chassis_iyz}"
+        izz="${chassis_izz}"/>
       </inertial>
   </link>
 
   <link name="fenders_link">
     <visual>
       <origin xyz="0 0 ${footprint_vertical_offset}" rpy="${PI/2} 0 ${PI/2}"/>
+      <!-- <origin xyz="0 0 ${chassis_height/2}" rpy="${PI/2} 0 ${PI/2}"/> -->
       <geometry>
         <mesh filename="package://jackal_description/meshes/jackal-fenders.stl"/>
       </geometry>
@@ -125,7 +147,14 @@
        to supply the joint between it and imu_link. This is important so that imu_link
        always points to the "active" IMU. When an upgrade IMU is connected, the
        internal_imu_link should remain, but imu_link should point to the upgrade one. -->
-  <link name="imu_link"></link>
+  <link name="imu_link">
+    <inertial>
+      <mass value="0.001"/>
+      <!-- <origin xyz="-0.1974 0.0314 0.163" rpy="0 0 0"/> -->
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="${dummy_inertia}" ixy="0.0" ixz="0.0" iyy="${dummy_inertia}" iyz="0.0" izz="${dummy_inertia}"/>
+    </inertial>
+  </link>
   <joint name="imu_joint" type="fixed">
     <parent link="base_link" />
     <child link="imu_link" />
