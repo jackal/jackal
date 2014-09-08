@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>jackal_control</name>
+  <version>0.1.1</version>
+  <description>Controllers for Jackal</description>
+  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://wiki.ros.org/jackal_control</url>
+  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>controller_manager</run_depend>
+  <run_depend>interactive_marker_twist_teleop</run_depend>
+  <run_depend>joy</run_depend>
+  <run_depend>robot_localization</run_depend>
+  <run_depend>teleop_twist_joy</run_depend>
+
+  <export>
+  </export>
+</package>
