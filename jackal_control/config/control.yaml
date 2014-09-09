@@ -3,7 +3,8 @@ jackal_joint_publisher:
   publish_rate: 50
 
 jackal_velocity_controller:
-  type: "diff_drive_controller/DiffDriveController"
+  # type: "diff_drive_controller/DiffDriveController"
+  type: "jackal_diff_drive_controller/DiffDriveController"
   left_wheel: ['front_left_wheel', 'rear_left_wheel']
   right_wheel: ['front_right_wheel', 'rear_right_wheel']
   publish_rate: 50
