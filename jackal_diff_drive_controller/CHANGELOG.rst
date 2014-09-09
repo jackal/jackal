@@ -2,6 +2,11 @@
 Changelog for package diff_drive_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add fork of diff_drive_controller.
+* Contributors: Mike Purvis
+
 0.8.1 (2014-07-11)
 ------------------
 
