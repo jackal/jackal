@@ -2,6 +2,13 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Changed physical and collision properties.
+* Fixed inertia parameters. Added imu plugin--not working
+* Install launch directory.
+* Contributors: Mike Purvis, Shokoofeh
+
 0.1.1 (2014-09-06)
 ------------------
 * Remove unnecessary find packages.
