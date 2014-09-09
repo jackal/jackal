@@ -6,30 +6,24 @@
     </plugin>
   </gazebo>
 
-  <gazebo>
-    <plugin name="gazebo_ros_imu_controller" filename="libgazebo_ros_imu.so">
-      <robotNamespace>/</robotNamespace>
-      <topicName>imu/data</topicName>
-      <bodyName>imu_link</bodyName>
-      <frameId>base_link</frameId>
-      <xyzOffsets>0 0 0</xyzOffsets>
-      <rpyOffsets>0 -180.0 0</rpyOffsets>
-      <updateRate>50.0</updateRate>
-      <alwaysOn>true</alwaysOn>
-</plugin>
+  <gazebo reference="base_link">
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
-  <gazebo reference="base_link">
+  <gazebo reference="chassis_link">
     <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
     <gazebo reference="imu_link">
-    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
   <gazebo reference="navsat_link">
     <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <gazebo reference="fenders_link">
     <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 </robot>
