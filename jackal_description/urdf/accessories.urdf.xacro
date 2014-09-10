@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="accessories/sick_lms100.urdf.xacro" />
+
+  <xacro:if value="$(arg front_laser)">
+    <xacro:sick_lms100 prefix="front" />
+    <joint name="front_laser_joint" type="fixed">
+      <origin xyz="0.04 0 0.04" rpy="${PI} 0 0" />
+      <parent link="front_mount" />
+      <child link="front_laser" />
+    </joint>
+  </xacro:if>
+</robot>
