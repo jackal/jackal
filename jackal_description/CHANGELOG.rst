@@ -2,6 +2,9 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.1 (2014-09-10)
+------------------
+
 0.2.0 (2014-09-09)
 ------------------
 * Changed physical and collision properties.

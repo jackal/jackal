@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.1 (2014-09-10)
+------------------
+* Depend on diff_drive_controller.
+* Contributors: Mike Purvis
+
 0.2.0 (2014-09-09)
 ------------------
 * Add fork of diff_drive_controller.
