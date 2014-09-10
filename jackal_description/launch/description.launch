@@ -1,4 +1,11 @@
 <launch>
-  <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro'" />
+  <arg name="accessories" default="false" />
+  <arg name="front_laser" default="false" />
+
+  <param name="robot_description"
+         command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro'
+                                      accessories:=$(arg accessories)
+                                      front_laser:=$(arg front_laser)
+                                      " />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>
