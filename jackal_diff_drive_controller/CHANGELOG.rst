@@ -2,6 +2,9 @@
 Changelog for package diff_drive_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.0 (2014-09-10)
+------------------
+
 0.2.1 (2014-09-10)
 ------------------
 * Remove changelog entries which were confusing dpkg.
