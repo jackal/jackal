@@ -2,6 +2,12 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.0 (2014-09-10)
+------------------
+* Add comment about accessory args.
+* Add front laser accessory to description.
+* Contributors: Mike Purvis
+
 0.2.1 (2014-09-10)
 ------------------
 
