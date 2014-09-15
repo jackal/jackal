@@ -1,6 +1,6 @@
 <package>
   <name>jackal_diff_drive_controller</name>
-  <version>0.2.1</version>
+  <version>0.3.0</version>
   <description>Fork of diff_drive_controller</description>
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
 

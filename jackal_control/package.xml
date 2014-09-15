@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>jackal_control</name>
-  <version>0.2.1</version>
+  <version>0.3.0</version>
   <description>Controllers for Jackal</description>
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
 
@@ -15,6 +15,7 @@
   <run_depend>controller_manager</run_depend>
   <run_depend>interactive_marker_twist_server</run_depend>
   <run_depend>jackal_diff_drive_controller</run_depend>
+  <run_depend>joint_state_controller</run_depend>
   <run_depend>joy</run_depend>
   <run_depend>robot_localization</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
