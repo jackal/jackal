@@ -2,19 +2,12 @@
 <package>
   <name>jackal_navigation</name>
   <version>0.0.0</version>
- <description>Launch files and code for autonomous navigation of the Jackal</description>
-<maintainer email="TODO@TODO.com">TODO</maintainer>
-<author email="TODO@TODO.com">TODO</author>
-
+  <description>Launch files and code for autonomous navigation of the Jackal</description>
+  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>amcl</build_depend>
-  <build_depend>gmapping</build_depend>
-  <build_depend>map_server</build_depend>
-  <build_depend>move_base</build_depend>
-  <build_depend>urdf</build_depend>
-  <build_depend>xacro</build_depend>
+  <build_depend>roslaunch</build_depend>
   <run_depend>amcl</run_depend>
   <run_depend>gmapping</run_depend>
   <run_depend>map_server</run_depend>
