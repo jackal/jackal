@@ -3,6 +3,9 @@
 
 Header header
 
+# Commit of firmware source.
+string hardware_id
+
 # Times since MCU power-on and MCU rosserial connection, respectively.
 duration mcu_uptime
 duration connection_uptime
