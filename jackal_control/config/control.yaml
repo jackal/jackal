@@ -44,6 +44,6 @@ ekf_localization:
                 true, true, true,
                 false, false, false,
                 true, true, true]
-  imu0_differential: true
+  imu0_differential: false
   odom_frame: odom
   base_link_frame: base_link
