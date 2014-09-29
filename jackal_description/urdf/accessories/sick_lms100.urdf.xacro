@@ -67,7 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <gazebo reference="${prefix}_laser">
       <material>Gazebo/Grey</material>
-      <turnGravityOff>false</turnGravityOff>
+      <turnGravityOff>true</turnGravityOff>
       <sensor type="ray" name="${prefix}_laser">
         <pose>0 0 0 0 0 0</pose>
         <visualize>false</visualize>

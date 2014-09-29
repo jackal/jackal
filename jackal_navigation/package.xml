@@ -3,6 +3,7 @@
   <name>jackal_navigation</name>
   <version>0.0.0</version>
   <description>Launch files and code for autonomous navigation of the Jackal</description>
+  <maintainer email="spourmehr@clearpathrobotics.com">Shokoofeh Pourmehr</maintainer>
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
   <license>BSD</license>
 
