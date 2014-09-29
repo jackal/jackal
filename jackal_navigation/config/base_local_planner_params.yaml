@@ -15,7 +15,7 @@ TrajectoryPlannerROS:
   escape_vel: -0.5
 
   # Goal Tolerance Parameters
-  yaw_goal_tolerance: 3.14
+  yaw_goal_tolerance: 1.57
   xy_goal_tolerance: 0.25
   latch_xy_goal_tolerance: false
 
