@@ -1,23 +1,27 @@
 <launch>
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+ <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
-        <rosparam file="$(find jackal_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
-        <rosparam file="$(find jackal_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+  <rosparam file="$(find jackal_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+  <rosparam file="$(find jackal_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
 
-        <rosparam file="$(find jackal_navigation)/config/odom_nav_params/global_costmap_params.yaml" command="load" />
-        <rosparam file="$(find jackal_navigation)/config/odom_nav_params/local_costmap_params.yaml" command="load" />
+  <rosparam file="$(find jackal_navigation)/config/odom_nav_params/global_costmap_params.yaml" command="load" />
+  <rosparam file="$(find jackal_navigation)/config/odom_nav_params/local_costmap_params.yaml" command="load" />
 
-        <rosparam file="$(find jackal_navigation)/config/base_local_planner_params.yaml" command="load" />
-        <rosparam file="$(find jackal_navigation)/config/move_base_params.yaml" command="load" />
+  <rosparam file="$(find jackal_navigation)/config/base_local_planner_params.yaml" command="load" />
+  <rosparam file="$(find jackal_navigation)/config/move_base_params.yaml" command="load" />
 
-        <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
-        <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
-        <rosparam>
-            base_local_planner/TrajectoryPlannerROS:
-                xy_goal_tolerance: 0.15
-                yaw_goal_tolerance: 0.314
-        </rosparam>
+  <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+  <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
 
-        <remap from="odom" to="odometry/filtered" />
-    </node>
+  <!--Parameters to easily tweak the Goal Tolerance Parameters of the TrajectoryPlannerROS. -->
+  <rosparam>
+    base_local_planner/TrajectoryPlannerROS:
+        xy_goal_tolerance: 0.15
+        yaw_goal_tolerance: 0.314
+  </rosparam>
+
+  <remap from="odom" to="odometry/filtered" />
+ </node>
+
+ <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jackal_navigation)/rviz/navigation.rviz" />
 </launch>
