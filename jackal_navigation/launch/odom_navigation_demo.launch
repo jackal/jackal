@@ -1,4 +1,5 @@
 <launch>
+ <arg name="rviz" value="false"/>
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
   <rosparam file="$(find jackal_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
@@ -22,6 +23,7 @@
 
   <remap from="odom" to="odometry/filtered" />
  </node>
-
- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jackal_navigation)/rviz/navigation.rviz" />
+ <group if="$(arg rviz)">
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jackal_navigation)/rviz/navigation.rviz" />
+ </group>
 </launch>
