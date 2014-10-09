@@ -1,9 +1,10 @@
 <launch>
   <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joystick" default="true" />
   
   <rosparam command="load" file="$(find jackal_control)/config/teleop.yaml" />
   
-  <group ns="bluetooth_teleop">
+  <group ns="bluetooth_teleop" if="$(arg joystick)">
     <node pkg="joy" type="joy_node" name="joy_node">
       <param name="dev" value="$(arg joy_dev)" />
     </node>
