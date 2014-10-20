@@ -1,0 +1,23 @@
+<launch>
+
+    <node pkg="robot_localization" type="navsat_transform_node" name="gps_transform" respawn="true" output="screen">
+
+      <param name="magnetic_declination_radians" value="0"/>
+      <param name="roll_offset" value="0"/>
+      <param name="pitch_offset" value="0"/>
+      <param name="yaw_offset" value="0"/>
+      <param name="zero_altitude" value="true"/>
+      <param name="frame" value="map"/>
+
+      <!-- Placeholders for input remapping. Set your topic names as the "to" values.-->
+        <!-- <remap from="/imu/data" to="" /> -->
+        <!-- <remap from="/odometry/filtered" to="/odometry/ekf" /> -->
+        <remap from="/gps/fix" to="/navsat/fix" />      
+
+      <!-- Placeholders for output remapping.
+        <remap from="/odometry/gps to="" />
+      -->
+
+    </node>
+
+</launch>
