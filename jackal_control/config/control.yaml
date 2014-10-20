@@ -42,7 +42,7 @@ ekf_localization:
                  false, false, false,
                  true, true, true,
                  false, false, true]
-  odom0_differential: true
+  odom0_differential: false
   imu0: /imu/data
   imu0_config: [false, false, false,
                 true, true, true,
