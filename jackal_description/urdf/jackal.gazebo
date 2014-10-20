@@ -8,7 +8,7 @@
 
   <gazebo>
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
-      <alwaysOn>true</alwaysOn>
+      <robotNamespace>/</robotNamespace>
       <updateRate>50.0</updateRate> 
       <bodyName>imu_link</bodyName>
       <topicName>imu/data</topicName>
