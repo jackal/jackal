@@ -1,7 +1,7 @@
 global_costmap:
    global_frame: map
    robot_base_frame: base_link
-   update_frequency: 5.0
+   update_frequency: 20.0
    publish_frequency: 5.0
    width: 40.0
    height: 40.0
