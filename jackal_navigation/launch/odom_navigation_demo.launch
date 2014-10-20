@@ -18,7 +18,7 @@
   <rosparam>
     base_local_planner/TrajectoryPlannerROS:
         xy_goal_tolerance: 0.15
-        yaw_goal_tolerance: 0.314
+        yaw_goal_tolerance: 0.157
   </rosparam>
 
   <remap from="odom" to="odometry/filtered" />
