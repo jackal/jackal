@@ -1,9 +1,9 @@
 <launch>
 
   <!--- Run gmapping -->
-  <include file="$(find jackal_navigation)/launch/gmapping.launch" />
+  <include file="$(find jackal_navigation)/launch/include/gmapping.launch" />
 
   <!--- Run Move Base -->
-  <include file="$(find jackal_navigation)/launch/move_base.launch" />
+  <include file="$(find jackal_navigation)/launch/include/move_base.launch" />
 
 </launch>
