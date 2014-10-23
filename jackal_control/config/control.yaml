@@ -17,7 +17,7 @@ jackal_velocity_controller:
   enable_odom_tf: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.8 # default: 1.0
+  wheel_separation_multiplier: 1.5 # default: 1.0
   wheel_radius_multiplier    : 1.0 # default: 1.0
 
   # Velocity and acceleration limits
@@ -51,3 +51,4 @@ ekf_localization:
   imu0_differential: false
   odom_frame: odom
   base_link_frame: base_link
+  world_frame: odom

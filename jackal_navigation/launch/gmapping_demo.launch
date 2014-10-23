@@ -1,12 +1,9 @@
 <launch>
-  <arg name="rviz" value="false"/>
+
   <!--- Run gmapping -->
-  <include file="$(find jackal_navigation)/launch/gmapping.launch" />
+  <include file="$(find jackal_navigation)/launch/include/gmapping.launch" />
 
   <!--- Run Move Base -->
-  <include file="$(find jackal_navigation)/launch/move_base.launch" />
+  <include file="$(find jackal_navigation)/launch/include/move_base.launch" />
 
-  <group if="$(arg rviz)">
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jackal_navigation)/rviz/gmapping.rviz" />
-  </group>
 </launch>
