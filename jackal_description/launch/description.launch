@@ -1,5 +1,5 @@
 <launch>
-  <arg name="accessories" default="true" />
+  <arg name="accessories" default="false" />
   <arg name="front_laser" default="false" />
   <arg name="camera" default="false" />
 
