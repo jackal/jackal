@@ -11,6 +11,7 @@
   -->
 
   <xacro:include filename="accessories/sick_lms100.urdf.xacro" />
+  <xacro:include filename="accessories/point_grey_flea.urdf.xacro" />
 
   <xacro:if value="$(arg front_laser)">
     <xacro:sick_lms100 prefix="front" />
@@ -20,4 +21,26 @@
       <child link="front_laser" />
     </joint>
   </xacro:if>
+
+  <xacro:if value="$(arg camera)">
+    <xacro:point_grey_flea3
+      prefix="front" 
+      joint_parent="front_mount"
+      joint_xyz="0.075 0 0.015"
+      joint_rpy="0 0 0"
+      camera_x="0.02"
+      camera_y="0.02"
+      camera_z="0.02"
+      camera_mass="0.085"
+      hfov="1.0471975512"
+      width="640"
+      height="512"
+      format="R8G8B8"
+      near="0.1"
+      far="300"
+      ns="jackal"
+      frame_id="front_mount"
+      />
+  </xacro:if>
+
 </robot>

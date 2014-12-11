@@ -27,10 +27,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-  xmlns:xacro="http://ros.org/wiki/xacro" name="sick_lms100">
+<robot  xmlns:xacro="http://ros.org/wiki/xacro" name="sick_lms100">
 
   <xacro:property name="laser_x" value="0.105" />
   <xacro:property name="laser_y" value="0.102" />
