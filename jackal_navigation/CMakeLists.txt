@@ -13,6 +13,6 @@ roslaunch_add_file_check(launch/include/move_base.launch)
 roslaunch_add_file_check(launch/odom_navigation_demo.launch)
 
 install(
-DIRECTORY config launch 
+DIRECTORY launch maps params
 DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
