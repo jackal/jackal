@@ -2,8 +2,8 @@
 Changelog for package jackal_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.0 (2014-12-12)
+------------------
 * Add hardware string to Status message.
 * Contributors: Mike Purvis
 

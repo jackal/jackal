@@ -2,8 +2,8 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.0 (2014-12-12)
+------------------
 * Removed redundant local and global costmaps.
 * Fixed location of non-demo launch files in roslaunch-file-check in CMakeList
 * Moved rviz configurations to jackal_viz.
