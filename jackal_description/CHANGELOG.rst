@@ -2,6 +2,14 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* add pointgrey camera
+* Removed inertial and geometry of the base_link.
+* hector gazebo plugin for gps is added.
+* hector gazebo plugin for imu sensor is added
+* Contributors: Mike Purvis, spourmehr
+
 0.3.0 (2014-09-10)
 ------------------
 * Add comment about accessory args.

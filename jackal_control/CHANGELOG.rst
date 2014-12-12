@@ -2,6 +2,13 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* added joystick argumant.
+* Adding imu0_differential setting (=true) to control.yaml
+* Add dep for joint state controller.
+* Contributors: Mike Purvis, Shokoofeh Pourmehr, Tom Moore
+
 0.3.0 (2014-09-10)
 ------------------
 
