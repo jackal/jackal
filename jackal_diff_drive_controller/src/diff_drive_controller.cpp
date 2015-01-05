@@ -112,6 +112,7 @@ namespace diff_drive_controller{
     , wheel_separation_multiplier_(1.0)
     , wheel_radius_multiplier_(1.0)
     , cmd_vel_timeout_(0.5)
+    , odom_frame_id_("odom")
     , base_frame_id_("base_link")
     , enable_odom_tf_(true)
     , wheel_joints_size_(0)
@@ -181,6 +182,9 @@ namespace diff_drive_controller{
     controller_nh.param("cmd_vel_timeout", cmd_vel_timeout_, cmd_vel_timeout_);
     ROS_INFO_STREAM_NAMED(name_, "Velocity commands will be considered old if they are older than "
                           << cmd_vel_timeout_ << "s.");
+
+    controller_nh.param("odom_frame_id", odom_frame_id_, odom_frame_id_);
+    ROS_INFO_STREAM_NAMED(name_, "Odom frame_id set to " << odom_frame_id_);
 
     controller_nh.param("base_frame_id", base_frame_id_, base_frame_id_);
     ROS_INFO_STREAM_NAMED(name_, "Base frame_id set to " << base_frame_id_);
@@ -476,7 +480,7 @@ namespace diff_drive_controller{
 
     // Setup odometry realtime publisher + odom message constant fields
     odom_pub_.reset(new realtime_tools::RealtimePublisher<nav_msgs::Odometry>(controller_nh, "odom", 100));
-    odom_pub_->msg_.header.frame_id = "odom";
+    odom_pub_->msg_.header.frame_id = odom_frame_id_;
     odom_pub_->msg_.child_frame_id = base_frame_id_;
     odom_pub_->msg_.pose.pose.position.z = 0;
     odom_pub_->msg_.pose.covariance = boost::assign::list_of

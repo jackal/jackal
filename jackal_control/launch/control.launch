@@ -1,10 +1,19 @@
+<?xml version="1.0"?>
 <launch>
+  <!-- In this particular case, tf_prefix (if used) should have a leading and trailing /. If not used, don't pass them in.
+       It doesn't exist in this scope as a parameter, should it should be OK. 
+       This is done because ros_control doesn't use tf_prefix, but the concept is still required -->
+  <arg name="tf_prefix" default=""/>
   <rosparam command="load" file="$(find jackal_control)/config/control.yaml" />
 
+  <param name="jackal_velocity_controller/odom_frame_id" value="$(arg tf_prefix)odom"/>
+  <param name="jackal_velocity_controller/base_frame_id" value="$(arg tf_prefix)base_link"/>
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="jackal_joint_publisher jackal_velocity_controller" />
+        args="jackal_joint_publisher jackal_velocity_controller"/>
   
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" /> 
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <param name="world_frame" value="$(arg tf_prefix)odom"/>
+  </node>
 
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
         args="cmd_vel jackal_velocity_controller/cmd_vel" />
