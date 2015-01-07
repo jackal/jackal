@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.1 (2015-01-07)
+------------------
 * Remove fork of diff_drive_controller.
 * Contributors: Mike Purvis
 
