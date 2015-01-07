@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove fork of diff_drive_controller.
+* Contributors: Mike Purvis
+
 0.4.0 (2014-12-12)
 ------------------
 * added joystick argumant.
