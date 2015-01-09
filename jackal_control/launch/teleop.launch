@@ -1,6 +1,12 @@
+<?xml version="1.0"?>
 <launch>
   <arg name="joy_dev" default="/dev/input/js0" />
   <arg name="joystick" default="true" />
+
+  <!-- In this particular case, tf_prefix (if used) should have a leading and trailing /. If not used, don't pass them in.
+       It doesn't exist in this scope as a parameter, should it should be OK. 
+       This is done because ros_control doesn't use tf_prefix, but the concept is still required -->
+  <arg name="tf_prefix" default=""/>
   
   <rosparam command="load" file="$(find jackal_control)/config/teleop.yaml" />
   
@@ -13,6 +19,7 @@
   </group>
 
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
+    <param name="link_name" value="$(arg tf_prefix)base_link"/>
     <remap from="twist_marker_server/cmd_vel" to="cmd_vel" />
   </node> 
 </launch>
