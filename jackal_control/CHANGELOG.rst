@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.2 (2015-01-14)
+------------------
 * Shorten timeout for the controller spawner's shutdown.
 * Contributors: Mike Purvis
 
