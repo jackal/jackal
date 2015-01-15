@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Shorten timeout for the controller spawner's shutdown.
+* Contributors: Mike Purvis
+
 0.4.1 (2015-01-07)
 ------------------
 * Remove fork of diff_drive_controller.
