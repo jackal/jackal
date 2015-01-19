@@ -187,10 +187,11 @@
     <origin xyz="${mount_spacing} 0 0" />
   </joint>
 
-  <!-- Bring in simulation data for Gazebo -->
+  <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="jackal.gazebo" />
   
-  <xacro:if value="$(arg accessories)">
-    <xacro:include filename="accessories.urdf.xacro" />
-  </xacro:if>
+  <!-- Optional accessories, including their simulation data. The rendering of these
+       into the final description is controlled by optenv variables, which default
+       each one to off.-->
+  <xacro:include filename="accessories.urdf.xacro" />
 </robot>

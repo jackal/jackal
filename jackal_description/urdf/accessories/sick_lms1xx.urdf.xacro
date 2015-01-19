@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 Copyright (c) 2013, Goncalo Cabrita, ISR University of Coimbra
-Copyright (c) 2014, Clearpath Robotics
+Copyright (c) 2014, 2015 Clearpath Robotics
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<robot  xmlns:xacro="http://ros.org/wiki/xacro" name="sick_lms100">
-
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="laser_x" value="0.105" />
   <xacro:property name="laser_y" value="0.102" />
   <xacro:property name="laser_z" value="0.152" />
@@ -44,13 +43,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </inertial>
   </xacro:macro>
 
-  <xacro:macro name="sick_lms100" params="prefix"> 
+  <xacro:macro name="sick_lms1xx_mount" params="prefix">
+    <link name="${prefix}_laser_mount">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!-- Origin of this mesh is the base of the bracket. -->
+          <mesh filename="package://jackal_description/meshes/sick-lms1xx-bracket.stl" />
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+    </link>
+
     <link name="${prefix}_laser">
       <xacro:box_inertial x="${laser_x}" y="${laser_y}" z="${laser_z}" mass="${laser_mass}" />
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://jackal_description/meshes/sick_lms100.stl" />
+          <!-- Origin of this mesh is the focal point of the LIDAR. -->
+          <mesh filename="package://jackal_description/meshes/sick-lms1xx.stl" />
         </geometry>
         <material name="light_grey" />
       </visual>
@@ -61,6 +72,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </geometry>
       </collision>
     </link>
+
+    <joint name="${prefix}_laser_joint" type="fixed">
+      <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+      <origin xyz="0 0 0.149" rpy="0 0 0" />
+      <parent link="${prefix}_laser_mount" />
+      <child link="${prefix}_laser" />
+    </joint>
 
     <gazebo reference="${prefix}_laser">
       <material>Gazebo/Grey</material>

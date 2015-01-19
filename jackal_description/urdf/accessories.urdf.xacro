@@ -1,26 +1,30 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--
-    As you add args to this xacro, please ensure that they
-    are included with default values in each of the following
-    launch files:
+    As you add to this xacro, please be aware that both the robot and
+    simulation include it. You must retain compatibility with all of
+    the following launch files:
 
     jackal_viz/launch/view_model.launch
     jackal_gazebo/launch/jackal_world.launch
     jackal_base/launch/base.launch
   -->
 
-  <xacro:include filename="accessories/sick_lms100.urdf.xacro" />
-  <xacro:include filename="accessories/point_grey_flea.urdf.xacro" />
+  <xacro:include filename="accessories/sick_lms1xx.urdf.xacro" />
 
-  <xacro:if value="$(arg front_laser)">
-    <xacro:sick_lms100 prefix="front" />
-    <joint name="front_laser_joint" type="fixed">
-      <origin xyz="0.04 0 0.04" rpy="${PI} 0 0" />
-      <parent link="front_mount" />
-      <child link="front_laser" />
+  <xacro:if value="$(optenv JACKAL_LASER 0)">
+    <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)" />
+
+    <joint name="$front_laser_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+              rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+      <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
+      <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
     </joint>
   </xacro:if>
+
+  <!--
+  <xacro:include filename="accessories/point_grey_flea.urdf.xacro" />
 
   <xacro:if value="$(arg camera)">
     <xacro:point_grey_flea3
@@ -42,5 +46,5 @@
       frame_id="front_mount"
       />
   </xacro:if>
-
+  -->
 </robot>
