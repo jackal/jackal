@@ -2,6 +2,14 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add hook for custom URDF insertion to jackal.urdf.xacro.
+* Add xacro wrapper script to provide some pre-cooked "configs", especially for simulated Jackal.
+* Switch to parameterizing URDF with optenv.
+* Add laser bracket STL.
+* Contributors: Mike Purvis
+
 0.4.2 (2015-01-14)
 ------------------
 
