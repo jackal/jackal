@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2015-01-20)
+------------------
 * Add hook for custom URDF insertion to jackal.urdf.xacro.
 * Add xacro wrapper script to provide some pre-cooked "configs", especially for simulated Jackal.
 * Switch to parameterizing URDF with optenv.
