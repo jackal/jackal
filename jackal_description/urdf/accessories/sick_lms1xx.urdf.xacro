@@ -43,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </inertial>
   </xacro:macro>
 
-  <xacro:macro name="sick_lms1xx_mount" params="prefix">
+  <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
     <link name="${prefix}_laser_mount">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -108,7 +108,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           </noise>
         </ray>
         <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-          <topicName>scan</topicName>
+          <topicName>${topic}</topicName>
           <frameName>${prefix}_laser</frameName>
         </plugin>
       </sensor>

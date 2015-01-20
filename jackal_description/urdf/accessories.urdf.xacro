@@ -13,7 +13,8 @@
   <xacro:include filename="accessories/sick_lms1xx.urdf.xacro" />
 
   <xacro:if value="$(optenv JACKAL_LASER 0)">
-    <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)" />
+    <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                       topic="$(optenv JACKAL_LASER_TOPIC scan)" />
 
     <joint name="$front_laser_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"

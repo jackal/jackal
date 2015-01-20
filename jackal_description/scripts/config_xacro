@@ -1,0 +1,10 @@
+#!/bin/bash
+# This simple wrapper on xacro allows us to pass it a file of
+# environment variables to be sourced prior to expansion.
+
+ENVVARS_FILE=$1
+shift 1
+
+set -a
+source $ENVVARS_FILE 
+rosrun xacro xacro $@

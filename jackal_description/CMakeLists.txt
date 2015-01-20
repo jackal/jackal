@@ -10,3 +10,7 @@ roslaunch_add_file_check(launch/description.launch)
 install(DIRECTORY meshes launch urdf
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
+
+install(PROGRAMS scripts/config_xacro
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
