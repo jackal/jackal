@@ -11,6 +11,6 @@ install(DIRECTORY meshes launch urdf
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(PROGRAMS scripts/config_xacro
+install(PROGRAMS scripts/env_run
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
