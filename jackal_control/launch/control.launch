@@ -10,10 +10,13 @@
   <param name="jackal_velocity_controller/base_frame_id" value="$(arg tf_prefix)base_link"/>
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller"/>
-  
+
+  <!-- Uncomment if using standard Jackal open-source nav --> 
+  <!--
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <param name="world_frame" value="$(arg tf_prefix)odom"/>
   </node>
+  -->
 
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
         args="cmd_vel jackal_velocity_controller/cmd_vel" />

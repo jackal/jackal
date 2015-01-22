@@ -15,7 +15,12 @@
       <param name="dev" value="$(arg joy_dev)" />
     </node>
 
-    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+      <param name="enable_button" value="0"/>
+      <param name="scale_angular" value="3.0"/>
+      <param name="scale_linear" value="2.0"/>
+      <remap from="cmd_vel" to="$(arg tf_prefix)cmd_vel" />
+    </node>
   </group>
 
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
