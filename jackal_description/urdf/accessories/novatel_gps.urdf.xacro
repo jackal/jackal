@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot name="novatelsmart6">
+	<joint name="standardbridgeplate_to_smart6" type="fixed">
+		<parent link="standardbridgeplate"/>
+		<child link="novatelsmart6"/>
+		<origin xyz="0.1016 0.0 0.1243" rpy="0.0 0.0 0.0"/>
+	</joint>
+
+	<link name="novatelsmart6">
+		<visual>
+			<geometry>
+				<mesh filename="package://jackal_description/meshes/basic-smart6.STL"/>
+			</geometry>
+			<material name="white">
+				<color rgba="255 255 255 .9"/>
+			</material>
+		</visual>
+	</link>
+</robot>
