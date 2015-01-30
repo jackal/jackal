@@ -36,7 +36,7 @@
 
     <joint name="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat_joint" type="fixed">
       <origin xyz="0 0 0"
-              rpy="0 0 0" />
+              rpy="0 1.57070 1.5707" />
       <parent link="$(optenv JACKAL_NAVSAT_MOUNT rear)_bridge" />
       <child link="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat" />
     </joint>
