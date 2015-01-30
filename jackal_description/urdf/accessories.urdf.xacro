@@ -11,6 +11,7 @@
   -->
 
   <xacro:include filename="accessories/sick_lms1xx.urdf.xacro" />
+ 
 
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
@@ -23,6 +24,25 @@
       <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
     </joint>
   </xacro:if>
+
+
+  <xacro:include filename="accessories/novatel_smart6.urdf.xacro" />
+  <xacro:include filename="accessories/bridge_plate.urdf.xacro" />
+
+  <xacro:if value="$(optenv JACKAL_NAVSAT 0)">
+    <bridge_plate mount="$(optenv JACKAL_NAVSAT_MOUNT rear)" 
+                  height="$(optenv JACKAL_NAVSAT_HEIGHT 0.12)" />
+    <novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
+
+    <joint name="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat_joint" type="fixed">
+      <origin xyz="0 0 0"
+              rpy="0 1.57070 1.5707" />
+      <parent link="$(optenv JACKAL_NAVSAT_MOUNT rear)_bridge" />
+      <child link="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat" />
+    </joint>
+  </xacro:if>
+
+  
 
   <!--
   <xacro:include filename="accessories/point_grey_flea.urdf.xacro" />
