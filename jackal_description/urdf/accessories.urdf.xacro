@@ -9,9 +9,41 @@
     jackal_gazebo/launch/jackal_world.launch
     jackal_base/launch/base.launch
   -->
+  <xacro:macro name="standoff" params="name length parent *origin">
+    <link name="${name}">
+      <visual>
+        <origin xyz="0 0 ${length/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.004" length="${length}" />
+        </geometry>
+        <material name="light_grey" />
+      </visual>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${name}" />
+    </joint>
+  </xacro:macro>
+  
+  <xacro:macro name="standoff_box" params="mount height">
+    <standoff name="${mount}_standoff0" length="${height}" parent="${mount}_mount">
+      <origin xyz="0.060 0.060 0" rpy="0 0 0"/>
+    </standoff>
+    <standoff name="${mount}_standoff1" length="${height}" parent="${mount}_mount">
+      <origin xyz="0.060 -0.060 0" rpy="0 0 0"/>
+    </standoff>
+    <standoff name="${mount}_standoff2" length="${height}" parent="${mount}_mount">
+      <origin xyz="-0.060 0.060 0" rpy="0 0 0"/>
+    </standoff>
+    <standoff name="${mount}_standoff3" length="${height}" parent="${mount}_mount">
+      <origin xyz="-0.060 -0.060 0" rpy="0 0 0"/>
+    </standoff>
+  </xacro:macro>
+
 
   <xacro:include filename="accessories/sick_lms1xx.urdf.xacro" />
- 
 
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
@@ -35,8 +67,7 @@
     <novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
 
     <joint name="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat_joint" type="fixed">
-      <origin xyz="0 0 0"
-              rpy="0 1.57070 1.5707" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="$(optenv JACKAL_NAVSAT_MOUNT rear)_bridge" />
       <child link="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat" />
     </joint>

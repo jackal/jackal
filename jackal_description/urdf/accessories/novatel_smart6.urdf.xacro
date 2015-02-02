@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="novatel_smart6" params="prefix">
-	<link name="${prefix}_navsat">
-		<visual>
-			<geometry>
-				<mesh filename="package://jackal_description/meshes/basic-smart6.STL"/>
-			</geometry>
-			<material name="white">
-				<color rgba="255 255 255 .9"/>
-			</material>
-		</visual>
-	</link>
+  <link name="${prefix}_navsat">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jackal_description/meshes/novatel-smart6.stl"/>
+      </geometry>
+      <material name="white">
+        <color rgba="255 255 255 .9"/>
+      </material>
+    </visual>
+  </link>
   </xacro:macro>
 </robot>
