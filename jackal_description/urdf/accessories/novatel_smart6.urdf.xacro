@@ -7,8 +7,8 @@
       <geometry>
         <mesh filename="package://jackal_description/meshes/novatel-smart6.stl"/>
       </geometry>
-      <material name="white">
-        <color rgba="255 255 255 .9"/>
+      <material name="novatel_white">
+        <color rgba="0.8 0.8 0.8 1.0" />
       </material>
     </visual>
   </link>
