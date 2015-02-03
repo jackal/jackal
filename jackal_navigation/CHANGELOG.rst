@@ -2,6 +2,9 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.5.0 (2015-01-20)
 ------------------
 

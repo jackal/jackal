@@ -2,6 +2,12 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Modified the accessories.urdf.xacro to include both the GPS and mount plate, including standoffs.
+* Eliminate rosrun from the xacro wrapper.
+* Contributors: BryceVoort, Mike Purvis
+
 0.5.0 (2015-01-20)
 ------------------
 * Add hook for custom URDF insertion to jackal.urdf.xacro.
