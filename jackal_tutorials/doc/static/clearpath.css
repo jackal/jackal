@@ -1,0 +1,11 @@
+div.related {
+  background-color: #555;
+}
+
+div.related a {
+  color: #fff;
+}
+
+div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
+  background-color: #eb2;
+}
