@@ -22,7 +22,10 @@ Ubuntu desktop, and install the Jackal-specific metapackages for desktop and sim
 Launch Gazebo
 -------------
 
-We will be using two tools for our Jackal simulation, the first being Gazebo. This is where we get a realistic simulation of our robot, including wheel slippage, skidding, and inertia. It is also possible to insert objects and load maps into Gazebo to simulate sensor data, which we will see in a following tutorial. For now begin by launching gazebo:
+We will be using two tools for our Jackal simulation, the first being Gazebo. This is where we get a realistic
+simulation of our robot, including wheel slippage, skidding, and inertia. It is also possible to insert objects
+and load maps into Gazebo to simulate sensor data, which we will see in a following tutorial. For now begin by
+launching gazebo:
 
 .. code-block:: bash
 
