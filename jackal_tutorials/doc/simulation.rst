@@ -9,14 +9,12 @@ your Jackal around.
 Installation
 ------------
 
-To get started with the Jackal simulation, make sure you have a `ROS installation`_ set up on your
-Ubuntu desktop, and install the Jackal-specific metapackages for desktop and simulation:
+To get started with the Jackal simulation, make sure you have a :roswiki:`working ROS installation <ROS/Installation>`
+set up on your Ubuntu desktop, and install the Jackal-specific metapackages for desktop and simulation:
 
 .. parsed-literal::
 
     sudo apt-get install ros-|ros_distro|-jackal-simulator ros-|ros_distro|-jackal-desktop
-
-.. _`ROS installation`: http://wiki.ros.org/ROS/Installation
 
 
 Launch Gazebo

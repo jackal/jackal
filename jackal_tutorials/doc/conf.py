@@ -8,9 +8,14 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks',
     'sphinx.ext.doctest',
     'sphinx.ext.viewcode',
 ]
+
+extlinks = {
+    'roswiki': ('http://wiki.ros.org/%s', ''),
+}
 
 source_suffix = '.rst'
 master_doc = 'index'

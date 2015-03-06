@@ -8,6 +8,7 @@ div.related a {
 
 div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
   background-color: #eb2;
+  /* background-color: rgba(243, 214, 0, 1); */
 }
 
 .sphinxsidebar a.current {
