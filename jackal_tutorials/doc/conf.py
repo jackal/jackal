@@ -28,6 +28,10 @@ htmlhelp_basename = 'jackal_tutorialsdoc'
 templates_path = ['./templates']
 html_static_path = ['./static']
 
+html_sidebars = {
+   '**': ['sidebartoc.html', 'sourcelink.html', 'searchbox.html']
+}
+
 rst_prolog = """
 .. |ros_distro| replace:: indigo
 .. |ubuntu_distro| replace:: trusty
