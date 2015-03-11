@@ -49,6 +49,8 @@ close up Jackal's chassis.
 .. _wicd: https://launchpad.net/wicd
 
 
+.. _remote:
+
 Remote ROS Connection
 ---------------------
 
