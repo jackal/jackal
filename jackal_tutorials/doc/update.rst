@@ -47,6 +47,8 @@ If you're too slow on pushing the reset button, Jackal will power off, including
 if that happens; just press the external power button again, and you should be back in business.
 
 
+.. _scratch:
+
 Starting From Scratch
 ---------------------
 
