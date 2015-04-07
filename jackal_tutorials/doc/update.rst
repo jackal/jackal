@@ -9,7 +9,8 @@ platform.
 Getting New Packages
 --------------------
 
-Each Jackal leaves the factory already configured to pull packages from http://packages.ros.org as well as http://packages.clearpathrobotics.com. To update your package and download new package versions, simply run:
+Each Jackal leaves the factory already configured to pull packages from http://packages.ros.org as well as
+http://packages.clearpathrobotics.com. To update your package and download new package versions, simply run:
 
 .. code-block:: bash
 
@@ -24,16 +25,26 @@ If you see any errors, please `get in touch`_ and we'll see if we can get you so
 MCU Firmware Update
 -------------------
 
-When you update packages, there is periodically a new version of Jackal's firmware available. If this is the
-case, an extra process is required to flash it to Jackal's internal microcontroller. To flash the firmware:
+When you update packages, there is periodically a new version of Jackal's firmware available. You will know this
+is the case in one of two ways:
 
-1. Ensure that Jackal is on and open.
-2. In the top-middle of the main circuit board, look for a small left-right switch in between two buttons.
-3. By default it is in the left position, but move it now to the right position.
-4. Press the reset button to the left, labeled ``M_RST``. Jackal is now in its bootloader, ready to receive new
+1. The firmware and PC are unable to connect to each other, which will be apparent if the two-arrow comms indicator
+   fails to come on after system bootup.
+2. If the firmware version number in the ``/status`` message does not match the package version output by
+   ``dpkg -s ros-indigo-jackal-firmware``. In the future there will be an automated check for this which outputs
+   a diagnostics warning when a firmware update is available to be applied.
+
+If new firmware is available, follow the below procedure to flash it to Jackal's MCU:
+
+1. Place Jackal up on blocks. Firmware loading does not usually result in unintended motion, but it's safest when
+   off the ground.
+2. Ensure that Jackal is on and open.
+3. In the top-middle of the main circuit board, look for a small left-right switch in between two buttons.
+4. By default it is in the left position, but move it now to the right position.
+5. Press the reset button to the left, labeled ``M_RST``. Jackal is now in its bootloader, ready to receive new
    firmware.
 
-Now, from Jackal's PC (connected via SSH or screen/keyboard), run:
+Now, from Jackal's PC (connected via SSH or screen/keyboard), execute:
 
 .. code-block:: bash
 
@@ -52,11 +63,15 @@ if that happens; just press the external power button again, and you should be b
 Starting From Scratch
 ---------------------
 
-If Jackal's computer has become inoperable, or for any reason you want to restore it to the factory state, begin by opening Jackal, lowering the computer tray, and connecting a screen and keyboard, as well as a wired internet connection. You can then download the most recent version of the Jackal boot ISO from the following location:
+If Jackal's computer has become inoperable, or for any reason you want to restore it to the factory state, begin
+by opening Jackal, lowering the computer tray, and connecting a screen and keyboard, as well as a wired internet
+connection. You can then download the most recent version of the Jackal boot ISO from the following location:
 
 http://packages.internal.clearpathrobotics.com/stable/images/latest/indigo-jackal/amd64/
 
-Use unetbootin or a similar tool to flash the ISO image to a USB memory stick. Boot Jackal's computer with the USB memory connected, and you should be in the purple Debian/Ubuntu installer. The installer runs by itself and shuts down the computer when finished.
+Use unetbootin or a similar tool to flash the ISO image to a USB memory stick. Boot Jackal's computer with the USB
+memory connected, and you should be in the purple Debian/Ubuntu installer. The installer runs by itself and shuts
+down the computer when finished.
 
 Once done, turn Jackal on once more, and run the following:
 
