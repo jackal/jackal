@@ -4,7 +4,9 @@
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller --shutdown-timeout 1" />
   
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" /> 
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <remap from="odometry/filtered" to="platform_odometry" />
+  </node>
 
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
         args="cmd_vel jackal_velocity_controller/cmd_vel" />
