@@ -3,16 +3,16 @@
   <xacro:property name="PI" value="3.1415926535897931" />
 
   <xacro:property name="wheelbase" value="0.262" />
-  <xacro:property name="track" value="0.37559" /> 
+  <xacro:property name="track" value="0.37559" />
   <xacro:property name="wheel_vertical_offset" value="0.0345" />
   <xacro:property name="footprint_vertical_offset" value="-0.0655" />
 
-  <xacro:property name="wheel_radius" value="0.098" /> 
-  <xacro:property name="wheel_width" value="0.040" /> 
+  <xacro:property name="wheel_radius" value="0.098" />
+  <xacro:property name="wheel_width" value="0.040" />
 
   <xacro:property name="chassis_length" value="0.420" />
-  <xacro:property name="chassis_width" value="0.310" /> 
-  <xacro:property name="chassis_height" value="0.184" /> 
+  <xacro:property name="chassis_width" value="0.310" />
+  <xacro:property name="chassis_height" value="0.184" />
 
   <xacro:property name="dummy_inertia" value="1e-09"/>
 
@@ -111,7 +111,7 @@
     <inertial>
       <!-- Center of mass -->
       <origin xyz="0.012  0.002 0.067" rpy="0 0 0"/>
-      <mass value="16.523"/> 
+      <mass value="16.523"/>
       <!-- Moments of inertia: ( chassis without wheels ) -->
       <inertia
         ixx="0.3136" ixy="-0.0008" ixz="0.0164"
@@ -179,7 +179,7 @@
     <child link="rear_mount" />
     <origin xyz="${-mount_spacing} 0 0" />
   </joint>
-  
+
   <link name="front_mount"></link>
   <joint name="front_mount_joint" type="fixed">
     <parent link="mid_mount" />
@@ -189,7 +189,7 @@
 
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="jackal.gazebo" />
-  
+
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->

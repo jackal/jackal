@@ -28,22 +28,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:property name="laser_x" value="0.105" />
-  <xacro:property name="laser_y" value="0.102" />
-  <xacro:property name="laser_z" value="0.152" />
-  <xacro:property name="laser_mass" value="1.1" />
 
-  <xacro:macro name="box_inertial" params="x y z mass">
-    <inertial>
-      <mass value="${mass}" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="${0.0833333 * mass * (y*y + z*z)}" ixy="0.0" ixz="0.0" 
-        iyy="${0.0833333 * mass * (x*x + z*z)}" iyz="0.0" 
-        izz="${0.0833333 * mass * (x*x + y*y)}" />
-    </inertial>
-  </xacro:macro>
+  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
+
+    <sick_lms1xx prefix="${prefix}" topic="${topic}" />
+
     <link name="${prefix}_laser_mount">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -55,24 +46,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </visual>
     </link>
 
-    <link name="${prefix}_laser">
-      <xacro:box_inertial x="${laser_x}" y="${laser_y}" z="${laser_z}" mass="${laser_mass}" />
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <!-- Origin of this mesh is the focal point of the LIDAR. -->
-          <mesh filename="package://jackal_description/meshes/sick-lms1xx.stl" />
-        </geometry>
-        <material name="light_grey" />
-      </visual>
-      <collision>
-        <origin xyz="0 0 -0.05" rpy="0 0 0" />
-        <geometry>
-          <box size="${laser_x} ${laser_y} ${laser_z}" />
-        </geometry>
-      </collision>
-    </link>
-
     <joint name="${prefix}_laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
       <origin xyz="0 0 0.149" rpy="0 0 0" />
@@ -80,38 +53,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <child link="${prefix}_laser" />
     </joint>
 
-    <gazebo reference="${prefix}_laser">
-      <material>Gazebo/Grey</material>
-      <turnGravityOff>true</turnGravityOff>
-      <sensor type="ray" name="${prefix}_laser">
-        <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
-        <update_rate>40</update_rate>
-        <ray>
-          <scan>
-            <horizontal>
-              <samples>720</samples>
-              <resolution>1</resolution>
-              <min_angle>-1.570796</min_angle>
-              <max_angle>1.570796</max_angle>
-            </horizontal>
-          </scan>
-          <range>
-            <min>0.10</min>
-            <max>30.0</max>
-            <resolution>0.01</resolution>
-          </range>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.001</stddev>
-          </noise>
-        </ray>
-        <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-          <topicName>${topic}</topicName>
-          <frameName>${prefix}_laser</frameName>
-        </plugin>
-      </sensor>
-    </gazebo>
   </xacro:macro>
+
 </robot>
