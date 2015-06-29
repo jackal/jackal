@@ -50,7 +50,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
       <origin xyz="0 0 0.149" rpy="0 0 0" />
       <parent link="${prefix}_laser_mount" />
-      <child link="${prefix}_laser" />
+      <child link="${prefix}laser" />
     </joint>
 
   </xacro:macro>
