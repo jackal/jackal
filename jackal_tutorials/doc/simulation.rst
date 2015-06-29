@@ -106,7 +106,7 @@ The rviz tool is capable of visualizing many common robotic sensors, as well as 
 us clues as to what the robot is doing and why. A great place to start with this is adding the
 :roswiki:`LaserScan <rviz/DisplayTypes/LaserScan>` plugin to visualize the laser scans being produced by the
 simulated LMS111. In the left panel, click the "Add" button, then select the "Topics" tab, and then select the
-``/scan`` topic:
+``front/scan`` topic:
 
 .. image:: rviz-visualize-laser.png
     :alt: Adding a laser scan visualization to Jackal.

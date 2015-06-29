@@ -1,7 +1,7 @@
 TrajectoryPlannerROS:
 
   # Robot Configuration Parameters
-  acc_lim_x: 10.0  
+  acc_lim_x: 10.0
   acc_lim_theta:  20.0
 
   max_vel_x: 0.5
@@ -38,7 +38,7 @@ TrajectoryPlannerROS:
   heading_scoring_timestep: 0.8   #How far to look ahead in time in seconds along the simulated trajectory when using heading scoring (double, default: 0.8)
   dwa: true #Whether to use the Dynamic Window Approach (DWA)_ or whether to use Trajectory Rollout
   simple_attractor: false
-  publish_cost_grid_pc: true  
+  publish_cost_grid_pc: true
 
   #Oscillation Prevention Parameters
   oscillation_reset_dist: 0.05 #How far the robot must travel in meters before oscillation flags are reset (double, default: 0.05)
