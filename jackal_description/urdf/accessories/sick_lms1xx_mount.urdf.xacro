@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
 
-    <sick_lms1xx prefix="${prefix}" topic="${topic}" />
+    <sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
 
     <link name="${prefix}_laser_mount">
       <visual>
@@ -50,7 +50,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
       <origin xyz="0 0 0.149" rpy="0 0 0" />
       <parent link="${prefix}_laser_mount" />
-      <child link="${prefix}laser" />
+      <child link="${prefix}_laser" />
     </joint>
 
   </xacro:macro>
