@@ -1,0 +1,19 @@
+frequency: 50
+
+odom0: /jackal_velocity_controller/odom
+odom0_config: [true, true, false,
+               false, false, false,
+               true, true, true,
+               false, false, true]
+odom0_differential: true
+
+imu0: /imu/data
+imu0_config: [false, false, false,
+              true, true, true,
+              false, false, false,
+              true, true, true]
+imu0_differential: false
+
+odom_frame: odom
+base_link_frame: base_link
+world_frame: odom

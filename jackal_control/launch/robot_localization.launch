@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="robot_localization" type="ekf_localization_node" name="t1_ekf_localization" clear_params="true">
+    <rosparam file="$(find jackal_control)/config/robot_localization.yaml" command="load"/>
+
+    <remap from="odometry/filtered" to="platform_odometry"/>
+    <remap from="set_pose" to="platform_set_pose"/>
+  </node>
+</launch>
+
