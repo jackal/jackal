@@ -53,8 +53,9 @@ The output will be:
     Shutting down motion command publisher.
     Waiting for rosbag to shut down.
     Computing magnetic calibration.
-    Unable to compute calibration from recorded bag.
-    Output in /tmp/compute_output.log
+	Calibration generated in /tmp/calibrate_compass.g8oM/mag_config.yaml.
+	Restart ROS service to begin using saved calibration.
+
 
 Once complete, you will be prompted to enter the user password in order to save the new calibration
 into ``$ROS_ETC_DIR``. Once this is done, restart the ROS service to begin using the new calibration:
