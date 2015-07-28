@@ -71,11 +71,11 @@ contents:
     export ROS_IP=10.25.0.102                           # Your laptop's wireless IP address
 
 If your network doesn't already resolve Jackal's hostname to its wireless IP address, you may need to add
-a corresponding line to your computer's ``/etc/hosts`` file, eg:
+a corresponding line to your computer's ``/etc/hosts`` file:
 
 .. code-block:: bash
 
-    192.168.0.101 cpr-jackal-0001
+    10.25.0.101 cpr-jackal-0001
 
 Then, when you're ready to communicate remotely with Jackal, you can source that script like so, thus defining
 those two key environment variables in the present context.
