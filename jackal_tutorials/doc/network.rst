@@ -21,7 +21,7 @@ static IP:
 
     ssh administrator@192.168.1.11
 
-The default passwork is ``clearpath``. You should now be logged into Jackal as the administrator user.
+The default password is ``clearpath``. You should now be logged into Jackal as the administrator user.
 
 
 Connecting to Wifi Access Point
