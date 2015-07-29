@@ -16,12 +16,11 @@
   <!-- This optional plate mounts both the upgraded GPS and the Velodyne 3D LIDAR. -->
   <xacro:include filename="accessories/bridge_plate.urdf.xacro" />
 
-
   <!-- If enabled, generate the LASER payload (by default, a SICK LMS111). -->
-  <xacro:include filename="accessories/sick_lms1xx.urdf.xacro" />
+  <xacro:include filename="accessories/sick_lms1xx_mount.urdf.xacro" />
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                       topic="$(optenv JACKAL_LASER_TOPIC scan)" />
+                       topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
 
     <joint name="$front_laser_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
@@ -35,7 +34,7 @@
   <!-- If enabled, generate the upgraded Navsat payload (a Novatel Smart6). -->
   <xacro:include filename="accessories/novatel_smart6.urdf.xacro" />
   <xacro:if value="$(optenv JACKAL_NAVSAT 0)">
-    <bridge_plate mount="$(optenv JACKAL_NAVSAT_MOUNT rear)" 
+    <bridge_plate mount="$(optenv JACKAL_NAVSAT_MOUNT rear)"
                   height="$(optenv JACKAL_NAVSAT_HEIGHT 0.1)" />
     <novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
 
@@ -46,13 +45,13 @@
     </joint>
   </xacro:if>
 
-  
+
   <!--
   <xacro:include filename="accessories/point_grey_flea.urdf.xacro" />
 
   <xacro:if value="$(arg camera)">
     <xacro:point_grey_flea3
-      prefix="front" 
+      prefix="front"
       joint_parent="front_mount"
       joint_xyz="0.135 0 0.015"
       joint_rpy="0 0 0"

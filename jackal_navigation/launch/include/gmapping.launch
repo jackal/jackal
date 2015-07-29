@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="scan_topic" default="scan" />
+  <arg name="scan_topic" default="front/scan" />
 
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
 
@@ -9,7 +9,7 @@
     <param name="map_frame" value="map"/>
 
     <!-- Process 1 out of every this many scans (set it to a higher number to skip more scans)  -->
-    <param name="throttle_scans" value="1"/> 
+    <param name="throttle_scans" value="1"/>
 
     <param name="map_update_interval" value="5.0"/> <!-- default: 5.0 -->
 
