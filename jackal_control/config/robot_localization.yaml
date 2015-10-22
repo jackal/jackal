@@ -1,0 +1,57 @@
+#Configuation for robot odometry EKF
+#
+frequency: 50
+
+odom0: /jackal_velocity_controller/odom
+odom0_config: [false, false, false,
+               false, false, false,
+               true, true, false,
+               false, false, true,
+               false, false, false]
+odom0_differential: false
+
+imu0: /imu/data
+imu0_config: [false, false, false,
+              true, true, true,
+              false, false, false,
+              true, true, true,
+              false, false, false]
+imu0_differential: false
+
+odom_frame: odom
+base_link_frame: base_link
+world_frame: odom
+
+Q_x: &Q_x 0.1
+Q_y: &Q_y 0.1
+Q_z: &Q_z 0.1
+Q_R: &Q_R !degrees 90.0
+Q_P: &Q_P !degrees 90.0
+Q_Y: &Q_Y !degrees 90.0
+
+Q_vx: &Q_vx 1.0
+Q_vy: &Q_vy 1.0
+Q_vz: &Q_vz 1.0
+Q_vR: &Q_vR !degrees 90.0
+Q_vP: &Q_vP !degrees 90.0
+Q_vY: &Q_vY !degrees 90.0
+
+Q_ax: &Q_ax 1.0
+Q_ay: &Q_ay 1.0
+Q_az: &Q_az 1.0
+
+process_noise_covariance: [*Q_x, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, *Q_y, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, *Q_z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, *Q_R, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, *Q_P, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, *Q_Y, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_vx, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_vy, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_vz, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_vR, 0.0, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_vP, 0.0, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_vY, 0.0, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_ax, 0.0, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_ay, 0.0,
+                           0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, *Q_az]
