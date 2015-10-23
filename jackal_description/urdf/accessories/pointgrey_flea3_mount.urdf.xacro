@@ -1,0 +1,28 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" />
+
+  <xacro:macro name="pointgrey_flea3_mount" params="prefix name">
+
+    <pointgrey_flea3 frame="${prefix}_camera" name="${name}" camera_x="0.0754" camera_y="0.029" camera_z="0.035" camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512"/>
+
+    <link name="${prefix}_camera_mount">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+        <geometry>
+          <!-- Origin of this mesh is the base of the mount. -->
+          <mesh filename="package://jackal_description/meshes/pointgrey-camera-bracket.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}_camera_joint" type="fixed">
+      <origin xyz="0.125 0 0.03175" rpy="0 0 0" />
+      <parent link="${prefix}_camera_mount" />
+      <child link="${prefix}_camera" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>

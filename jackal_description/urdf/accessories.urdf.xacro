@@ -22,7 +22,7 @@
     <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
                        topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
 
-    <joint name="$front_laser_mount_joint" type="fixed">
+    <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
               rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
       <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
@@ -45,29 +45,34 @@
     </joint>
   </xacro:if>
 
+  <!-- If enabled, generate the flea3 camera payload. -->
+  <xacro:include filename="accessories/pointgrey_flea3_mount.urdf.xacro" />
+  <xacro:if value="$(optenv JACKAL_FLEA3 0)">
+    <pointgrey_flea3_mount prefix="$(optenv JACKAL_FLEA_MOUNT front)"
+                       name="$(optenv JACKAL_FLEA_NAME front)"/>
 
-  <!--
-  <xacro:include filename="accessories/point_grey_flea.urdf.xacro" />
-
-  <xacro:if value="$(arg camera)">
-    <xacro:point_grey_flea3
-      prefix="front"
-      joint_parent="front_mount"
-      joint_xyz="0.135 0 0.015"
-      joint_rpy="0 0 0"
-      camera_x="0.0754"
-      camera_y="0.029"
-      camera_z="0.035"
-      camera_mass="0.085"
-      hfov="1.0471975512"
-      width="640"
-      height="512"
-      format="R8G8B8"
-      near="0.1"
-      far="300"
-      ns="jackal"
-      frame_id="front_mount"
-      />
+    <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_camera_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0)"
+              rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
+      <parent link="$(optenv JACKAL_FLEA_MOUNT front)_mount" />
+      <child link="$(optenv JACKAL_FLEA_MOUNT front)_camera_mount" />
+    </joint>
   </xacro:if>
-  -->
+
+
+  <!-- If enabled, generate the bumblebee2 camera payload. -->
+  <xacro:include filename="accessories/pointgrey_bumblebee2_mount.urdf.xacro" />
+  <xacro:if value="$(optenv JACKAL_BB2 0)">
+    <pointgrey_bumblebee2_mount prefix="$(optenv JACKAL_BB2_MOUNT front)"
+                       name="$(optenv JACKAL_BB2_NAME front)"/>
+
+    <joint name="$(optenv JACKAL_BB2_MOUNT front)_camera_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0)"
+              rpy="$(optenv JACKAL_BB2_RPY 0 0 0)" />
+      <parent link="$(optenv JACKAL_BB2_MOUNT front)_mount" />
+      <child link="$(optenv JACKAL_BB2_MOUNT front)_camera_mount" />
+    </joint>
+  </xacro:if>
+
+
 </robot>
