@@ -2,13 +2,13 @@
 
   <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" />
 
-  <xacro:macro name="pointgrey_flea3_mount" params="prefix name">
+  <xacro:macro name="pointgrey_flea3_mount" params="prefix name tilt:=0">
 
     <pointgrey_flea3 frame="${prefix}_camera" name="${name}" camera_x="0.0754" camera_y="0.029" camera_z="0.035" camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512"/>
 
     <link name="${prefix}_camera_mount">
       <visual>
-        <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+        <origin xyz="0 0 0" rpy="1.5707 0 1.5707" />
         <geometry>
           <!-- Origin of this mesh is the base of the mount. -->
           <mesh filename="package://jackal_description/meshes/pointgrey-camera-bracket.stl" scale="0.001 0.001 0.001" />
@@ -17,11 +17,36 @@
       </visual>
     </link>
 
-    <joint name="${prefix}_camera_joint" type="fixed">
-      <origin xyz="0.125 0 0.03175" rpy="0 0 0" />
+    <link name="${prefix}_camera_beam">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 1.5707" />
+        <geometry>
+          <!-- Origin of this mesh is the base of the mount. -->
+          <mesh filename="package://jackal_description/meshes/pointgrey-camera-beam.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}_camera_pivot_joint" type="fixed">
+      <origin xyz="0.102 0 0.008" rpy="0 ${tilt} 0" />
       <parent link="${prefix}_camera_mount" />
+      <child link="${prefix}_camera_beam" />
+    </joint>
+
+    <joint name="${prefix}_camera_bracket_joint" type="fixed">
+      <origin xyz="0.020 0 0.0245" rpy="0 0 0" />
+      <parent link="${prefix}_camera_beam" />
       <child link="${prefix}_camera" />
     </joint>
+
+    <gazebo reference="${prefix}_camera_beam">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <gazebo reference="${prefix}_camera_mount">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
 
   </xacro:macro>
 

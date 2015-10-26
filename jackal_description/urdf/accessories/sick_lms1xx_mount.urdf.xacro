@@ -53,6 +53,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <child link="${prefix}_laser" />
     </joint>
 
+    <gazebo reference="${prefix}_laser_mount">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
   </xacro:macro>
 
 </robot>
