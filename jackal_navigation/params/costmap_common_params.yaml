@@ -14,7 +14,6 @@ footprint: [[-0.21, -0.165], [-0.21, 0.165], [0.21, 0.165], [0.21, -0.165]]
 footprint_padding: 0.1
 
 plugins:
-- {name: footprint_layer, type: "costmap_2d::FootprintLayer"}
 - {name: obstacles_layer, type: "costmap_2d::ObstacleLayer"}
 - {name: inflater_layer, type: "costmap_2d::InflationLayer"}
 
