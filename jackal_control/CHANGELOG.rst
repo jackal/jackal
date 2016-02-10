@@ -2,6 +2,18 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Removed reference to FootprintLayer.
+* Increased inflation radius to account for uneven wall in Jackal_world.
+* Added pointgrey camera and accessories.
+* Improve robot_localiztion params
+* Added Sick LMS1XX URDF.
+* Fixed example calibration output.
+* Added tutorials.
+* Contributors: Mike Purvis, Martin Cote, Tony Baltovski, James Servos
+
+
 0.5.1 (2015-02-02)
 ------------------
 
