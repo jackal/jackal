@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.2 (2016-02-10)
+------------------
 * Removed reference to FootprintLayer.
 * Increased inflation radius to account for uneven wall in Jackal_world.
 * Added pointgrey camera and accessories.
