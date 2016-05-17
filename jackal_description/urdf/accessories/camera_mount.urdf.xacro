@@ -1,7 +1,5 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-
-
   <xacro:macro name="camera_mount" params="prefix tilt:=0">
 
     <link name="${prefix}_camera_mount">
