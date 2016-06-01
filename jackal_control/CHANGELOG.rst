@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added support for PS4 controller.
+* Contributors: Tony Baltovski
+
 0.5.2 (2016-02-10)
 ------------------
 * Removed reference to FootprintLayer.
