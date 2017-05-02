@@ -188,13 +188,15 @@
   </joint>
 
   <!-- Bring in simulation data for Gazebo. -->
-  <xacro:include filename="jackal.gazebo" />
+  <xacro:include filename="$(find jackal_description)/urdf/jackal.gazebo" />
 
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
-  <xacro:include filename="accessories.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories.urdf.xacro" />
 
   <!-- Optional custom includes. -->
-  <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
+  <xacro:if value="$(optenv JACKAL_URDF_EXTRAS 0)">
+    <xacro:include filename="$(env JACKAL_URDF_EXTRAS)" />
+  </xacro:if>
 </robot>
