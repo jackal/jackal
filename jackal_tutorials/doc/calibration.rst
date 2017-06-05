@@ -62,7 +62,7 @@ into ``$ROS_ETC_DIR``. Once this is done, restart the ROS service to begin using
 
 .. code-block:: bash
 
-    sudo service jackal restart
+    sudo service ros restart
 
 Calibration should be performed when jackal is first received, and any time the platform is modified by adding
 new peripherals. It is also recommended to recalibrate annually as part of seasonal maintenance.
