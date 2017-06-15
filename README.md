@@ -1,4 +1,4 @@
-jackal
+jackal for ROS Kinetic
 ======
 
 Common packages for Jackal, including messages and robot description. These are packages relevant
