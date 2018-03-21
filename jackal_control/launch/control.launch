@@ -8,7 +8,10 @@
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
   </node>
 
-  <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
-        args="cmd_vel jackal_velocity_controller/cmd_vel" />
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find jackal_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="jackal_velocity_controller/cmd_vel"/>
+  </node>
+
 </launch>
 
