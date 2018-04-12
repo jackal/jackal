@@ -4,6 +4,9 @@ Changelog for package jackal_description
 
 Forthcoming
 -----------.
+* Made minor changes to syntax for kinetic warnings
+* Contributors: Dave Niewinski
+
 * Added stereo camera accessory.
 * Removed unused variable jackal_description_dir
 * Make urdf refer explicitly to jackal_description, rather than relying on current working directory being correct, for easier external includes

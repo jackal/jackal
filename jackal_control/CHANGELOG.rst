@@ -2,6 +2,12 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [jackal_control] Made the PS4 controller default.
+* Made minor changes to syntax for kinetic warnings
+* Contributors: Dave Niewinski, Tony Baltovski
+
 0.5.4 (2018-04-12)
 ------------------
 
