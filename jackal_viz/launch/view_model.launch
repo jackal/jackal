@@ -1,0 +1,12 @@
+<launch>
+  <!-- Jackal configuration to view. See jackal_description for details. -->
+  <arg name="config" default="base"/>
+
+  <include file="$(find jackal_description)/launch/description.launch">
+    <arg name="config" value="$(arg config)" />
+  </include>
+
+  <param name="use_gui" value="true"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jackal_viz)/rviz/model.rviz" />
+</launch>
