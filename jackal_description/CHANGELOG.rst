@@ -2,6 +2,13 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------.
+* Added stereo camera accessory.
+* Removed unused variable jackal_description_dir
+* Make urdf refer explicitly to jackal_description, rather than relying on current working directory being correct, for easier external includes
+* Contributors: Arnold Kalmbach, Tony Baltovski, akalmbach
+
 0.5.1 (2015-02-02)
 ------------------
 * Modified the accessories.urdf.xacro to include both the GPS and mount plate, including standoffs.

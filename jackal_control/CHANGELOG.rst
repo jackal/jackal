@@ -2,6 +2,9 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.5.3 (2016-06-01)
 ------------------
 * Added support for PS4 controller.
