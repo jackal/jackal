@@ -196,7 +196,5 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories.urdf.xacro" />
 
   <!-- Optional custom includes. -->
-  <xacro:if value="$(optenv JACKAL_URDF_EXTRAS 0)">
-    <xacro:include filename="$(env JACKAL_URDF_EXTRAS)" />
-  </xacro:if>
+  <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
 </robot>
