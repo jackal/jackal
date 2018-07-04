@@ -14,12 +14,12 @@ First Connection
 
 By default, Jackal's wireless is in client mode, looking for the wireless network at the Clearpath factory. In
 order to set it up to connect to your own network, you'll have to open up the chassis and connect a network cable to
-the PC's ``STATIC`` port. The other end of this cable should be connected to your laptop, and you should give yourself an IP address in the ``192.168.1.x`` space, such as ``192.168.1.50``. Then, make the connection to Jackal's default
+the PC's ``STATIC`` port. The other end of this cable should be connected to your laptop, and you should give yourself an IP address in the ``192.168.131.x`` space, such as ``192.168.131.50``. Then, make the connection to Jackal's default
 static IP:
 
 .. code-block:: bash
 
-    ssh administrator@192.168.1.11
+    ssh administrator@192.168.131.1
 
 The default password is ``clearpath``. You should now be logged into Jackal as the administrator user.
 
@@ -84,7 +84,7 @@ those two key environment variables in the present context.
 
     source remote-jackal.sh
 
-Now, when you run commands like ``rostopic list``, ``rostopic echo``, ``rosnode list``, and others, the output 
+Now, when you run commands like ``rostopic list``, ``rostopic echo``, ``rosnode list``, and others, the output
 you see should reflect the activity on Jackal's ROS master, rather than on your own machine. Once you've
 verified the basics (list, echo) from the prompt, try launching some of the standard visual ROS tools:
 
