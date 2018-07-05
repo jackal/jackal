@@ -123,5 +123,37 @@
     </joint>
   </xacro:if>
 
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+  <xacro:if value="$(optenv JACKAL_FRONT_ACCESSORY_FENDER 0)">
+    <xacro:if value="$(optenv JACKAL_FRONT_FENDER_UST10 0)">
+        <hokuyo_ust10 prefix="front_ust10" parent_link="front_fender_accessory_link"/>
+    </xacro:if>
+  </xacro:if>
+
+  <xacro:if value="$(optenv JACKAL_REAR_ACCESSORY_FENDER 0)">
+    <xacro:if value="$(optenv JACKAL_REAR_FENDER_UST10 0)">
+        <hokuyo_ust10 prefix="rear_ust10" parent_link="rear_fender_accessory_link"/>
+    </xacro:if>
+  </xacro:if>
+
+  <xacro:if value="$(optenv JACKAL_ARK_ENCLOSURE 0)">
+    <link name="ark_enclosure_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://jackal_description/meshes/ark_enclosure.stl"/>
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+    </link>
+    <joint name="ark_enclosure_joint" type="fixed">
+      <parent link="mid_mount" />
+      <child link="ark_enclosure_link" />
+    </joint>
+    <gazebo reference="ark_enclosure_link">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+  </xacro:if>
 
 </robot>
