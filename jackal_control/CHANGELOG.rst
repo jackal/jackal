@@ -2,6 +2,12 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added missing twist_mux.yaml.  Fixed malformed meshes
+* Added twist_mux and minor kinetic syntax changes
+* Contributors: Dave Niewinski
+
 0.6.0 (2018-04-12)
 ------------------
 * [jackal_control] Made the PS4 controller default.
