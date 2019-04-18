@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>jackal_msgs</name>
-  <version>0.6.1</version>
+  <version>0.6.2</version>
   <description>Messages exclusive to Jackal, especially for representing low-level motor commands and sensors.</description>
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
 

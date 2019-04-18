@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>jackal_navigation</name>
-  <version>0.6.1</version>
+  <version>0.6.2</version>
   <description>Launch files and code for autonomous navigation of the Jackal</description>
   <author email="spourmehr@clearpathrobotics.com">Shokoofeh Pourmehr</author>
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
