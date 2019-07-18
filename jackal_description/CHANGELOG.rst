@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.3 (2019-07-18)
+------------------
 * Added all extra fender changes
 * Contributors: Dave Niewinski
 
