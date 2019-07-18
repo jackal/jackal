@@ -3,9 +3,7 @@ Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Forthcoming
------------.
-* Merge pull request `#56 <https://github.com/jackal/jackal/issues/56>`_ from jackal/urdf_additions
-  Added all extra fender changes
+-----------
 * Added all extra fender changes
 * Contributors: Dave Niewinski
 
