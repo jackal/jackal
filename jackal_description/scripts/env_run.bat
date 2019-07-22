@@ -1,4 +1,5 @@
 @echo off
+setlocal
 REM This simple wrapper allowing us to pass a set of
 REM environment variables to be sourced prior to running
 REM another command. Used in the launch file for setting
