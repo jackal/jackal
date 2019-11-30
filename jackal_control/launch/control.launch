@@ -1,10 +1,14 @@
 <launch>
   <rosparam command="load" file="$(find jackal_control)/config/control.yaml" />
 
+  <group if="$(optenv JACKAL_CONTROL_EXTRAS 0)" >
+    <rosparam command="load" file="$(env JACKAL_CONTROL_EXTRAS_PATH)" />
+  </group
+
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller" />
-  
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
   </node>
 
@@ -14,4 +18,3 @@
   </node>
 
 </launch>
-
