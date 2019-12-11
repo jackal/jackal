@@ -3,7 +3,7 @@
 
   <group if="$(optenv JACKAL_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env JACKAL_CONTROL_EXTRAS_PATH)" />
-  </group
+  </group>
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller" />
