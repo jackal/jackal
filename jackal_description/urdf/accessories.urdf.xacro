@@ -18,16 +18,31 @@
 
   <!-- If enabled, generate the LASER payload (by default, a SICK LMS111). -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
-    <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
-    <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                       topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+    <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+      <hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
+              
+      <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0.11 0 0)"
+                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+        <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
+        <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
+      </joint>
+    </xacro:if>
+    
+    <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+      <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
 
-    <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
-              rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-      <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
-      <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
-    </joint>
+      <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+        <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
+        <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
+      </joint>
+    </xacro:unless>
   </xacro:if>
 
   <!-- If enabled, generate the upgraded Navsat payload (a Novatel Smart6). -->
