@@ -2,6 +2,9 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.6.3 (2019-07-18)
 ------------------
 

@@ -2,6 +2,17 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Modify the hokuyo accessory so that it works properly in gazebo/rviz.  Add an additional environment var JACKAL_LASER_HOKUYO which overrides the default lms1xx sensor with the ust10.
+* use env_run.bat on Windows (`#3 <https://github.com/jackal/jackal/issues/3>`_)
+* add setlocal
+* Fix jackal_description install location & fold xacro includes (`#2 <https://github.com/jackal/jackal/issues/2>`_)
+  * Fix install location.
+  * Fold xacro includes
+* add env-hook batch scripts (`#1 <https://github.com/jackal/jackal/issues/1>`_)
+* Contributors: Chris I-B, James Xu, Sean Yen, Tony Baltovski
+
 0.6.3 (2019-07-18)
 ------------------
 * Added all extra fender changes

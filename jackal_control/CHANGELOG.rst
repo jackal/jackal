@@ -2,6 +2,13 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update control.launch
+  Somehow a ">" has gone missing. This change adds it back in.
+* [jackal_control] Added control extras.
+* Contributors: Jeff Schmidt, Tony Baltovski
+
 0.6.3 (2019-07-18)
 ------------------
 
