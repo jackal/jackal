@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.4 (2020-03-04)
+------------------
 * Modify the hokuyo accessory so that it works properly in gazebo/rviz.  Add an additional environment var JACKAL_LASER_HOKUYO which overrides the default lms1xx sensor with the ust10.
 * use env_run.bat on Windows (`#3 <https://github.com/jackal/jackal/issues/3>`_)
 * add setlocal
