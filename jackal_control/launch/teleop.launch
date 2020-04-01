@@ -1,5 +1,5 @@
 <launch>
-  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joy_dev" default="/dev/input/ps4" />
   <arg name="joystick" default="true" />
 
   <group ns="bluetooth_teleop" if="$(arg joystick)">
@@ -9,7 +9,7 @@
     </group>
 
     <group if="$(optenv JACKAL_PS3 0)" >
-      <rosparam command="load" file="$(find jackal_control)/config/teleop.yaml" />
+      <rosparam command="load" file="$(find jackal_control)/config/teleop_ps3.yaml" />
       <param name="joy_node/dev" value="$(arg joy_dev)" />
     </group>
 
