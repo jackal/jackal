@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Mark the PS3 controller launch file as deprecated, update the default joystick device to point to /dev/input/ps4, as per the new udev rules added to the bringup package
+* Contributors: Chris I-B
+
 0.6.4 (2020-03-04)
 ------------------
 * Update control.launch
