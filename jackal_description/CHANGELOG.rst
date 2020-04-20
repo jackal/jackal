@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.5 (2020-04-20)
+------------------
 * [jackal_description] Re-added pointgrey_camera_description as run depend.
 * Contributors: Tony Baltovski
 
