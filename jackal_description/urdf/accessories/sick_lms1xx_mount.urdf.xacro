@@ -31,9 +31,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
 
-  <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
+  <xacro:macro name="sick_lms1xx_mount" params="prefix topic parent_link">
 
     <sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
+
+    <joint name="${prefix}_laser_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+              rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+      <parent link="${parent_link}" />
+      <child link="${prefix}_laser_mount" />
+    </joint>
 
     <link name="${prefix}_laser_mount">
       <visual>
