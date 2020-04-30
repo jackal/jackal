@@ -21,27 +21,15 @@
     <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
       <hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                          parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                           topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
-
-      <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0.11 0 0)"
-                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-        <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
-        <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
-      </joint>
     </xacro:if>
 
     <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
       <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                         parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
-
-      <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
-                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-        <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
-        <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
-      </joint>
     </xacro:unless>
   </xacro:if>
 
@@ -143,13 +131,19 @@
   <xacro:if value="$(optenv JACKAL_FRONT_ACCESSORY_FENDER 0)">
     <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
     <xacro:if value="$(optenv JACKAL_FRONT_FENDER_UST10 0)">
-        <hokuyo_ust10 prefix="front_ust10" parent_link="front_fender_accessory_link"/>
+      <hokuyo_ust10_mount
+        prefix="front"
+        parent_link="front_fender_accessory_link"
+        topic="$(optenv JACKAL_FRONT_LASER_TOPIC front/scan)"/>
     </xacro:if>
   </xacro:if>
 
   <xacro:if value="$(optenv JACKAL_REAR_ACCESSORY_FENDER 0)">
     <xacro:if value="$(optenv JACKAL_REAR_FENDER_UST10 0)">
-        <hokuyo_ust10 prefix="rear_ust10" parent_link="rear_fender_accessory_link"/>
+      <hokuyo_ust10_mount
+        prefix="rear"
+        parent_link="rear_fender_accessory_link"
+        topic="$(optenv JACKAL_REAR_LASER_TOPIC rear/scan)"/>
     </xacro:if>
   </xacro:if>
 
