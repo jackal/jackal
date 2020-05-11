@@ -49,7 +49,7 @@
       </gazebo>
     </xacro:macro>
 
-    <hokuyo_ust10 frame="${prefix}_laser" topic="${topic}"/>
+    <xacro:hokuyo_ust10 frame="${prefix}_laser" topic="${topic}"/>
 
     <joint name="${prefix}_laser_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
