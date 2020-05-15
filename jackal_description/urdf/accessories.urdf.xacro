@@ -193,7 +193,7 @@
     <joint name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_point" type="fixed">
       <origin xyz="0.09 0 0.0335" rpy="0 -0.17453292519444444 0"/>
       <parent link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate"/>
-      <child link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)camera_base"/>
+      <child link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_base"/>
     </joint>
   </xacro:if>
 

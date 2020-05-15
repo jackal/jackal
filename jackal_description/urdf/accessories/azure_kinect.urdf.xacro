@@ -27,7 +27,7 @@ SOFTWARE
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="azure_kinect" params="prefix">
 
-    <link name="${prefix}camera_body">
+    <link name="${prefix}_kinect_body">
       <visual>
         <origin xyz="0. 0. 0." />
         <geometry>
@@ -37,7 +37,7 @@ SOFTWARE
       </visual>
     </link>
 
-    <link name="${prefix}camera_base">
+    <link name="${prefix}_kinect_base">
       <visual>
         <origin xyz="-0.013 0. 0." />
         <geometry>
@@ -47,7 +47,7 @@ SOFTWARE
       </visual>
     </link>
 
-    <link name="${prefix}camera_visor">
+    <link name="${prefix}_kinect_visor">
       <visual>
         <origin xyz="-0.0128 0. 0." />
         <geometry>
@@ -57,17 +57,85 @@ SOFTWARE
       </visual>
     </link>
 
-    <joint name="${prefix}camera_base_to_body" type="fixed">
-      <parent link="${prefix}camera_base" />
-      <child link="${prefix}camera_body" />
+    <joint name="${prefix}_kinect_base_to_body" type="fixed">
+      <parent link="${prefix}_kinect_base" />
+      <child link="${prefix}_kinect_body" />
       <origin xyz="-0.0757 0. 0.008" rpy="0. 0. 0." />
     </joint>
 
-    <joint name="${prefix}camera_base_to_visor" type="fixed">
-      <parent link="${prefix}camera_base" />
-      <child link="${prefix}camera_visor" />
+    <joint name="${prefix}_kinect_base_to_visor" type="fixed">
+      <parent link="${prefix}_kinect_base" />
+      <child link="${prefix}_kinect_visor" />
       <origin xyz="0. 0. 0." rpy="0. 0. 0." />
     </joint>
+
+    <!--
+      The gazebo plugin aligns the depth data with the Z axis, with X=left and Y=up
+      ROS expects the depth data along the X axis, with Y=left and Z=up
+      This link only exists to give the gazebo plugin the correctly-oriented frame
+    -->
+    <link name="${prefix}_kinect_gazebo_lens" />
+    <joint name="${prefix}_kinect_gazebo_joint" type="fixed">
+      <parent link="${prefix}_kinect_visor"/>
+      <child link="${prefix}_kinect_gazebo_lens"/>
+      <origin xyz="0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966"/>
+    </joint>
+
+    <!--
+      This isn't a 100% accurate representation of the Azure Kinect's data, but it's reasonably close.
+      The color data on the real camera has a 90x59 degree FOV, and the depth data is the full vision
+      cone approximated as a hexagon within the frame.
+      But for now the OpenNI kinect plugin is the closest analogue
+    -->
+    <gazebo reference="${prefix}_kinect_visor">
+      <turnGravityOff>true</turnGravityOff>
+      <sensor type="depth" name="${prefix}_kinect_depth">
+        <update_rate>30</update_rate>
+        <camera>
+          <!-- 75x65 degree FOV -->
+          <horizontal_fov>1.3089958333333334</horizontal_fov>
+          <vertical_fov>1.1344630555555555</vertical_fov>
+          <image>
+            <!--
+              The Azure Kinect has a bit of a weird frame size for the depth data
+              see: https://docs.microsoft.com/en-us/azure/kinect-dk/hardware-specification
+            -->
+            <width>640</width>
+            <height>576</height>
+            <!-- TODO: check what format the Azure Kinect hardware delivers and set this to match! -->
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.5</near>
+            <far>5.46</far>
+          </clip>
+        </camera>
+        <plugin name="kinect_controller" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>1.0</updateRate>
+          <cameraName>kinect</cameraName>
+          <imageTopicName>/kinect/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/kinect/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/kinect/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/kinect/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>/kinect/depth/points</pointCloudTopicName>
+          <frameName>${prefix}_kinect_gazebo_lens</frameName>
+          <pointCloudCutoff>0.5</pointCloudCutoff>
+          <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+          <distortionK1>0.00000001</distortionK1>
+          <distortionK2>0.00000001</distortionK2>
+          <distortionK3>0.00000001</distortionK3>
+          <distortionT1>0.00000001</distortionT1>
+          <distortionT2>0.00000001</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+        </plugin>
+      </sensor>
+    </gazebo>
 
   </xacro:macro>
 </robot>
