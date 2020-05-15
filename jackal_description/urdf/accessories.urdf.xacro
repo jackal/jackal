@@ -168,21 +168,17 @@
   </xacro:if>
 
   <xacro:if value="$(optenv JACKAL_AZURE_KINECT 0)">
-    <!--
-      Microsoft kindly provided a 3d printable mounting plate for the Azure Kinect
-      To make printing easier the model's origin is offset a bit and it's in mm,
-      so we need to scale and offset the model a little.
-    -->
     <link name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate">
       <visual>
-        <origin xyz="0 0 -0.055" rpy="0 0 -1.57079632675" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://jackal_description/meshes/kinect_mount.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://jackal_description/meshes/kinect_mount.stl"/>
         </geometry>
         <material name="black"/>
       </visual>
     </link>
     <joint name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_AZURE_KINECT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_AZURE_KINECT_RPY 0 0 0)"/>
       <parent link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_mount"/>
       <child link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate"/>
     </joint>
