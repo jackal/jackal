@@ -92,12 +92,19 @@ SOFTWARE
       <sensor type="depth" name="${prefix}_kinect_depth">
         <update_rate>30</update_rate>
         <camera>
-          <!-- 75x65 degree FOV -->
+          <!-- 75x65 degree FOV for the depth sensor -->
           <horizontal_fov>1.3089958333333334</horizontal_fov>
           <vertical_fov>1.1344630555555555</vertical_fov>
+
+          <!-- 90x59 degree FOV for the hardware color camera -->
+          <!-- currently disabled, as this would mangle the depth data
+          <horizontal_fov>1.5707963267948966</horizontal_fov>
+          <vertical_fov>1.0297442586766543</vertical_fov>
+          -->
           <image>
             <!--
               The Azure Kinect has a bit of a weird frame size for the depth data
+              The color data is full-HD+, but that doesn't appear to be supported yet.
               see: https://docs.microsoft.com/en-us/azure/kinect-dk/hardware-specification
             -->
             <width>640</width>
@@ -106,8 +113,9 @@ SOFTWARE
             <format>R8G8B8</format>
           </image>
           <clip>
-            <near>0.5</near>
-            <far>5.46</far>
+            <!-- give the color sensor a maximum range of 50m so that the simulation renders nicely -->
+            <near>0.01</near>
+            <far>50.0</far>
           </clip>
         </camera>
         <plugin name="kinect_controller" filename="libgazebo_ros_openni_kinect.so">
@@ -121,8 +129,9 @@ SOFTWARE
           <depthImageInfoTopicName>/kinect/depth/camera_info</depthImageInfoTopicName>
           <pointCloudTopicName>/kinect/depth/points</pointCloudTopicName>
           <frameName>${prefix}_kinect_gazebo_lens</frameName>
+          <!-- the Azure Kinect has an effective depth-sensing range of 0.5m to 5.46m -->
           <pointCloudCutoff>0.5</pointCloudCutoff>
-          <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+          <pointCloudCutoffMax>5.46</pointCloudCutoffMax>
           <distortionK1>0.00000001</distortionK1>
           <distortionK2>0.00000001</distortionK2>
           <distortionK3>0.00000001</distortionK3>

@@ -186,6 +186,7 @@
     <xacro:include filename="$(find jackal_description)/urdf/accessories/azure_kinect.urdf.xacro" />
     <xacro:azure_kinect prefix="$(optenv JACKAL_AZURE_KINECT_MOUNT front)" />
 
+    <!-- this is the actual mounting hole in the mounting plate -->
     <joint name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_point" type="fixed">
       <origin xyz="0.09 0 0.0335" rpy="0 -0.17453292519444444 0"/>
       <parent link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate"/>
