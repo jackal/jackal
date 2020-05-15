@@ -19,9 +19,11 @@
   <xacro:property name="mount_spacing" value="0.120" />
 
   <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
-  <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
+  <material name="medium_grey"><color rgba="0.6 0.6 0.6 1.0" /></material>
+  <material name="light_grey"><color rgba="0.8 0.8 0.8 1.0" /></material>
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+  <material name="white"><color rgba="1.0 1.0 1.0 1.0" /></material>
 
   <xacro:macro name="wheel" params="prefix *joint_pose">
 
