@@ -123,11 +123,11 @@ SOFTWARE
           <alwaysOn>true</alwaysOn>
           <updateRate>1.0</updateRate>
           <cameraName>kinect</cameraName>
-          <imageTopicName>/kinect/color/image_raw</imageTopicName>
-          <cameraInfoTopicName>/kinect/color/camera_info</cameraInfoTopicName>
-          <depthImageTopicName>/kinect/depth/image_raw</depthImageTopicName>
-          <depthImageInfoTopicName>/kinect/depth/camera_info</depthImageInfoTopicName>
-          <pointCloudTopicName>/kinect/depth/points</pointCloudTopicName>
+          <imageTopicName>/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>/depth/points</pointCloudTopicName>
           <frameName>${prefix}_kinect_gazebo_lens</frameName>
           <!-- the Azure Kinect has an effective depth-sensing range of 0.5m to 5.46m -->
           <pointCloudCutoff>0.5</pointCloudCutoff>
