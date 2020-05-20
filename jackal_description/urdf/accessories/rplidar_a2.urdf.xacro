@@ -48,25 +48,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.04" length="0.04"/>
-        </geometry>
-        <material name="dark_grey" />
-      </visual>
-    </link>
-    <link name="${prefix}_laser_ring">
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <cylinder radius="0.039" length="0.004"/>
-        </geometry>
-        <material name="red" />
-      </visual>
-    </link>
-    <link name="${prefix}_laser_cap">
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <cylinder radius="0.038" length="0.036"/>
+          <mesh filename="package://jackal_description/meshes/rplidar_a2.stl" />
         </geometry>
         <material name="dark_grey" />
       </visual>
@@ -78,20 +60,10 @@
       <parent link="${parent_link}" />
       <child link="${prefix}_laser_mount" />
     </joint>
-    <joint name="${prefix}_laser_ring_joint" type="fixed">
-      <origin xyz="0 0 0.02" rpy="0 0 0" />
-      <parent link="${prefix}_laser_mount" />
-      <child link="${prefix}_laser_ring" />
-    </joint>
-    <joint name="${prefix}_laser_cap_joint" type="fixed">
-      <origin xyz="0 0 0.002" rpy="0 0 0" />
-      <parent link="${prefix}_laser_ring" />
-      <child link="${prefix}_laser_cap" />
-    </joint>
     <joint name="${prefix}_laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${prefix}_laser_cap" />
+      <origin xyz="0 0 0.029" rpy="0 0 0" />
+      <parent link="${prefix}_laser_mount" />
       <child link="${prefix}_laser" />
     </joint>
 

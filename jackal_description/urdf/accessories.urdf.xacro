@@ -32,7 +32,7 @@
     </xacro:if>
     <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
       <xacro:if value="$(optenv JACKAL_LASER_RP 0)">
-        <xacro:include filename="$(find jackal_description)/urdf/accessories/rp_lidar.urdf.xacro" />
+        <xacro:include filename="$(find jackal_description)/urdf/accessories/rplidar_a2.urdf.xacro" />
         <xacro:rp_lidar_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
                             parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                             topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
