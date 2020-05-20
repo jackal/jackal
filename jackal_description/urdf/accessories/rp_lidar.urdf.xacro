@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="rp_lidar_mount" params="prefix topic parent_link">
+
+    <xacro:macro name="rp_lidar" params="frame:=laser topic:=scan sample_size:=8000 update_rate:=50
+               min_angle:=-3.14159 max_angle:=3.14159 min_range:=0.1 max_range:=18.0 robot_namespace:=/">
+      <link name="${frame}" />
+
+      <gazebo reference="${frame}">
+        <turnGravityOff>true</turnGravityOff>
+        <sensor type="ray" name="${frame}">
+          <pose>0 0 0 0 0 0</pose>
+          <visualize>false</visualize>
+          <update_rate>${update_rate}</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>${sample_size}</samples>
+                <resolution>1</resolution>
+                <min_angle>${min_angle}</min_angle>
+                <max_angle>${max_angle}</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>${min_range}</min>
+              <max>${max_range}</max>
+              <resolution>0.02</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.001</stddev>
+            </noise>
+          </ray>
+          <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+            <topicName>${topic}</topicName>
+            <frameName>${frame}</frameName>
+            <robotNamespace>${robot_namespace}</robotNamespace>
+          </plugin>
+        </sensor>
+      </gazebo>
+    </xacro:macro>
+
+    <xacro:rp_lidar frame="${prefix}_laser" topic="${topic}"/>
+
+    <!-- The lidar itself is 3 cylinders, stacked -->
+    <link name="${prefix}_laser_mount">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.04" length="0.04"/>
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+    </link>
+    <link name="${prefix}_laser_ring">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.039" length="0.004"/>
+        </geometry>
+        <material name="red" />
+      </visual>
+    </link>
+    <link name="${prefix}_laser_cap">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.038" length="0.036"/>
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}_laser_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+              rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+      <parent link="${parent_link}" />
+      <child link="${prefix}_laser_mount" />
+    </joint>
+    <joint name="${prefix}_laser_ring_joint" type="fixed">
+      <origin xyz="0 0 0.02" rpy="0 0 0" />
+      <parent link="${prefix}_laser_mount" />
+      <child link="${prefix}_laser_ring" />
+    </joint>
+    <joint name="${prefix}_laser_cap_joint" type="fixed">
+      <origin xyz="0 0 0.002" rpy="0 0 0" />
+      <parent link="${prefix}_laser_ring" />
+      <child link="${prefix}_laser_cap" />
+    </joint>
+    <joint name="${prefix}_laser_joint" type="fixed">
+      <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}_laser_cap" />
+      <child link="${prefix}_laser" />
+    </joint>
+
+    <gazebo reference="${prefix}_laser_mount">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

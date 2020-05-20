@@ -17,6 +17,12 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- If enabled, generate the LASER payload (by default, a SICK LMS111). -->
+  <!--
+    We support 3 different lidar accessories out of the box:
+      - sick lms1xx (default) if JACKAL_LASER=1
+      - hokuyo ust10 if JACKAL_LASER=1 && JACKAL_LASER_HOKUYO=1
+      - slamtec a1/2 if JACKAL_LASER=1 && JACKAL_LASER_RP=1
+  -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
@@ -24,12 +30,19 @@
                           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                           topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
     </xacro:if>
-
     <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
-      <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
-      <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                         parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+      <xacro:if value="$(optenv JACKAL_LASER_RP 0)">
+        <xacro:include filename="$(find jackal_description)/urdf/accessories/rp_lidar.urdf.xacro" />
+        <xacro:rp_lidar_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                            parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+                            topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
+      </xacro:if>
+      <xacro:unless value="$(optenv JACKAL_LASER_RP 0)">
+        <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+        <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+                           topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+      </xacro:unless>
     </xacro:unless>
   </xacro:if>
 
