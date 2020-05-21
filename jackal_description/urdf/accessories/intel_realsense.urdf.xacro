@@ -53,9 +53,9 @@
             <cameraName>${topic}</cameraName>
             <imageTopicName>color/image_raw</imageTopicName>
             <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
-            <depthImageTopicName>depth/image_raw</depthImageTopicName>
+            <depthImageTopicName>depth/image_rect_raw</depthImageTopicName>
             <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
-            <pointCloudTopicName>depth/points</pointCloudTopicName>
+            <pointCloudTopicName>color/points</pointCloudTopicName>
             <frameName>${frame}_gazebo</frameName>
             <pointCloudCutoff>${min_range}</pointCloudCutoff>
             <pointCloudCutoffMax>${max_range}</pointCloudCutoffMax>
