@@ -207,4 +207,18 @@
     </joint>
   </xacro:if>
 
+  <xacro:if value="$(optenv JACKAL_REALSENSE 0)">
+    <link name="$(optenv JACKAL_REALSENSE_MOUNT front_fender)_realsense_mount"></link>
+    <joint name="$(optenv JACKAL_REALSNESE_MOUNT front_fender)_realsense_mount_joint" type="fixed">
+      <origin xyz="$(optenv JACKAL_REALSENSE_OFFSET 0 0 0)" rpy="$(optenv JACKAL_REALSENSE_RPY 0 0 0)" />
+      <parent link="$(optenv JACKAL_REALSENSE_MOUNT front_fender)_mount" />
+      <child link="$(optenv JACKAL_REALSENSE_MOUNT front_fender)_realsense_mount" />
+    </joint>
+
+    <xacro:include filename="$(find jackal_description)/urdf/accessories/intel_realsense.urdf.xacro" />
+    <xacro:intel_realsense_mount
+      prefix="$(optenv JACKAL_REALSENSE_MOUNT front_fender)"
+      topic="$(optenv JACKAL_REALSENSE_TOPIC realsense)"
+      parent_link="$(optenv JACKAL_REALSENSE_MOUNT front_fender)_realsense_mount" />
+  </xacro:if>
 </robot>

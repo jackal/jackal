@@ -147,45 +147,5 @@ SOFTWARE
           <hackBaseline>0</hackBaseline>
         </plugin>
       </sensor>
-
-      <!--
-        to simulate the depthimage_to_laserscan node in the bringup, we also add a laser
-        plugin that publishes to the same topic
-
-        ideally we would just launch the depthimage_to_laserscan node, but there seems to be a bug
-        in the libgazebo_ros_openni_kinect plugin that's preventing the (required) /depth/camera_data
-        topic from publishing correctly.  so for now we'll fake it with the laser plugin
-      -->
-      <sensor type="ray" name="${prefix}_kinect_scan">
-        <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
-        <update_rate>${update_rate}</update_rate>
-        <ray>
-          <scan>
-            <horizontal>
-              <samples>${width}</samples>
-              <resolution>1</resolution>
-              <min_angle>${h_fov/-2}</min_angle>
-              <max_angle>${h_fov/2}</max_angle>
-            </horizontal>
-          </scan>
-          <range>
-            <min>${min_range}</min>
-            <max>${max_range}</max>
-            <resolution>0.001</resolution>
-          </range>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.001</stddev>
-          </noise>
-        </ray>
-        <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-          <topicName>/$(optenv JACKAL_AZURE_KINECT_MOUNT front)/scan</topicName>
-          <frameName>${prefix}_kinect_visor</frameName>
-        </plugin>
-      </sensor>
-    </gazebo>
-
   </xacro:macro>
 </robot>

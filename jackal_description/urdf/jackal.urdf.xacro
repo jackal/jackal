@@ -252,6 +252,25 @@
     <origin xyz="${mount_spacing} 0 0" />
   </joint>
 
+  <!--
+    Not official mounting points, but you can anchor light sensors to the front & rear fenders
+    with velcro or drill your own mounting holes
+  -->
+  <link name="front_fender_mount"></link>
+  <joint name="front_fender_mount_joint" type="fixed">
+    <parent link="front_mount" />
+    <child link="front_fender_mount" />
+    <!--<origin xyz="0.115 0 -0.015" rpy="0 -0.7853975 0" />-->
+    <origin xyz="0.115 0 -0.015" rpy="0 -0.7853975 0" />
+   </joint>
+
+   <link name="rear_fender_mount"></link>
+   <joint name="rear_fender_mount_joint" type="fixed">
+     <parent link="rear_mount" />
+     <child link="rear_fender_mount" />
+     <origin xyz="-0.115 0 -0.015" rpy="0 -0.7853975 -${PI}" />
+    </joint>
+
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="$(find jackal_description)/urdf/jackal.gazebo" />
 
