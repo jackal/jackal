@@ -38,7 +38,7 @@
               <width>${width}</width>
               <height>${height}</height>
               <!-- TODO: check what format the Realsense hardware delivers and set this to match! -->
-              <format>R8G8B8</format>
+              <format>RGB8</format>
             </image>
             <clip>
               <!-- give the color sensor a maximum range of 50m so that the simulation renders nicely -->
@@ -55,7 +55,7 @@
             <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
             <depthImageTopicName>depth/image_rect_raw</depthImageTopicName>
             <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
-            <pointCloudTopicName>color/points</pointCloudTopicName>
+            <pointCloudTopicName>depth/color/points</pointCloudTopicName>
             <frameName>${frame}_gazebo</frameName>
             <pointCloudCutoff>${min_range}</pointCloudCutoff>
             <pointCloudCutoffMax>${max_range}</pointCloudCutoffMax>

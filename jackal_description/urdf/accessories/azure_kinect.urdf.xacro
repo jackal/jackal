@@ -113,7 +113,7 @@ SOFTWARE
             <width>${width}</width>
             <height>${height}</height>
             <!-- TODO: check what format the Azure Kinect hardware delivers and set this to match! -->
-            <format>R8G8B8</format>
+            <format>RGB8</format>
           </image>
           <clip>
             <!-- give the color sensor a maximum range of 50m so that the simulation renders nicely -->
@@ -147,5 +147,6 @@ SOFTWARE
           <hackBaseline>0</hackBaseline>
         </plugin>
       </sensor>
+    </gazebo>
   </xacro:macro>
 </robot>
