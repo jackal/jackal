@@ -182,7 +182,7 @@ SOFTWARE
     <joint name="${prefix}_kinect_mount_hole" type="fixed">
       <origin xyz="0.09 0 0.0335" rpy="0 -0.17453292519444444 0"/>
       <parent link="${prefix}_kinect_mount_plate"/>
-      <child link="${prefix}_kinect_base"/>
+      <child link="camera_base"/>
     </joint>
 
     <xacro:azure_kinect frame="${prefix}_kinect" topic="${topic}"/>
