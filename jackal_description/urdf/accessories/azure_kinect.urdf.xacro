@@ -27,6 +27,13 @@ SOFTWARE
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="azure_kinect_mount" params="prefix topic parent_link">
 
+    <!--
+      NOTE: the frame parameter not currently used as-intended!
+      The Azure Kinect ROS driver requires links named camera_base, camera_visor, and camera_body.  We cannot
+      override these right now and have the driver work in its current state.
+
+      Therefore the links are named camera_*, while joints & gazebo work-arounds use the specified frame
+    -->
     <xacro:macro name="azure_kinect" params="
                       frame:=kinect       topic:=kinect
                       min_range:=0.5      max_range:=5.46
@@ -35,7 +42,7 @@ SOFTWARE
                       width:=576 height:=640">
 
       <!-- this link is the origin for the camera data and corresponds to the front visor of the camera -->
-      <link name="${frame}">
+      <link name="camera_visor">
         <visual>
           <origin xyz="-0.0128 0. 0." />
           <geometry>
@@ -45,7 +52,7 @@ SOFTWARE
         </visual>
       </link>
 
-      <link name="${frame}_body">
+      <link name="camera_body">
         <visual>
           <origin xyz="0. 0. 0." />
           <geometry>
@@ -55,7 +62,7 @@ SOFTWARE
         </visual>
       </link>
 
-      <link name="${frame}_base">
+      <link name="camera_base">
         <visual>
           <origin xyz="-0.013 0. 0." />
           <geometry>
@@ -66,14 +73,14 @@ SOFTWARE
       </link>
 
       <joint name="${frame}_base_to_body" type="fixed">
-        <parent link="${frame}_base" />
-        <child link="${frame}_body" />
+        <parent link="camera_base" />
+        <child link="camera_body" />
         <origin xyz="-0.0757 0. 0.008" rpy="0. 0. 0." />
       </joint>
 
       <joint name="${frame}_base_to_visor" type="fixed">
-        <parent link="${frame}_base" />
-        <child link="${frame}" />
+        <parent link="camera_base" />
+        <child link="camera_visor" />
         <origin xyz="0. 0. 0." rpy="0. 0. 0." />
       </joint>
 
@@ -82,9 +89,9 @@ SOFTWARE
         ROS expects the depth data along the X axis, with Y=left and Z=up
         This link only exists to give the gazebo plugin the correctly-oriented frame
       -->
-      <link name="${prefix}_kinect_gazebo" />
-      <joint name="${prefix}_kinect_gazebo_joint" type="fixed">
-        <parent link="${frame}"/>
+      <link name="${frame}_gazebo" />
+      <joint name="${frame}_gazebo_joint" type="fixed">
+        <parent link="camera_visor"/>
         <child link="${frame}_gazebo"/>
         <origin xyz="0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966"/>
       </joint>
@@ -95,7 +102,7 @@ SOFTWARE
         cone approximated as a hexagon within the frame.
         But for now the OpenNI kinect plugin is the closest analogue
       -->
-      <gazebo reference="${frame}">
+      <gazebo reference="camera_visor">
         <turnGravityOff>true</turnGravityOff>
         <sensor type="depth" name="${prefix}_kinect_depth">
           <update_rate>${update_rate}</update_rate>
@@ -135,7 +142,7 @@ SOFTWARE
             <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
-            <pointCloudTopicName>depth/points</pointCloudTopicName>
+            <pointCloudTopicName>depth/points2</pointCloudTopicName>
             <frameName>${frame}_gazebo</frameName>
             <!-- the Azure Kinect has an effective depth-sensing range of 0.5m to 5.46m -->
             <pointCloudCutoff>${min_range}</pointCloudCutoff>
