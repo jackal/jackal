@@ -10,8 +10,8 @@
                update_rate:=30
                robot_namespace:=/">
 
-      <link name="${frame}">
-      </link>
+      <!-- this link is the origin for the camera's data -->
+      <link name="${frame}" />
 
       <!--
         The gazebo plugin aligns the depth data with the Z axis, with X=left and Y=up

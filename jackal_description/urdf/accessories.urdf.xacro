@@ -181,30 +181,18 @@
   </xacro:if>
 
   <xacro:if value="$(optenv JACKAL_AZURE_KINECT 0)">
-    <link name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate">
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="package://jackal_description/meshes/kinect_mount.stl"/>
-        </geometry>
-        <material name="black"/>
-      </visual>
-    </link>
-    <joint name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_AZURE_KINECT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_AZURE_KINECT_RPY 0 0 0)"/>
-      <parent link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_mount"/>
-      <child link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate"/>
+    <link name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount" />
+    <joint name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_moint_joint" type="fixed">
+      <parent link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_mount" />
+      <child link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount" />
+      <origin xyz="$(optenv JACKAL_AZURE_KINECT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_AZURE_KINECT_RPY 0 0 0)" />
     </joint>
 
     <xacro:include filename="$(find jackal_description)/urdf/accessories/azure_kinect.urdf.xacro" />
-    <xacro:azure_kinect prefix="$(optenv JACKAL_AZURE_KINECT_MOUNT front)" />
-
-    <!-- this is the actual mounting hole in the mounting plate -->
-    <joint name="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_point" type="fixed">
-      <origin xyz="0.09 0 0.0335" rpy="0 -0.17453292519444444 0"/>
-      <parent link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount_plate"/>
-      <child link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_base"/>
-    </joint>
+    <xacro:azure_kinect_mount
+      prefix="$(optenv JACKAL_AZURE_KINECT_MOUNT front)"
+      topic="$(optenv JACKAL_AZURE_KINECT_TOPIC kinect)"
+      parent_link="$(optenv JACKAL_AZURE_KINECT_MOUNT front)_kinect_mount"  />
   </xacro:if>
 
   <xacro:if value="$(optenv JACKAL_REALSENSE 0)">
