@@ -1,4 +1,7 @@
 <launch>
+
+  <arg name="robot_ekf_disable" default="$(optenv ROBOT_EKF_DISABLE false)"/>
+
   <rosparam command="load" file="$(find jackal_control)/config/control.yaml" />
 
   <group if="$(optenv JACKAL_CONTROL_EXTRAS 0)" >
@@ -8,9 +11,11 @@
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller" />
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
-    <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
-  </node>
+  <group if="$(arg robot_ekf_disable)" >
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+      <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
+    </node>
+  </group>
 
   <node pkg="twist_mux" type="twist_mux" name="twist_mux">
     <rosparam command="load" file="$(find jackal_control)/config/twist_mux.yaml" />
