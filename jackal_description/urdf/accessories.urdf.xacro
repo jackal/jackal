@@ -24,24 +24,32 @@
       - slamtec a1/2 if JACKAL_LASER=1 && JACKAL_LASER_RP=1
   -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
-    <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
-      <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
-      <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                          parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
+    <xacro:if value="$(optenv JACKAL_LASER_VELODYNE 0)">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/velodyne_vlp16.urdf.xacro" />
+      <xacro:vlp16_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                         parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
     </xacro:if>
-    <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
-      <xacro:if value="$(optenv JACKAL_LASER_RP 0)">
-        <xacro:include filename="$(find jackal_description)/urdf/accessories/rplidar_a2.urdf.xacro" />
-        <xacro:rp_lidar_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+    <xacro:unless value="$(optenv JACKAL_LASER_VELODYNE 0)">
+      <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
+        <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+        <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
                             parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                             topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
       </xacro:if>
-      <xacro:unless value="$(optenv JACKAL_LASER_RP 0)">
-        <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
-        <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                           topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+      <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
+        <xacro:if value="$(optenv JACKAL_LASER_RP 0)">
+          <xacro:include filename="$(find jackal_description)/urdf/accessories/rplidar_a2.urdf.xacro" />
+          <xacro:rp_lidar_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                              parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+                              topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
+        </xacro:if>
+        <xacro:unless value="$(optenv JACKAL_LASER_RP 0)">
+          <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+          <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                             parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+                             topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+        </xacro:unless>
       </xacro:unless>
     </xacro:unless>
   </xacro:if>
