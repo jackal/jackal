@@ -2,8 +2,8 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.6 (2020-08-24)
+------------------
 * Remove the leading / from the gmapping default scan topic
 * Expose the scan_topic and use_map_topic parameters in the demo launch files
 * Contributors: Chris Iverach-Brereton
