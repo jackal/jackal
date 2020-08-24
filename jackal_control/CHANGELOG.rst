@@ -2,6 +2,14 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Disable ekf option (`#71 <https://github.com/jackal/jackal/issues/71>`_)
+  * added env var and if-statement to disable robot ekf
+  * changed if to unless
+  * clearer wording
+* Contributors: jmastrangelo-cpr
+
 0.6.5 (2020-04-20)
 ------------------
 
