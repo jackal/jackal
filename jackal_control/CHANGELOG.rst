@@ -2,6 +2,12 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Load the control extras last (`#75 <https://github.com/jackal/jackal/issues/75>`_)
+* Remove the PS4 device from the yaml file, always apply the parameter from the joy_dev argument instead (`#73 <https://github.com/jackal/jackal/issues/73>`_)
+* Contributors: Chris I-B
+
 0.7.1 (2020-08-24)
 ------------------
 * Disable ekf option (`#71 <https://github.com/jackal/jackal/issues/71>`_)
