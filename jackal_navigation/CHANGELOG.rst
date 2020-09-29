@@ -2,8 +2,8 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.2 (2020-09-29)
+------------------
 * Use the JACKAL_LASER_TOPIC env var as the default for the scan topic in amcl + gmapping demos (`#74 <https://github.com/jackal/jackal/issues/74>`_)
 * Contributors: Chris I-B
 
