@@ -1,7 +1,7 @@
 <launch>
 
   <arg name="use_map_topic" default="false"/>
-  <arg name="scan_topic" default="front/scan" />
+  <arg name="scan_topic" default="$(eval optenv('JACKAL_LASER_TOPIC', 'front/scan'))" />
 
   <!-- Run the map server -->
  <arg name="map_file" default="$(find jackal_navigation)/maps/jackal_race.yaml"/>
