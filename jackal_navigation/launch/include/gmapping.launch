@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="scan_topic" default="front/scan" />
+  <arg name="scan_topic" default="$(eval optenv('JACKAL_LASER_TOPIC', 'front/scan'))" />
 
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
 
