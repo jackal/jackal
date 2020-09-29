@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.7 (2020-09-29)
+------------------
 * Apply similar change as https://github.com/jackal/jackal/pull/73 for Kinetic
 * Contributors: Chris Iverach-Brereton
 
