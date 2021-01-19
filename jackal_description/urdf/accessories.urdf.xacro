@@ -132,7 +132,7 @@
     <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
     <xacro:if value="$(optenv JACKAL_FRONT_FENDER_UST10 0)">
       <xacro:hokuyo_ust10_mount
-        prefix="front"
+        prefix="front_fender"
         parent_link="front_fender_accessory_link"
         topic="$(optenv JACKAL_FRONT_LASER_TOPIC front/scan)"/>
     </xacro:if>
@@ -141,7 +141,7 @@
   <xacro:if value="$(optenv JACKAL_REAR_ACCESSORY_FENDER 0)">
     <xacro:if value="$(optenv JACKAL_REAR_FENDER_UST10 0)">
       <xacro:hokuyo_ust10_mount
-        prefix="rear"
+        prefix="rear_fender"
         parent_link="rear_fender_accessory_link"
         topic="$(optenv JACKAL_REAR_LASER_TOPIC rear/scan)"/>
     </xacro:if>
