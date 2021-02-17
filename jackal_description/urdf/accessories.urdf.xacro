@@ -16,21 +16,71 @@
   <!-- This optional plate mounts both the upgraded GPS and the Velodyne 3D LIDAR. -->
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
-  <!-- If enabled, generate the LASER payload (by default, a SICK LMS111). -->
-  <xacro:if value="$(optenv JACKAL_LASER 0)">
-    <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
-      <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
-      <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                          parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
-    </xacro:if>
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
 
-    <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
+  <!--
+    Add primary/secondary 2D lidar sensors.  By default these are SICK LMS1xx but can be changed with the
+    JACKAL_LASER_MODEL and JACKAL_LASER2_MODEL environment variables. Valid model designations are:
+    - lms1xx (default) :: SICK LMS1xx
+    - ust10            :: Hokuyo UST10
+  -->
+  <xacro:if value="$(optenv JACKAL_LASER 0)">
+    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL lms1xx)" />
+    <xacro:if value="${lidar_model == 'lms1xx'}">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
       <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                         parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
-    </xacro:unless>
+           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+           topic="$(optenv JACKAL_LASER_TOPIC front/scan)">
+           <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+                   rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+         </xacro:sick_lms1xx_mount>
+    </xacro:if>
+
+    <xacro:if value="${lidar_model == 'ust10'}">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+      <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+          parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+          topic="$(optenv JACKAL_LASER_TOPIC front/scan)">
+          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+                  rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+        </xacro:hokuyo_ust10_mount>
+    </xacro:if>
+  </xacro:if>
+  <xacro:if value="$(optenv JACKAL_LASER2 0)">
+    <xacro:property name="lidar2_model" value="$(optenv JACKAL_LASER2_MODEL lms1xx)" />
+    <xacro:if value="${lidar2_model == 'lms1xx'}">
+      <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER2_MOUNT rear)"
+           parent_link="$(optenv JACKAL_LASER2_MOUNT rear)_mount"
+           topic="$(optenv JACKAL_LASER2_TOPIC rear/scan)">
+           <origin xyz="$(optenv JACKAL_LASER2_OFFSET 0 0 0)"
+                   rpy="$(optenv JACKAL_LASER2_RPY 0 0 3.14159)" />
+         </xacro:sick_lms1xx_mount>
+    </xacro:if>
+
+    <xacro:if value="${lidar2_model == 'ust10'}">
+      <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER2_MOUNT rear)"
+          parent_link="$(optenv JACKAL_LASER2_MOUNT rear)_mount"
+          topic="$(optenv JACKAL_LASER2_TOPIC rear/scan)">
+          <origin xyz="$(optenv JACKAL_LASER2_OFFSET 0 0 0)"
+                  rpy="$(optenv JACKAL_LASER2_RPY 0 0 3.14159)" />
+        </xacro:hokuyo_ust10_mount>
+    </xacro:if>
+  </xacro:if>
+
+  <!--
+    Add a 3D lidar sensor.  By default this is a Velodyne VLP16 but can be changed with the
+    JACKAL_LASER_3D_MODEL environment variable. Valid model designations are:
+    - vlp16 (default)  :: Velodyne VLP16
+  -->
+  <xacro:if value="$(optenv JACKAL_LASER_3D 0)">
+    <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
+    <xacro:if value="${lidar_3d_model == 'vlp16'}">
+      <xacro:VLP-16 parent="$(optenv JACKAL_LASER_3D_MOUNT front)_mount" topic="$(optenv JACKAL_LASER_3D_TOPIC front/points)">
+        <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
+      </xacro:VLP-16>
+    </xacro:if>
   </xacro:if>
 
   <!-- If enabled, generate the upgraded Navsat payload (a Novatel Smart6). -->
