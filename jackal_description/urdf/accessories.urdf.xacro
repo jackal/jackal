@@ -33,9 +33,9 @@
       <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
            parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
            topic="$(optenv JACKAL_LASER_TOPIC front/scan)">
-           <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
                    rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-         </xacro:sick_lms1xx_mount>
+      </xacro:sick_lms1xx_mount>
     </xacro:if>
 
     <xacro:if value="${lidar_model == 'ust10'}">
@@ -43,9 +43,9 @@
       <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
           topic="$(optenv JACKAL_LASER_TOPIC front/scan)">
-          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
-                  rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-        </xacro:hokuyo_ust10_mount>
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+      </xacro:hokuyo_ust10_mount>
     </xacro:if>
   </xacro:if>
   <xacro:if value="$(optenv JACKAL_LASER_SECONDARY 0)">
@@ -54,18 +54,18 @@
       <xacro:sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_SECONDARY_MOUNT rear)"
            parent_link="$(optenv JACKAL_LASER_SECONDARY_MOUNT rear)_mount"
            topic="$(optenv JACKAL_LASER_SECONDARY_TOPIC rear/scan)">
-           <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)"
-                   rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
-         </xacro:sick_lms1xx_mount>
+         <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)"
+                 rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
+       </xacro:sick_lms1xx_mount>
     </xacro:if>
 
     <xacro:if value="${lidar2_model == 'ust10'}">
       <xacro:hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_SECONDARY_MOUNT rear)"
           parent_link="$(optenv JACKAL_LASER_SECONDARY_MOUNT rear)_mount"
           topic="$(optenv JACKAL_LASER_SECONDARY_TOPIC rear/scan)">
-          <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)"
-                  rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
-        </xacro:hokuyo_ust10_mount>
+        <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)"
+                rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
+      </xacro:hokuyo_ust10_mount>
     </xacro:if>
   </xacro:if>
 
