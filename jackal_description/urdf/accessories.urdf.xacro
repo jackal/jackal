@@ -78,9 +78,9 @@
     <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
     <xacro:if value="${lidar_3d_model == 'vlp16'}">
       <xacro:vlp16_mount
-          parent_link="$(optenv JACKAL_LASER_3D_MOUNT front)_mount"
-          prefix="$(optenv JACKAL_LASER_3D_MOUNT front)"
-          topic="$(optenv JACKAL_LASER_3D_TOPIC front/points)">
+          parent_link="$(optenv JACKAL_LASER_3D_MOUNT mid)_mount"
+          prefix="$(optenv JACKAL_LASER_3D_MOUNT mid)"
+          topic="$(optenv JACKAL_LASER_3D_TOPIC mid/points)">
         <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
       </xacro:vlp16_mount>
     </xacro:if>
