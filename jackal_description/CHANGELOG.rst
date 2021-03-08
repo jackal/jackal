@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.3 (2021-03-08)
+------------------
 *  Add VLP16 support, refactor main/secondary laser envar support (#79)
 * Contributors: Chris I-B
 
