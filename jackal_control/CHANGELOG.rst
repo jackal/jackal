@@ -2,6 +2,9 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.7.2 (2020-09-29)
 ------------------
 * Load the control extras last (`#75 <https://github.com/jackal/jackal/issues/75>`_)
