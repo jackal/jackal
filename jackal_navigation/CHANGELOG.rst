@@ -2,6 +2,11 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Bumped CMake version to avoid author warning.
+* Contributors: Tony Baltovski
+
 0.7.3 (2021-03-08)
 ------------------
 
