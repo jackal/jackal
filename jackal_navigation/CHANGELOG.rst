@@ -2,6 +2,14 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.4 (2021-03-16)
+------------------
+* Bumped CMake version to avoid author warning.
+* Contributors: Tony Baltovski
+
+0.7.3 (2021-03-08)
+------------------
+
 0.7.2 (2020-09-29)
 ------------------
 * Use the JACKAL_LASER_TOPIC env var as the default for the scan topic in amcl + gmapping demos (`#74 <https://github.com/jackal/jackal/issues/74>`_)

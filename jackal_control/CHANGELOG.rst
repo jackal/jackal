@@ -2,6 +2,15 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.4 (2021-03-16)
+------------------
+* Bumped CMake version to avoid author warning.
+* Add the JACKAL_JOY_DEVICE envar to optionally override the joy device more easily.
+* Contributors: Chris Iverach-Brereton, Tony Baltovski
+
+0.7.3 (2021-03-08)
+------------------
+
 0.7.2 (2020-09-29)
 ------------------
 * Load the control extras last (`#75 <https://github.com/jackal/jackal/issues/75>`_)

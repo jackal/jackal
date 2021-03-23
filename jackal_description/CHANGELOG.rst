@@ -2,6 +2,16 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.4 (2021-03-16)
+------------------
+* Bumped CMake version to avoid author warning.
+* Contributors: Tony Baltovski
+
+0.7.3 (2021-03-08)
+------------------
+*  Add VLP16 support, refactor main/secondary laser envar support (#79)
+* Contributors: Chris I-B
+
 0.7.2 (2020-09-29)
 ------------------
 

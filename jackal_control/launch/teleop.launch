@@ -1,5 +1,5 @@
 <launch>
-  <arg name="joy_dev" default="/dev/input/ps4" />
+  <arg name="joy_dev" default="$(optenv JACKAL_JOY_DEVICE /dev/input/ps4)" />
   <arg name="joystick" default="true" />
 
   <group ns="bluetooth_teleop" if="$(arg joystick)">
