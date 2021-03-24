@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.5 (2021-03-24)
+------------------
 * Add the origin block to the fender UST-10 macros; otherwise enabling them crashes
 * Contributors: Chris I-B
 
