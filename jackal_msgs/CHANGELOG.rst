@@ -2,6 +2,9 @@
 Changelog for package jackal_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.7.4 (2021-03-16)
 ------------------
 * Bumped CMake version to avoid author warning.
