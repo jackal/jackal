@@ -187,7 +187,9 @@
       <xacro:hokuyo_ust10_mount
         prefix="front"
         parent_link="front_fender_accessory_link"
-        topic="$(optenv JACKAL_FRONT_LASER_TOPIC front/scan)"/>
+        topic="$(optenv JACKAL_FRONT_LASER_TOPIC front/scan)">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </xacro:hokuyo_ust10_mount>
     </xacro:if>
   </xacro:if>
 
@@ -196,7 +198,9 @@
       <xacro:hokuyo_ust10_mount
         prefix="rear"
         parent_link="rear_fender_accessory_link"
-        topic="$(optenv JACKAL_REAR_LASER_TOPIC rear/scan)"/>
+        topic="$(optenv JACKAL_REAR_LASER_TOPIC rear/scan)">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </xacro:hokuyo_ust10_mount>
     </xacro:if>
   </xacro:if>
 
