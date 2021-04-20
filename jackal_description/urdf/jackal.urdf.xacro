@@ -228,6 +228,19 @@
     <origin xyz="-0.180 0.126 0.1815" />
   </joint>
 
+  <!--
+    Optionally add a GX5 IMU
+  -->
+  <xacro:if value="$(optenv JACKAL_GX5_IMU 0)">
+    <link name="gx5_link" />
+    <joint name="gx5_joint">
+      <parent link="base_link" />
+      <child link="gx5_link" />
+      <!-- TODO fill in the sane defaults. See RSCI-10 -->
+      <origin xyz="$(optenv JACKAL_GX5_IMU_OFFSET 0 0 0)" rpy="$(optenv JACKAL_GX5_IMU_RPY 0 0 0)" />
+    </joint>
+  </xacro:if>
+
   <link name="mid_mount"></link>
   <joint name="mid_mount_joint" type="fixed">
     <parent link="chassis_link" />
