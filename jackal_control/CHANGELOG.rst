@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.0 (2021-04-23)
+------------------
 * Merge branch 'noetic-devel-bkup' into noetic-devel
 * Fix the link_name parameter for the interactive marker server; the default for the package includes a leading '/', which prevents the markers from working on Noetic.  We can revert this if/when the default for interactive_marker_twist_server is modified.
 * Contributors: Chris Iverach-Brereton
