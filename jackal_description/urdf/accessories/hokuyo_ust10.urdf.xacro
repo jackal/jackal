@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="hokuyo_ust10_mount" params="prefix topic parent_link *origin">
+  <xacro:macro name="hokuyo_ust10_mount" params="prefix topic parent_link min_angle:=-2.35619 max_angle:=2.35619 *origin">
 
     <xacro:macro name="hokuyo_ust10" params="frame:=laser topic:=scan sample_size:=720 update_rate:=50
-               min_angle:=-2.35619 max_angle:=2.35619 min_range:=0.1 max_range:=30.0 robot_namespace:=/">
+               min_angle:=${min_angle} max_angle:=${max_angle} min_range:=0.1 max_range:=30.0 robot_namespace:=/">
       <link name="${frame}">
         <inertial>
           <mass value="1.1" />
