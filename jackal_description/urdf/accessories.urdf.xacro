@@ -88,10 +88,9 @@
 
   <!-- If enabled, generate the upgraded Navsat payload (a Novatel Smart6). -->
   <xacro:if value="$(optenv JACKAL_NAVSAT 0)">
-    <xacro:property name="navsat_model" value="$(optenv JACKAL_NAVSAT_MODEL smart6)" />
+    <xacro:property name="navsat_model" value="$(optenv JACKAL_NAVSAT_MODEL smart7)" />
     <xacro:if value="${navsat_model == 'smart6'}">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/novatel_smart6.urdf.xacro" />
-
       <xacro:novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
     </xacro:if>
     <xacro:if value="${navsat_model == 'smart7'}">
