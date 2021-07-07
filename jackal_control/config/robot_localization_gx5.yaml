@@ -1,31 +1,9 @@
-#Configuation for robot odometry EKF
-#
-frequency: 50
-
-odom0: /jackal_velocity_controller/odom
-odom0_config: [false, false, false,
-               false, false, false,
-               true, true, true,
-               false, false, true,
-               false, false, false]
-odom0_differential: false
-
-imu0: gx5/imu/data
-imu0_config: [false, false, false,
-            false, false, false,
-            false, false, false,
-            true, true, true,
-            false, false, false]
-imu0_differential: false
-
-imu1: imu/data
-imu1_config: [false, false, false,
-            true, true, true,
-            false, false, false,
-            false, false, false,
-            false, false, false]
-imu1_differential: false
-
-odom_frame: odom
-base_link_frame: base_link
-world_frame: odom
+# Additional configuration for the GX5
+ekf_localization:
+    imu1: gx5/imu/data
+    imu1_config: [false, false, false,
+                true, true, true,
+                false, false, false,
+                true, true, true,
+                false, false, false]
+    imu1_differential: false
