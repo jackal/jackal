@@ -272,4 +272,7 @@
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
+
+  <!-- Optional for Clearpath internal softwares -->
+  <xacro:include filename="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 </robot>
