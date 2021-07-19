@@ -2,6 +2,14 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add envar support for adding a GX5 family IMU (`#85 <https://github.com/jackal/jackal/issues/85>`_)
+  * Add an alternate EKF file that uses the secondary IMU.  Add the GX5 link to the URDF if necessary. Standard mounting location TBD, so don't merge this yet.
+  * Add a sane default we can use for mounting the GX5.  RSCI-10 is low-priority, so we may not finalize the default position. But this way Integration can at least start using the envars and ensure they set the xyz/rpy offsets correctly.
+  * Don't disable the default IMU configuration, just load the GX5 settings as a secondary IMU
+* Contributors: Chris I-B
+
 0.7.5 (2021-03-24)
 ------------------
 
