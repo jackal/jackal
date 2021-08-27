@@ -33,12 +33,12 @@
     <xacro:unless value="${tower}">
       <link name="${prefix}_hdl32e_mount"/>
       <joint name="${prefix}_hdl32e_mount_joint" type="fixed">
-        <parent link="{parent_link}"/>
+        <parent link="${parent_link}"/>
         <child link="${prefix}_hdl32e_mount"/>
         <xacro:insert_block name="origin" />      
       </joint>
       <!-- Velodyne HDL-32E Macro treats Y-axis as forward in pointcloud --> 
-      <xacro:HDL-32E parent="${parent_link}" topic="${topic}">
+      <xacro:HDL-32E parent="${prefix}_hdl32e_mount" topic="${topic}">
         <origin xyz="0 0 0" rpy="0 0 -1.5707"/>
       </xacro:HDL-32E>
     </xacro:unless>
