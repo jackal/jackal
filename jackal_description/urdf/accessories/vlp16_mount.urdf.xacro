@@ -5,15 +5,15 @@
     <xacro:if value="${tower}">
       <link name="${prefix}_vlp16_mount" />
 
-      <link name="${prefix}_vlp16_plate">
-        <visual>
-          <geometry>
-            <box size="0.1 0.1 0.002" />
-          </geometry>
-          <material name="black" />
-          <origin xyz="0 0 -0.001" rpy="0 0 0" />
-        </visual>
-      </link>
+    <link name="${prefix}_vlp16_plate">
+      <visual>
+        <geometry>
+          <box size="0.1 0.1 0.002" />
+        </geometry>
+        <material name="black" />
+        <origin xyz="0 0 -0.001" rpy="0 0 0" />
+      </visual>
+    </link>
 
       <link name="${prefix}_vlp16_leg1">
         <visual>
