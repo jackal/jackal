@@ -19,6 +19,7 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
 
   <!--
     Add primary/secondary 2D lidar sensors.  By default these are SICK LMS1xx but can be changed with the
@@ -73,6 +74,7 @@
     Add a 3D lidar sensor.  By default this is a Velodyne VLP16 but can be changed with the
     JACKAL_LASER_3D_MODEL environment variable. Valid model designations are:
     - vlp16 (default)  :: Velodyne VLP16
+    - vlp32e           :: Velodyne HDL-32E
   -->
   <xacro:if value="$(optenv JACKAL_LASER_3D 0)">
     <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
@@ -80,9 +82,19 @@
       <xacro:vlp16_mount
           parent_link="$(optenv JACKAL_LASER_3D_MOUNT mid)_mount"
           prefix="$(optenv JACKAL_LASER_3D_MOUNT mid)"
-          topic="$(optenv JACKAL_LASER_3D_TOPIC mid/points)">
+          topic="$(optenv JACKAL_LASER_3D_TOPIC mid/points)"
+          tower="$(optenv JACKAL_LASER_3D_TOWER 1)">
         <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
       </xacro:vlp16_mount>
+    </xacro:if>
+    <xacro:if value="${lidar_3d_model == 'hdl32e'}">
+      <xacro:hdl32e_mount
+          parent_link="$(optenv JACKAL_LASER_3D_MOUNT mid)_mount"
+          prefix="$(optenv JACKAL_LASER_3D_MOUNT mid)"
+          topic="$(optenv JACKAL_LASER_3D_TOPIC mid/points)"
+          tower="$(optenv JACKAL_LASER_3D_TOWER 1)">
+        <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
+      </xacro:hdl32e_mount>
     </xacro:if>
   </xacro:if>
 
