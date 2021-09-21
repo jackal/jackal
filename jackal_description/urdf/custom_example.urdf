@@ -1,4 +1,4 @@
-<robot>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- This file is an example that can be included from jackal.urdf.xacro
        by setting the JACKAL_URDF_EXTRAS environment variable to the full
        path of this file. -->
@@ -16,17 +16,13 @@
     <child link="front_camera" />
   </joint>
 
-  <xacro:sick_lms1xx_mount prefix="front" topic="front/scan"/>
-
-  <joint name="front_laser_mount_joint" type="fixed">
-    <origin xyz="0 0 0.002" rpy="0 0 0" />
-    <parent link="front_mount" />
-    <child link="front_laser_mount" />
-  </joint>
+  <xacro:sick_lms1xx_mount prefix="front" topic="front/scan" parent_link="front_mount">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:sick_lms1xx_mount>
 
   <xacro:camera_mount prefix="rear" tilt="0.5236"/>
   <joint name="rear_camera_mount_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 3.141" />
+    <origin xyz="0 0 0" rpy="0 0 3.14159" />
     <parent link="rear_mount" />
     <child link="rear_camera_mount" />
   </joint>
@@ -37,13 +33,9 @@
     <child link="rear_camera" />
   </joint>
 
-  <xacro:sick_lms1xx_mount prefix="rear" topic="rear/scan"/>
-
-  <joint name="rear_laser_mount_joint" type="fixed">
-    <origin xyz="0 0 0.002" rpy="0 0 3.141" />>
-    <parent link="rear_mount" />
-    <child link="rear_laser_mount" />
-  </joint>
+  <xacro:sick_lms1xx_mount prefix="rear" topic="rear/scan" parent_link="rear_mount">
+    <origin xyz="0 0 0" rpy="0 0 3.14159" />
+  </xacro:sick_lms1xx_mount>
 
   <xacro:bridge_plate mount="rear" height="0.20" />
   <xacro:camera_mount prefix="rear_upper" tilt="0"/>
