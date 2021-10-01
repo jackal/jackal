@@ -1,6 +1,14 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Forthcoming
+-----------
+* Fix the custom_example URDF file to the LMS1xx sensors don't throw errors
+* Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
+* Added velodyne towers and HDL-32E sensor (#88)
+* Contributors: Chris I-B, Luis Camero, PN:Ruichao Wu2
+
 0.7.6 (2021-07-18)
 ------------------
 * cpr urdf extras

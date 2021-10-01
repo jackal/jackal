@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
+* Contributors: PN:Ruichao Wu2
+
 0.7.6 (2021-07-18)
 ------------------
 * Add envar support for adding a GX5 family IMU (`#85 <https://github.com/jackal/jackal/issues/85>`_)
