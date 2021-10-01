@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.7 (2021-10-01)
+------------------
 * Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
 * Contributors: PN:Ruichao Wu2
 
