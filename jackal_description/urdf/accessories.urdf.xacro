@@ -122,6 +122,7 @@
   <!-- Common camera mounts and accessory URDFs. -->
   <xacro:include filename="$(find jackal_description)/urdf/accessories/camera_mount.urdf.xacro" />
   <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" />
+  <xacro:include filename="$(find flir_camera_description)/urdf/flir_blackflys.urdf.xacro" />
 
   <!-- If enabled, generate the flea3 camera payload with a tilt of 30 degrees. -->
   <xacro:if value="$(optenv JACKAL_FLEA3 0)">
@@ -141,6 +142,23 @@
       <origin xyz="0.020 0 0.0245" rpy="0 0 0" />
       <parent link="$(optenv JACKAL_FLEA3_MOUNT front)_camera_beam" />
       <child link="$(optenv JACKAL_FLEA3_MOUNT front)_camera" />
+    </joint>
+  </xacro:if>
+
+  <xacro:if value="$(optenv JACKAL_BLACKFLYS 0)">
+    <!-- Include Mount (default to lockmount) -->
+    <xacro:include filename="$(find lockmount_description)/urdf/lockmount.urdf.xacro" />
+    <xacro:lockmount prefix="$(optenv JACKAL_BLACKFLYS_PREFIX front)_camera" parent_link="$(optenv JACKAL_BLACKFLYS_PARENT front_mount)" angle="$(optenv JACKAL_BLACKFLYS_TILT 0)">
+      <origin xyz="$(optenv JACKAL_BLACKFLYS_OFFSET)" rpy="$(optenv JACKAL_BLACKFLYS_RPY)" />
+    </xacro:lockmount>
+
+    <!-- Include Flir BlackflyS -->
+    <xacro:include filename="$(find flir_camera_description)/urdf/flir_blackflys.urdf.xacro" />
+    <xacro:flir_blackflys frame="$(optenv JACKAL_BLACKFLYS_PREFIX front)_camera" />
+    <joint name="$(optenv JACKAL_BLACKFLYS_PREFIX front)_camera_mount_camera_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="$(optenv JACKAL_BLACKFLYS_PREFIX front)_camera_mount_link"/>
+      <child link="$(optenv JACKAL_BLACKFLYS_PREFIX front)_camera"/>
     </joint>
   </xacro:if>
 
