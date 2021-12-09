@@ -164,6 +164,13 @@
     </xacro:if>
   </xacro:if>
 
+  <!-- 
+    Add Cameras. 
+    - JACKAL_FLEA3
+    - JACKAL_STEREO_FLEA3
+    - JACKAL_BB2
+  -->
+
   <!-- Common camera mounts and accessory URDFs. -->
   <xacro:include filename="$(find jackal_description)/urdf/accessories/camera_mount.urdf.xacro" />
   <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" />
@@ -178,55 +185,75 @@
     <xacro:property name="prefix" value="$(optenv JACKAL_FLEA3_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_FLEA3_PARENT ${mount}_mount)" />
 
-    <xacro:camera_mount prefix="${prefix}" tilt="${tilt}"/>
-
-    <joint name="${prefix}_camera_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0)"
-              rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
-      <parent link="${parent}" />
-      <child link="${prefix}_camera_mount" />
-    </joint>
-
     <xacro:pointgrey_flea3 frame="${prefix}_camera" name="${name}"
       camera_x="0.0754" camera_y="0.029" camera_z="0.029"
       camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512"/>
 
-    <joint name="${prefix}_camera_bracket_joint" type="fixed">
-      <origin xyz="0.020 0 0.0245" rpy="0 0 0" />
-      <parent link="${prefix}_camera_beam" />
-      <child link="${prefix}_camera" />
-    </joint>
+    <!-- Mount Enabled -->
+    <xacro:if value="${tower}">
+      <xacro:camera_mount prefix="${prefix}" tilt="${tilt}"/>
+
+      <joint name="${prefix}_camera_mount_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0)"
+                rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
+        <parent link="${parent}" />
+        <child link="${prefix}_camera_mount" />
+      </joint>
+
+      <joint name="${prefix}_camera_bracket_joint" type="fixed">
+        <origin xyz="0.020 0 0.0245" rpy="0 0 0" />
+        <parent link="${prefix}_camera_beam" />
+        <child link="${prefix}_camera" />
+      </joint>
+    </xacro:if>
+
+    <!-- Mount Disabled -->
+    <xacro:unless value="${tower}">
+      <joint name="${prefix}_camera_bracket_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0.0145)"
+                rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
+        <parent link="${parent}" />
+        <child link="${prefix}_camera" />
+      </joint>
+    </xacro:unless>
   </xacro:if>
 
   <xacro:include filename="$(find jackal_description)/urdf/accessories/stereo_camera_mount.urdf.xacro" />
   <!-- If enabled, generates a pair of flea3 cameras for stereo vision with a tilt of 30 degrees. -->
   <!-- Disabled temporarily due to metapackage issue. -->
   <xacro:if value="$(optenv JACKAL_STEREO_FLEA3 0)">
-    <xacro:stereo_camera_mount prefix="$(optenv JACKAL_FLEA3_MOUNT front)"
-                       tilt="$(optenv JACKAL_FLEA3_TILT 0.5236)"/>
-    <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_stereo_camera_mount_joint" type="fixed">
+    <xacro:property name="tilt" value="$(optenv JACKAL_FLEA3_TILT 0.5236)"/>
+    <xacro:property name="mount" value="$(optenv JACKAL_FLEA3_MOUNT front)"/>
+    <xacro:property name="prefix" value="$(optenv JACKAL_FLEA3_PREFIX ${mount})"/>
+    <xacro:property name="parent" value="$(optenv JACKAL_FLEA3_PARENT ${mount}_mount)"/>
+    <xacro:property name="left_name" value="$(optenv JACKAL_FLEA3_LEFT_NAME front/left)"/>
+    <xacro:property name="right_name" value="$(optenv JACKAL_FLEA3_RIGHT_NAME front/right)"/>
+    <xacro:property name="separation" value="$(optenv JACKAL_STEREO_SEPERATION 0.16)"/>
+
+    <xacro:stereo_camera_mount prefix="${prefix}" tilt="${tilt}"/>
+    <joint name="${prefix}_stereo_camera_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0)"
               rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
-      <parent link="$(optenv JACKAL_FLEA3_MOUNT front)_mount" />
-      <child link="$(optenv JACKAL_FLEA3_MOUNT front)_stereo_camera_mount" />
+      <parent link="${parent}" />
+      <child link="${prefix}_stereo_camera_mount" />
     </joint>
 
-    <xacro:pointgrey_flea3 frame="$(optenv JACKAL_FLEA3_MOUNT front)_left_camera" name="$(optenv JACKAL_FLEA3_LEFT_NAME front/left)"
+    <xacro:pointgrey_flea3 frame="${prefix}_left_camera" name="${left_name}"
       camera_x="0.0754" camera_y="0.029" camera_z="0.029"
       camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512"/>
-    <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_left_stereo_camera_bracket_joint" type="fixed">
-      <origin xyz="0.015 $(optenv JACKAL_STEREO_SEPERATION 0.16) 0.0599" rpy="0 0 0" />
-      <parent link="$(optenv JACKAL_FLEA3_MOUNT front)_stereo_camera_beam" />
-      <child link="$(optenv JACKAL_FLEA3_MOUNT front)_left_camera" />
+    <joint name="${prefix}_left_stereo_camera_bracket_joint" type="fixed">
+      <origin xyz="0.015 ${separation} 0.0599" rpy="0 0 0" />
+      <parent link="${prefix}_stereo_camera_beam" />
+      <child link="${prefix}_left_camera" />
     </joint>
 
-    <xacro:pointgrey_flea3 frame="$(optenv JACKAL_FLEA3_MOUNT front)_right_camera" name="$(optenv JACKAL_FLEA3_RIGHT_NAME front/right)"
+    <xacro:pointgrey_flea3 frame="${prefix}_right_camera" name="${right_name}"
       camera_x="0.0754" camera_y="0.029" camera_z="0.029"
       camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512"/>
-    <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_right_stereo_camera_bracket_joint" type="fixed">
-      <origin xyz="0.015 -$(optenv JACKAL_STEREO_SEPERATION 0.16) 0.0599" rpy="0 0 0" />
-      <parent link="$(optenv JACKAL_FLEA3_MOUNT front)_stereo_camera_beam" />
-      <child link="$(optenv JACKAL_FLEA3_MOUNT front)_right_camera" />
+    <joint name="${prefix}_right_stereo_camera_bracket_joint" type="fixed">
+      <origin xyz="0.015 -${separation} 0.0599" rpy="0 0 0" />
+      <parent link="${prefix}_stereo_camera_beam" />
+      <child link="${prefix}_right_camera" />
     </joint>
   </xacro:if>
 
@@ -236,22 +263,41 @@
   <!-- If enabled, generate the bumblebee2 camera payload with a tilt of 0 degrees. -->
   <!-- Disabled temporarily due to metapackage issue. -->
   <xacro:if value="$(optenv JACKAL_BB2 0)">
-    <xacro:camera_mount prefix="$(optenv JACKAL_BB2_MOUNT front)"
-                        tilt="$(optenv JACKAL_BB2_TILT 0)"/>
+    <xacro:property name="tilt" value="$(optenv JACKAL_BB2_TILT 0)" />
+    <xacro:property name="name" value="$(optenv JACKAL_BB2_NAME front)" />
+    <xacro:property name="tower" value="$(optenv JACKAL_BB2_TOWER 1)"/>
+    <xacro:property name="mount" value="$(optenv JACKAL_BB2_MOUNT front)" />
+    <xacro:property name="prefix" value="$(optenv JACKAL_BB2_PREFIX ${mount})"/>
+    <xacro:property name="parent" value="$(optenv JACKAL_BB2_PARENT ${mount}_mount)"/>
 
-    <joint name="$(optenv JACKAL_BB2_MOUNT front)_camera_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0)"
-              rpy="$(optenv JACKAL_BB2_RPY 0 0 0)" />
-      <parent link="$(optenv JACKAL_BB2_MOUNT front)_mount" />
-      <child link="$(optenv JACKAL_BB2_MOUNT front)_camera_mount" />
-    </joint>
+    <xacro:BB2-08S2C-38 frame="${prefix}_camera" name="${name}" />
 
-    <xacro:BB2-08S2C-38 frame="$(optenv JACKAL_BB2_MOUNT front)_camera" name="$(optenv JACKAL_BB2_NAME front)" />
-    <joint name="$(optenv JACKAL_BB2_MOUNT front)_camera_bracket_joint" type="fixed">
-      <origin xyz="0.007 0 0.02450" rpy="0 0 0" />
-      <parent link="$(optenv JACKAL_BB2_MOUNT front)_camera_beam" />
-      <child link="$(optenv JACKAL_BB2_MOUNT front)_camera" />
-    </joint>
+    <!-- Mount Enabled -->
+    <xacro:if value="${tower}">
+      <xacro:camera_mount prefix="${prefix}" tilt="${tilt}"/>
+
+      <joint name="${prefix}_camera_mount_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0)"
+                rpy="$(optenv JACKAL_BB2_RPY 0 0 0)" />
+        <parent link="${parent}" />
+        <child link="${prefix}_camera_mount" />
+      </joint>
+
+      <joint name="${prefix}_camera_bracket_joint" type="fixed">
+        <origin xyz="0.007 0 0.02450" rpy="0 0 0" />
+        <parent link="${prefix}_camera_beam" />
+        <child link="${prefix}_camera" />
+      </joint>
+    </xacro:if>
+
+    <xacro:unless value="${tower}">
+      <joint name="${prefix}_camera_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0.018)"
+                rpy="$(optenv JACKAL_BB2_RPY 0 0 0)" />
+        <parent link="${parent}" />
+        <child link="${prefix}_camera" />
+      </joint>
+    </xacro:unless>
   </xacro:if>
 
   <!-- Fender Accessories --> 
