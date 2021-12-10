@@ -200,7 +200,6 @@
   <!-- Common camera mounts and accessory URDFs. -->
   <xacro:include filename="$(find jackal_description)/urdf/accessories/camera_mount.urdf.xacro" />
   <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" />
-  <xacro:include filename="$(find flir_camera_description)/urdf/flir_blackflys.urdf.xacro" />
 
   <!-- If enabled, generate the flea3 camera payload with a tilt of 30 degrees. -->
   <xacro:if value="$(optenv JACKAL_FLEA3 0)">
