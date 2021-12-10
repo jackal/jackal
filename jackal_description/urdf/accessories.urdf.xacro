@@ -16,6 +16,8 @@
   <!-- This optional plate mounts both the upgraded GPS and the Velodyne 3D LIDAR. -->
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
+  <!-- 2D Lidars -->
+  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
@@ -33,17 +35,29 @@
     <xacro:property name="topic" value="$(optenv JACKAL_LASER_TOPIC ${mount}/scan)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
-    <xacro:property name="parent_link" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
+    <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL lms1xx)" />
     <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
-      <xacro:sick_lms1xx_mount  topic="${topic}" prefix="${prefix}" parent_link="${parent_link}">
-        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-      </xacro:sick_lms1xx_mount>
+      <!-- Mount Enabled -->
+      <xacro:if value="${tower}">
+        <xacro:sick_lms1xx_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+        </xacro:sick_lms1xx_mount>
+      </xacro:if>
+      <!-- Mount Disabled -->
+      <xacro:unless value="${tower}">
+        <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
+        <joint name="${prefix}_laser_joint" type="fixed">
+          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0.116)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)"/>
+          <parent link="${parent}"/>
+          <child link="${prefix}_laser"/>
+        </joint>
+      </xacro:unless>
     </xacro:if>
     <!-- Hokuyo UST10 -->
     <xacro:if value="${lidar_model == 'ust10'}">
-      <xacro:hokuyo_ust10_mount topic="${topic}" prefix="${prefix}" parent_link="${parent_link}">
+      <xacro:hokuyo_ust10_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
         <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
       </xacro:hokuyo_ust10_mount>
     </xacro:if>
@@ -55,17 +69,29 @@
     <xacro:property name="topic" value="$(optenv JACKAL_LASER_SECONDARY_TOPIC ${mount}/scan)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_SECONDARY_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_SECONDARY_PREFIX ${mount})" />
-    <xacro:property name="parent_link" value="$(optenv JACKAL_LASER_SECONDARY_PARENT ${mount}_mount)" />
+    <xacro:property name="parent" value="$(optenv JACKAL_LASER_SECONDARY_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_SECONDARY_MODEL lms1xx)" />
-    <!-- SICK LM1xx -->
+    <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
-      <xacro:sick_lms1xx_mount  topic="${topic}" prefix="${prefix}" parent_link="${parent_link}">
-         <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
-       </xacro:sick_lms1xx_mount>
+      <!-- Mount Enabled -->
+      <xacro:if value="${tower}">
+        <xacro:sick_lms1xx_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+          <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
+        </xacro:sick_lms1xx_mount>
+      </xacro:if>
+      <!-- Mount Disabled -->
+      <xacro:unless value="${tower}">
+        <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
+        <joint name="${prefix}_laser_joint" type="fixed">
+          <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0.116)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)"/>
+          <parent link="${parent}"/>
+          <child link="${prefix}_laser"/>
+        </joint>
+      </xacro:unless>
     </xacro:if>
     <!-- Hokuyo UST10 -->
     <xacro:if value="${lidar_model == 'ust10'}">
-      <xacro:hokuyo_ust10_mount topic="${topic}" prefix="${prefix}" parent_link="${parent_link}">
+      <xacro:hokuyo_ust10_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
         <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
       </xacro:hokuyo_ust10_mount>
     </xacro:if>
@@ -82,17 +108,17 @@
     <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC ${mount}/points)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_3D_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
-    <xacro:property name="parent_link" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
+    <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
     <!-- Velodyne VLP16 -->
     <xacro:if value="${lidar_3d_model == 'vlp16'}">
-      <xacro:vlp16_mount topic="${topic}" tower="${tower}" prefix="${prefix}" parent_link="${parent_link}" >
+      <xacro:vlp16_mount topic="${topic}" tower="${tower}" prefix="${prefix}" parent_link="${parent}" >
         <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
       </xacro:vlp16_mount>
     </xacro:if>
     <!-- Velodyne HDL-32E -->
     <xacro:if value="${lidar_3d_model == 'hdl32e'}">
-      <xacro:hdl32e_mount topic="${topic}" tower="${tower}" prefix="${prefix}" parent_link="${parent_link}" >
+      <xacro:hdl32e_mount topic="${topic}" tower="${tower}" prefix="${prefix}" parent_link="${parent}" >
         <origin xyz="$(optenv JACKAL_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_3D_RPY 0 0 0)" />
       </xacro:hdl32e_mount>
     </xacro:if>
@@ -289,7 +315,7 @@
         <child link="${prefix}_camera" />
       </joint>
     </xacro:if>
-
+    <!-- Mount Disabled -->
     <xacro:unless value="${tower}">
       <joint name="${prefix}_camera_joint" type="fixed">
         <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0.018)"
