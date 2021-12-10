@@ -32,7 +32,7 @@
   <!-- Primary 2D Lidar -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_MOUNT front)" />
-    <xacro:property name="topic" value="$(optenv JACKAL_LASER_TOPIC ${mount}/scan)" />
+    <xacro:property name="topic" value="$(optenv JACKAL_LASER_TOPIC front/scan)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
@@ -66,7 +66,7 @@
   <!-- Secondary 2D Lidar -->
   <xacro:if value="$(optenv JACKAL_LASER_SECONDARY 0)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_SECONDARY_MOUNT rear)" />
-    <xacro:property name="topic" value="$(optenv JACKAL_LASER_SECONDARY_TOPIC ${mount}/scan)" />
+    <xacro:property name="topic" value="$(optenv JACKAL_LASER_SECONDARY_TOPIC rear/scan)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_SECONDARY_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_SECONDARY_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_SECONDARY_PARENT ${mount}_mount)" />
@@ -105,10 +105,10 @@
   -->
   <xacro:if value="$(optenv JACKAL_LASER_3D 0)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_3D_MOUNT mid)" />
-    <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC ${mount}/points)" />
+    <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC mid/points)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_3D_TOWER 1)" />
-    <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
-    <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
+    <xacro:property name="prefix" value="$(optenv JACKAL_LASER_3D_PREFIX ${mount})" />
+    <xacro:property name="parent" value="$(optenv JACKAL_LASER_3D_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
     <!-- Velodyne VLP16 -->
     <xacro:if value="${lidar_3d_model == 'vlp16'}">
