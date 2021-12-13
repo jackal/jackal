@@ -48,9 +48,15 @@
       <!-- Mount Disabled -->
       <xacro:unless value="${tower}">
         <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
-        <joint name="${prefix}_laser_joint" type="fixed">
-          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0.116)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)"/>
+        <link name="${prefix}_laser_base"/>
+        <joint name="${prefix}_laser_base_joint" type="fixed">
+          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)"/>
           <parent link="${parent}"/>
+          <child link="${prefix}_laser_base"/>
+        </joint>
+        <joint name="${prefix}_laser_joint" type="fixed">
+          <origin xyz="0 0 0.116" rpy="0 0 0"/>
+          <parent link="${prefix}_laser_base"/>
           <child link="${prefix}_laser"/>
         </joint>
       </xacro:unless>
@@ -82,9 +88,15 @@
       <!-- Mount Disabled -->
       <xacro:unless value="${tower}">
         <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
-        <joint name="${prefix}_laser_joint" type="fixed">
-          <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0.116)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)"/>
+        <link name="${prefix}_laser_base"/>
+        <joint name="${prefix}_laser_base_joint" type="fixed">
+          <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)"/>
           <parent link="${parent}"/>
+          <child link="${prefix}_laser_base"/>
+        </joint>
+        <joint name="${prefix}_laser_joint" type="fixed">
+          <origin xyz="0 0 0.116" rpy="0 0 0"/>
+          <parent link="${prefix}_laser_base"/>
           <child link="${prefix}_laser"/>
         </joint>
       </xacro:unless>
@@ -234,10 +246,17 @@
 
     <!-- Mount Disabled -->
     <xacro:unless value="${tower}">
-      <joint name="${prefix}_camera_bracket_joint" type="fixed">
-        <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0.0145)"
+      <link name="${prefix}_camera_base"/>
+      <joint name="${prefix}_camera_base_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0 0 0)"
                 rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
         <parent link="${parent}" />
+        <child link="${prefix}_camera_base" />
+      </joint>
+      <joint name="${prefix}_camera_joint" type="fixed">
+        <origin xyz="0 0 0.0145"
+                rpy="0 0 0" />
+        <parent link="${prefix}_camera_base" />
         <child link="${prefix}_camera" />
       </joint>
     </xacro:unless>
@@ -316,10 +335,16 @@
     </xacro:if>
     <!-- Mount Disabled -->
     <xacro:unless value="${tower}">
-      <joint name="${prefix}_camera_joint" type="fixed">
-        <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0.018)"
+      <link name="${prefix}_camera_base" type="fixed"/>
+      <joint name="${prefix}_camera_base_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0)"
                 rpy="$(optenv JACKAL_BB2_RPY 0 0 0)" />
         <parent link="${parent}" />
+        <child link="${prefix}_camera_base" />
+      </joint>
+      <joint name="${prefix}_camera_joint" type="fixed">
+        <origin xyz="0 0 0.018" rpy="0 0 0" />
+        <parent link="${prefix}_camera_base" />
         <child link="${prefix}_camera" />
       </joint>
     </xacro:unless>
