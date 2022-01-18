@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* predict odom->base_link tf to current time
+* Contributors: Ebrahim Shahrivar
+
 0.8.0 (2021-04-23)
 ------------------
 * Merge branch 'noetic-devel-bkup' into noetic-devel
