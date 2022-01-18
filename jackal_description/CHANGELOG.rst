@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.1 (2022-01-18)
+------------------
 * Updated to match melodic-devel
 * Contributors: Luis Camero
 

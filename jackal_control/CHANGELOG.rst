@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.1 (2022-01-18)
+------------------
 * predict odom->base_link tf to current time
 * Contributors: Ebrahim Shahrivar
 
