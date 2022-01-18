@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* predict odom->base_link tf to current time
+* Contributors: Ebrahim Shahrivar
+
 0.7.7 (2021-10-01)
 ------------------
 * Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
