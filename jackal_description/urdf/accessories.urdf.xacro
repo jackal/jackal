@@ -378,6 +378,29 @@
     </xacro:if>
   </xacro:if>
 
+  <!-- Bumper Accessories -->
+  <xacro:if value="$(optenv JACKAL_WIBOTIC_BUMPER 0)">
+    <link name="wibotic_bumper">
+      <visual>
+        <geometry>
+          <mesh filename="package://jackal_description/meshes/wibotic_bumper.stl" />
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.115 0.25 0.145"/>
+        </geometry>
+        <origin xyz="-0.017575 0 0.0575" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <joint name="wibotic_bumper_joint" type="fixed">
+      <origin xyz="0.285 0 0.07455" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="wibotic_bumper"/>
+    </joint>
+  </xacro:if>
+
   <xacro:if value="$(optenv JACKAL_ARK_ENCLOSURE 0)">
     <link name="ark_enclosure_link">
       <visual>
