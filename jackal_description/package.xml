@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="3">
   <name>jackal_description</name>
   <version>0.8.1</version>
   <description>URDF robot description for Jackal</description>
@@ -10,15 +10,15 @@
 
   <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
-  <run_depend>robot_state_publisher</run_depend>
-  <run_depend>urdf</run_depend>
-  <run_depend>xacro</run_depend>
-  <run_depend>lms1xx</run_depend>
-  <run_depend>pointgrey_camera_description</run_depend>
-  <run_depend>velodyne_description</run_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <!--exec_depend>lms1xx</exec_depend>
+  <exec_depend>pointgrey_camera_description</exec_depend-->
+  <exec_depend>velodyne_description</exec_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
