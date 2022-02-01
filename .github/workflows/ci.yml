@@ -4,18 +4,18 @@ on: [push, pull_request]
 
 jobs:
 
-  # dingo_noetic_ci:
-  #   name: Noetic
-  #   strategy:
-  #     matrix:
-  #       env:
-  #         - {ROS_DISTRO: noetic, ROS_REPO: main}
-  #         - {ROS_DISTRO: noetic, ROS_REPO: testing}
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - uses: 'ros-industrial/industrial_ci@master'
-  #       env: ${{matrix.env}}
+  jackal_noetic_ci:
+    name: Noetic
+    strategy:
+      matrix:
+        env:
+          - {ROS_DISTRO: noetic, ROS_REPO: main}
+          - {ROS_DISTRO: noetic, ROS_REPO: testing}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: 'ros-industrial/industrial_ci@master'
+        env: ${{matrix.env}}
 
   jackal_melodic_ci:
     name: Melodic
