@@ -228,6 +228,19 @@
     <origin xyz="-0.180 0.126 0.1815" />
   </joint>
 
+  <!--
+    Optionally add a GX5 IMU
+  -->
+  <xacro:if value="$(optenv JACKAL_GX5_IMU 0)">
+    <link name="gx5_link" />
+    <joint name="gx5_joint" type="fixed">
+      <parent link="$(optenv JACKAL_GX5_IMU_PARENT base_link)" />
+      <child link="gx5_link" />
+      <!-- TODO This offset & rotation may not be final, but it's good enough for now.  May update, pending RSCI-10 -->
+      <origin xyz="$(optenv JACKAL_GX5_IMU_OFFSET -0.139 0.096 0.100)" rpy="$(optenv JACKAL_GX5_IMU_RPY ${PI} 0 -${PI/2})" />
+    </joint>
+  </xacro:if>
+
   <link name="mid_mount"></link>
   <joint name="mid_mount_joint" type="fixed">
     <parent link="chassis_link" />
@@ -259,4 +272,7 @@
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
+
+  <!-- Optional for Clearpath internal softwares -->
+  <xacro:include filename="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 </robot>
