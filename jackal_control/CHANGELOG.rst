@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.2 (2022-02-15)
+------------------
 * Updated control.launch to new microstrain envvars and moved definition of ekf-localization paramaters into it
 * Added Microstrain GX5 to jackal_control
 * Contributors: Luis Camero

@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.2 (2022-02-15)
+------------------
 * Moved microstrain link to accessories.urdf and updated envvars
 * Added velodyne tower mesh
 * Added Microstrain GX5 to description
