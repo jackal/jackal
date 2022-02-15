@@ -2,6 +2,12 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated control.launch to new microstrain envvars and moved definition of ekf-localization paramaters into it
+* Added Microstrain GX5 to jackal_control
+* Contributors: Luis Camero
+
 0.8.1 (2022-01-18)
 ------------------
 * predict odom->base_link tf to current time

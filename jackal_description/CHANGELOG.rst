@@ -2,6 +2,15 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Moved microstrain link to accessories.urdf and updated envvars
+* Added velodyne tower mesh
+* Added Microstrain GX5 to description
+* Removed unnecessary URDF
+* Added Wibotic mesh and STL
+* Contributors: Luis Camero
+
 0.8.1 (2022-01-18)
 ------------------
 * Updated to match melodic-devel
