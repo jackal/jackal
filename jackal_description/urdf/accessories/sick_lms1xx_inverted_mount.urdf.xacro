@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
 
-  <xacro:macro name="sick_lms1xx_mount" params="prefix topic parent_link *origin">
+  <xacro:macro name="sick_lms1xx_inverted_mount" params="prefix topic parent_link *origin">
 
     <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
 
@@ -46,7 +46,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <!-- Origin of this mesh is the base of the bracket. -->
-          <mesh filename="package://jackal_description/meshes/sick-lms1xx-bracket.stl" />
+          <mesh filename="package://jackal_description/meshes/sick-lms1xx-inverted-bracket.stl" />
         </geometry>
         <material name="dark_grey" />
       </visual>
@@ -54,7 +54,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <joint name="${prefix}_laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
-      <origin xyz="0 0 0.149" rpy="0 0 0" />
+      <origin xyz="0.04 0 0.066" rpy="3.141592 0 0" />
       <parent link="${prefix}_laser_mount" />
       <child link="${prefix}_laser" />
     </joint>
