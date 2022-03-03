@@ -24,6 +24,31 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
 
   <!--
+    Add Microstrain IMU. By default the Jackal comes equipped with an IMU linked to "imu_link". These extra
+    optional microstrain IMU's will be added to another frame, by default, "microstrain_link".
+  -->
+  <xacro:property name="microstrain_enable" value="$(optenv JACKAL_GX5_IMU 0)"/>
+  <xacro:property name="microstrain_enable" value="$(optenv JACKAL_IMU_MICROSTRAIN ${microstrain_enable})" lazy_eval="false"/>
+  <xacro:if value="${microstrain_enable}">
+    <xacro:property name="frame"  value="$(optenv JACKAL_IMU_MICROSTRAIN_LINK microstrain_link)"/>
+  
+    <xacro:property name="parent" value="$(optenv JACKAL_GX5_IMU_PARENT base_link)"/>
+    <xacro:property name="parent" value="$(optenv JACKAL_IMU_MICROSTRAIN_PARENT ${parent})" lazy_eval="false"/>
+
+    <xacro:property name="xyz"    value="$(optenv JACKAL_GX5_IMU_OFFSET -0.139 0.096 0.100)"/>
+    <xacro:property name="xyz"    value="$(optenv JACKAL_IMU_MICROSTRAIN_OFFSET ${xyz})" lazy_eval="false"/>
+
+    <xacro:property name="rpy"    value="$(optenv JACKAL_GX5_IMU_RPY ${PI} 0 -${PI/2})"/>
+    <xacro:property name="rpy"    value="$(optenv JACKAL_IMU_MICROSTRAIN_RPY ${rpy})" lazy_eval="false"/>
+    <link name="${frame}" />
+    <joint name="${frame}_joint" type="fixed">
+      <parent link="${parent}" />
+      <child link="${frame}" />
+      <origin xyz="${xyz}" rpy="${rpy}" />
+    </joint>
+  </xacro:if>
+
+  <!--
     Add primary/secondary 2D lidar sensors.  By default these are SICK LMS1xx but can be changed with the
     JACKAL_LASER_MODEL and JACKAL_LASER_SECONDARY_MODEL environment variables. Valid model designations are:
     - lms1xx (default) :: SICK LMS1xx
