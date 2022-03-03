@@ -17,8 +17,8 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- 2D Lidars -->
-  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_inverted_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_upright_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
@@ -62,13 +62,21 @@
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL lms1xx)" />
+    <xacro:property name="mount_type" value="$(optenv JACKAL_LASER_MOUNT_TYPE upright)" />
     <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
       <!-- Mount Enabled -->
       <xacro:if value="${tower}">
-        <xacro:sick_lms1xx_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
-          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-        </xacro:sick_lms1xx_mount>
+        <xacro:if value="${mount_type == 'upright'}">
+          <xacro:sick_lms1xx_upright_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+            <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+          </xacro:sick_lms1xx_upright_mount>
+        </xacro:if>
+        <xacro:if value="${mount_type == 'inverted'}">
+          <xacro:sick_lms1xx_inverted_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+            <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+          </xacro:sick_lms1xx_inverted_mount>
+        </xacro:if>
       </xacro:if>
       <!-- Mount Disabled -->
       <xacro:unless value="${tower}">
@@ -206,13 +214,13 @@
       <xacro:novatel_smart7 prefix="${prefix}"/>
       <!-- Tower Enabled -->
       <xacro:if value="${tower}">
-        <xacro:novatel_smart7_stand prefix="${prefix}" parent="${parent}" height="$(optenv JACKAL_NAVSAT_HEIGHT 0.145)">
-          <origin xyz="$(optenv JACKAL_NAVSAT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_NAVSAT_RPY 0 0 0)" />
-        </xacro:novatel_smart7_stand>
+        <xacro:bridge_plate prefix="${prefix}" parent="${parent}" height="$(optenv JACKAL_NAVSAT_HEIGHT 0.1)">
+          <origin xyz="$(optenv JACKAL_NAVSAT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_NAVSAT_RPY 0 0 0)"/>
+        </xacro:bridge_plate>
 
         <joint name="${prefix}_navsat_joint" type="fixed">
-          <origin xyz="0 0 $(optenv JACKAL_NAVSAT_HEIGHT 0.145)" rpy="0 0 0"/>
-          <parent link="${prefix}_navsat_stand" />
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <parent link="${prefix}_bridge" />
           <child link="${prefix}_navsat" />
         </joint>
       </xacro:if>
