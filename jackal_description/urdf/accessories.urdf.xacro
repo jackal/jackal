@@ -190,13 +190,13 @@
       <xacro:novatel_smart7 prefix="${prefix}"/>
       <!-- Tower Enabled -->
       <xacro:if value="${tower}">
-        <xacro:novatel_smart7_stand prefix="${prefix}" parent="${parent}" height="$(optenv JACKAL_NAVSAT_HEIGHT 0.145)">
-          <origin xyz="$(optenv JACKAL_NAVSAT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_NAVSAT_RPY 0 0 0)" />
-        </xacro:novatel_smart7_stand>
+        <xacro:bridge_plate prefix="${prefix}" parent="${parent}" height="$(optenv JACKAL_NAVSAT_HEIGHT 0.1)">
+          <origin xyz="$(optenv JACKAL_NAVSAT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_NAVSAT_RPY 0 0 0)"/>
+        </xacro:bridge_plate>
 
         <joint name="${prefix}_navsat_joint" type="fixed">
-          <origin xyz="0 0 $(optenv JACKAL_NAVSAT_HEIGHT 0.145)" rpy="0 0 0"/>
-          <parent link="${prefix}_navsat_stand" />
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <parent link="${prefix}_bridge" />
           <child link="${prefix}_navsat" />
         </joint>
       </xacro:if>
