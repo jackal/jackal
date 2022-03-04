@@ -20,6 +20,7 @@
   <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_inverted_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_upright_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_utm30.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
@@ -47,6 +48,7 @@
     JACKAL_LASER_MODEL and JACKAL_LASER_SECONDARY_MODEL environment variables. Valid model designations are:
     - lms1xx (default) :: SICK LMS1xx
     - ust10            :: Hokuyo UST10
+    - utm30            :: Hokuyo UTM30
   -->
   <!-- Primary 2D Lidar -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
@@ -94,6 +96,12 @@
         <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
       </xacro:hokuyo_ust10_mount>
     </xacro:if>
+    <!-- Hokuyo UTM30 -->
+    <xacro:if value="${lidar_model == 'utm30'}">
+      <xacro:hokuyo_utm30_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+      </xacro:hokuyo_utm30_mount>
+    </xacro:if>
   </xacro:if>
 
   <!-- Secondary 2D Lidar -->
@@ -133,6 +141,12 @@
       <xacro:hokuyo_ust10_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
         <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
       </xacro:hokuyo_ust10_mount>
+    </xacro:if>
+    <!-- Hokuyo UTM30 -->
+    <xacro:if value="${lidar_model == 'utm30'}">
+      <xacro:hokuyo_utm30_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+        <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)" />
+      </xacro:hokuyo_utm30_mount>
     </xacro:if>
   </xacro:if>
 
