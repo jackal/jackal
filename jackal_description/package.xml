@@ -17,6 +17,7 @@
   <run_depend>xacro</run_depend>
   <run_depend>lms1xx</run_depend>
   <run_depend>pointgrey_camera_description</run_depend>
+  <run_depend>sick_tim</run_depend>
   <run_depend>velodyne_description</run_depend>
 
   <export>
