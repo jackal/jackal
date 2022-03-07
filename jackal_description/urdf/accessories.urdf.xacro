@@ -17,6 +17,7 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- 2D Lidars -->
+  <xacro:include filename="$(find sick_tim)/urdf/sick_tim.urdf.xacro" />
   <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_inverted_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_upright_mount.urdf.xacro" />
@@ -90,6 +91,16 @@
         </joint>
       </xacro:unless>
     </xacro:if>
+    <!-- SICK Tim -->
+    <xacro:if value="${lidar_model == 'tim551'}">
+      <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX tim551)" />
+      <xacro:sick_tim551 name="${prefix}" ros_topic="${topic}"/>
+      <joint name="${prefix}_mount_link_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)"/>
+        <parent link="${parent}"/>
+        <child link="${prefix}_mount_link"/>
+      </joint>
+    </xacro:if>
     <!-- Hokuyo UST10 -->
     <xacro:if value="${lidar_model == 'ust10'}">
       <xacro:hokuyo_ust10_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
@@ -135,6 +146,16 @@
           <child link="${prefix}_laser"/>
         </joint>
       </xacro:unless>
+    </xacro:if>
+    <!-- SICK Tim -->
+    <xacro:if value="${lidar_model == 'tim551'}">
+      <xacro:property name="prefix" value="$(optenv JACKAL_LASER_SECONDARY_PREFIX tim551_2)" />
+      <xacro:sick_tim551 name="${prefix}" ros_topic="${topic}"/>
+      <joint name="${prefix}_mount_link_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_SECONDARY_RPY 0 0 3.14159)"/>
+        <parent link="${parent}"/>
+        <child link="${prefix}_mount_link"/>
+      </joint>
     </xacro:if>
     <!-- Hokuyo UST10 -->
     <xacro:if value="${lidar_model == 'ust10'}">
