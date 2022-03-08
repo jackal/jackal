@@ -2,6 +2,21 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added the option to remove tower from VLP16 mount
+* Added SICK TIM551 to URDF and package.xml
+* Added UTM30 (`#106 <https://github.com/jackal/jackal/issues/106>`_)
+* Updated Navsat and LMS1xx mounts (`#103 <https://github.com/jackal/jackal/issues/103>`_)
+  * Updated hokuyo_ust10_mount to include min and max angle
+  * Removed extra spaces
+  * Updated SICK LMS1XX mount and NAVSAT mount
+  * Maintained backward compatibility with LMS1xx standard upright poisition by adding mount types
+* Updated hokuyo_ust10_mount to include min and max angle (`#102 <https://github.com/jackal/jackal/issues/102>`_)
+  * Updated hokuyo_ust10_mount to include min and max angle
+  * Removed extra spaces
+* Contributors: Luis Camero, luis-camero
+
 0.8.2 (2022-02-15)
 ------------------
 * Moved microstrain link to accessories.urdf and updated envvars
