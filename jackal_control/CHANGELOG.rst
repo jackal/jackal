@@ -2,6 +2,13 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated Microstrain Environment Variables (`#105 <https://github.com/jackal/jackal/issues/105>`_)
+  * Added JACKAL_IMU_MICROSTRAIN environment variable to accessories
+  * Updated variables in control.launch
+* Contributors: luis-camero
+
 0.7.8 (2022-01-18)
 ------------------
 * predict odom->base_link tf to current time
