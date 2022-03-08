@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.9 (2022-03-08)
+------------------
 * Updated Microstrain Environment Variables (`#105 <https://github.com/jackal/jackal/issues/105>`_)
   * Added JACKAL_IMU_MICROSTRAIN environment variable to accessories
   * Updated variables in control.launch
