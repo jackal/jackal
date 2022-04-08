@@ -34,7 +34,7 @@
   </node>
 
   <group if="$(optenv JACKAL_CONTROL_EXTRAS 0)" >
-    <rosparam command="load" file="$(env JACKAL_CONTROL_EXTRAS_PATH)" />
+    <rosparam command="load" file="$(env JACKAL_CONTROL_EXTRAS_PATH)" subst_value="true" />
   </group>
 
 </launch>
