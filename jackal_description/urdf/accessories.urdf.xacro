@@ -412,6 +412,21 @@
     </xacro:unless>
   </xacro:if>
 
+  <!-- BlackflyS Camera -->
+  <xacro:include filename="$(find flir_camera_description)/urdf/flir_blackflys.urdf.xacro"/>
+  <xacro:if value="$(optenv JACKAL_BLACKFLY 0)">
+    <xacro:property name="prefix" value="$(optenv JACKAL_BLACKFLY_PREFIX front_camera)"/>
+    <xacro:property name="parent" value="$(optenv JACKAL_BLACKFLY_PARENT front_mount)"/>
+    <xacro:property name="xyz"    value="$(optenv JACKAL_BLACKFLY_OFFSET 0 0 0)"/>
+    <xacro:property name="rpy"    value="$(optenv JACKAL_BLACKFLY_RPY    0 0 0)"/>
+    <xacro:flir_blackflys frame="${prefix}"/>
+    <joint name="${prefix}_mount_joint" type="fixed">
+      <child link="${prefix}"/>
+      <parent link="${parent}"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  </xacro:if>
+
   <!-- Fender Accessories --> 
   <xacro:if value="$(optenv JACKAL_FRONT_ACCESSORY_FENDER 0)">
     <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
