@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.4 (2022-05-09)
+------------------
 * Disable absolute yaw in default imu configuration
 * Set subst_value=true when loading the control_extras file to allow envar-defined configuration inside the file
 * Contributors: Chris I-B, Chris Iverach-Brereton
