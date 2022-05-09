@@ -2,6 +2,9 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.8.3 (2022-03-08)
 ------------------
 * Added the option to remove tower from VLP16 mount
