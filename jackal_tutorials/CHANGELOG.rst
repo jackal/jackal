@@ -2,6 +2,9 @@
 Changelog for package jackal_tutorials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.8.4 (2022-05-09)
 ------------------
 

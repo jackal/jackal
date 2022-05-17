@@ -2,6 +2,12 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added Blackfly  entry to URDF
+* Added Blackfly description to package.xml
+* Contributors: Luis Camero
+
 0.8.4 (2022-05-09)
 ------------------
 
