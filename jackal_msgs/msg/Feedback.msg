@@ -6,10 +6,6 @@ Header header
 
 DriveFeedback[2] drivers
 
-# Temperatures 
-float32 pcb_temperature
-float32 mcu_temperature
-
 # Commanded control mode, use the TYPE_ constants from jackal_msgs/Drive.
 int8 commanded_mode
 
