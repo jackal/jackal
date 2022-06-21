@@ -2,7 +2,7 @@
 # as necessary to support closed-loop control and thermal monitoring.
 # Default publish frequency is 50Hz.
 
-Header header
+std_msgs/Header header
 
 DriveFeedback[2] drivers
 
