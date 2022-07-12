@@ -3,10 +3,10 @@ from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+
 def generate_launch_description():
     lc = LaunchContext()
     joy_type = EnvironmentVariable('CPR_JOY_TYPE', default_value='logitech')
-
 
     filepath_config_joy = PathJoinSubstitution(
         [FindPackageShare('jackal_control'), 'config', ('teleop_' + joy_type.perform(lc) + '.yaml')]
@@ -29,7 +29,6 @@ def generate_launch_description():
         name='teleop_twist_joy_node',
         parameters=[filepath_config_joy]
     )
-
 
     ld = LaunchDescription()
     ld.add_action(node_joy)

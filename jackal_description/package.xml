@@ -4,13 +4,14 @@
   <version>0.8.1</version>
   <description>URDF robot description for Jackal</description>
 
-  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
+  <maintainer email="rkreinin@clearpathrobotics.com">Roni Kreinin</maintainer>
 
   <license>BSD</license>
 
-  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
+  <author email="rkreinin@clearpathrobotics.com">Roni Kreinin</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>cpr_accessories_description</depend>
   <depend>robot_state_publisher</depend>
   <depend>urdf</depend>
   <depend>xacro</depend>

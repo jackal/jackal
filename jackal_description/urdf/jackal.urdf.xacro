@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot name="jackal" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:arg name="is_sim" default="false" />
+  <xacro:arg name="accessories" default="empty.urdf"/>
 
   <xacro:property name="PI" value="3.1415926535897931" />
 
@@ -289,7 +290,7 @@
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
-  <xacro:include filename="$(find jackal_description)/urdf/accessories.urdf.xacro" />
+  <xacro:include filename="$(arg accessories)" />
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />

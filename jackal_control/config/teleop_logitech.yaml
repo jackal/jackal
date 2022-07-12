@@ -61,4 +61,5 @@ joy_teleop/joy_node:
   ros__parameters:
     deadzone: 0.1
     autorepeat_rate: 20.0
-    dev: /dev/input/f710
+    sticky_buttons: false
+    coalesce_interval_ms: 1
