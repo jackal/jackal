@@ -24,11 +24,11 @@ jackal_velocity_controller:
     publish_rate: 50.0
     odom_frame_id: odom
     base_frame_id: base_link
-    pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
-    twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
+    # pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
+    # twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
 
-    open_loop: false
-    enable_odom_tf: true
+    open_loop: true
+    enable_odom_tf: false
 
     cmd_vel_timeout: 0.25
     #publish_limited_velocity: true
