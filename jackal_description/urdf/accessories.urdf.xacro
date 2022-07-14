@@ -19,9 +19,9 @@
   <!-- 2D Lidars -->
   <!--xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" /-->
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+  <!-- <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" /> -->
 
   <!--
     Add primary/secondary 2D lidar sensors.  By default these are SICK LMS1xx but can be changed with the
