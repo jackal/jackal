@@ -129,7 +129,7 @@
       </inertial>
   </link>
 
-  <xacro:unless value="$(optenv JACKAL_FRONT_ACCESSORY_FENDER 0)">
+  <!-- <xacro:unless value="$(optenv JACKAL_FRONT_ACCESSORY_FENDER 0)">
     <link name="front_fender_link">
       <visual>
         <geometry>
@@ -162,9 +162,9 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <parent link="chassis_link" />
     <child link="front_fender_link" />
-  </joint>
+  </joint> -->
 
-  <xacro:unless value="$(optenv JACKAL_REAR_ACCESSORY_FENDER 0)">
+  <!-- <xacro:unless value="$(optenv JACKAL_REAR_ACCESSORY_FENDER 0)">
     <link name="rear_fender_link">
       <visual>
         <geometry>
@@ -197,7 +197,7 @@
     <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
     <parent link="chassis_link" />
     <child link="rear_fender_link" />
-  </joint>
+  </joint> -->
 
   <!-- TODO: Make this internal_imu_link or something, and use a mixed-in xacro
        to supply the joint between it and imu_link. This is important so that imu_link
@@ -294,4 +294,5 @@
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
+
 </robot>

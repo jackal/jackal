@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="fender" params="name">
+    <link name="${name}_link">
+        <visual>
+            <geometry>
+              <mesh filename="package://jackal_description/meshes/jackal-fender.stl"/>
+            </geometry>
+            <material name="yellow" />
+        </visual>
+    </link>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="accessory_fender" params="name accessory_link">
+    <link name="${name}_link">
+        <visual>
+            <geometry>
+              <mesh filename="package://jackal_description/meshes/accessory_fender.stl"/>
+            </geometry>
+            <material name="yellow" />
+        </visual>
+    </link>
+
+    <link name="${accessory_link}"/>
+
+    <joint name="${name}_accessory_joint" type="fixed">
+      <origin xyz="0.25629 0 0.07455" rpy="${PI} 0 0" />
+      <parent link="${name}_link" />
+      <child link="${accessory_link}" />
+    </joint>
+  </xacro:macro>
+</robot>
