@@ -257,7 +257,7 @@
         <plugin>gazebo_ros2_control/GazeboSystem</plugin>
       </xacro:if>
       <xacro:unless value="$(arg is_sim)">
-        <plugin>jackal_base/JackalHardware</plugin>
+        <plugin>jackal_hardware/JackalHardware</plugin>
         <plugin>fake_components/GenericSystem</plugin>
       </xacro:unless>
     </hardware>
