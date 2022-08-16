@@ -1,23 +1,21 @@
 <?xml version="1.0"?>
-<package>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>jackal_navigation</name>
-  <version>0.8.1</version>
+  <version>0.8.5</version>
   <description>Launch files and code for autonomous navigation of the Jackal</description>
-  <author email="spourmehr@clearpathrobotics.com">Shokoofeh Pourmehr</author>
-  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
+  <maintainer email="rkreinin@clearpathrobotics.com">rkreinin</maintainer>
   <license>BSD</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
-  <run_depend>amcl</run_depend>
-  <run_depend>gmapping</run_depend>
-  <run_depend>map_server</run_depend>
-  <run_depend>move_base</run_depend>
-  <run_depend>urdf</run_depend>
-  <run_depend>xacro</run_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>nav2_bringup</depend>
+  <depend>slam_toolbox</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <export>
-
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

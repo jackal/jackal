@@ -17,11 +17,11 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- 2D Lidars -->
-  <!--xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" /-->
-  <!-- <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+  <!-- <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" /> 
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />-->
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" /> -->
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
 
   <!--
     Add primary/secondary 2D lidar sensors.  By default these are SICK LMS1xx but can be changed with the
@@ -36,7 +36,7 @@
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
-    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL lms1xx)" />
+    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL ust10)" />
     <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
       <!-- Mount Enabled -->
@@ -76,7 +76,7 @@
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_SECONDARY_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_SECONDARY_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_SECONDARY_PARENT ${mount}_mount)" />
-    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_SECONDARY_MODEL lms1xx)" />
+    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_SECONDARY_MODEL ust10)" />
     <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
       <!-- Mount Enabled -->

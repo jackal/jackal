@@ -1,18 +1,33 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(jackal_navigation)
 
-find_package(catkin REQUIRED COMPONENTS roslaunch)
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
 
-catkin_package()
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
-roslaunch_add_file_check(launch/include/amcl.launch)
-roslaunch_add_file_check(launch/amcl_demo.launch)
-roslaunch_add_file_check(launch/include/gmapping.launch)
-roslaunch_add_file_check(launch/gmapping_demo.launch)
-roslaunch_add_file_check(launch/include/move_base.launch)
-roslaunch_add_file_check(launch/odom_navigation_demo.launch)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-install(
-DIRECTORY launch maps params
-DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(nav2_bringup REQUIRED)
+find_package(slam_toolbox REQUIRED)
+
+
+install(DIRECTORY config launch maps
+  DESTINATION share/${PROJECT_NAME}
 )
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()
