@@ -59,7 +59,7 @@ def generate_launch_description():
         Node(
             package='imu_filter_madgwick',
             executable='imu_filter_madgwick_node',
-            name='imu_filter',
+            name='imu_filter_node',
             output='screen',
             parameters=[config_imu_filter]
         )
