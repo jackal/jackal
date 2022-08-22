@@ -30,7 +30,7 @@
     optional microstrain IMU's will be added to another frame, by default, "microstrain_link".
   -->
   <xacro:property name="microstrain_enable" value="$(optenv JACKAL_GX5_IMU 0)"/>
-  <xacro:property name="microstrain_enable" value="$(optenv JACKAL_IMU_MICROSTRAIN ${microstrain_enable})" lazy_eval="false"/>
+  <xacro:property name="microstrain_enable" value="$(optenv JACKAL_IMU_MICROSTRAIN 0)" lazy_eval="false"/>
   <xacro:if value="${microstrain_enable}">
     <xacro:property name="frame"  value="$(optenv JACKAL_IMU_MICROSTRAIN_LINK microstrain_link)"/>
   
