@@ -15,26 +15,14 @@
 # @author Roni Kreinin (rkreinin@clearpathrobotics.com)
 
 
-from ament_index_python.packages import get_package_share_directory
-
-from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-
-from launch_ros.actions import Node
-
 import os
 
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import (DeclareLaunchArgument, GroupAction,
-                            IncludeLaunchDescription, SetEnvironmentVariable)
-from launch.conditions import IfCondition, LaunchConfigurationEquals
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node, PushRosNamespace
-from nav2_common.launch import RewrittenYaml
 
 
 def generate_launch_description():
@@ -47,18 +35,6 @@ def generate_launch_description():
     params_file = LaunchConfiguration('params_file')
     autostart = LaunchConfiguration('autostart')
     use_composition = LaunchConfiguration('use_composition')
-    
-
-    # Create our own temporary YAML files that include substitutions
-    param_substitutions = {
-        'use_sim_time': use_sim_time,
-        'yaml_filename': map_yaml_file}
-
-    configured_params = RewrittenYaml(
-        source_file=params_file,
-        root_key=namespace,
-        param_rewrites=param_substitutions,
-        convert_types=True)
 
     declare_namespace_cmd = DeclareLaunchArgument(
         'namespace',
