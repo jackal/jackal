@@ -12,24 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-
-from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.actions import (DeclareLaunchArgument, GroupAction,
                             IncludeLaunchDescription, SetEnvironmentVariable)
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+
 from launch_ros.actions import Node, PushRosNamespace
+from launch_ros.substitutions import FindPackageShare
+
 from nav2_common.launch import RewrittenYaml
 
 
 def generate_launch_description():
     # Get the launch directory
-    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
-    jackal_navigation_dir = get_package_share_directory('jackal_navigation')
+    pkg_nav2_bringup = FindPackageShare('nav2_bringup')
+    pkg_jackal_navigation = FindPackageShare('jackal_navigation')
 
     # Create the launch configuration variables
     namespace = LaunchConfiguration('namespace')
@@ -88,7 +88,10 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(jackal_navigation_dir, 'maps', 'depot.yaml'),
+        default_value=PathJoinSubstitution(
+            [pkg_jackal_navigation,
+             'maps',
+             'depot.yaml']),
         description='Full path to map yaml file to load')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
@@ -98,7 +101,10 @@ def generate_launch_description():
 
     declare_params_file_cmd = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(jackal_navigation_dir, 'config', 'nav2.yaml'),
+        default_value=PathJoinSubstitution(
+            [pkg_jackal_navigation,
+             'config',
+             'nav2.yaml']),
         description='Full path to the ROS2 parameters file to use for all launched nodes')
 
     declare_autostart_cmd = DeclareLaunchArgument(
@@ -125,8 +131,11 @@ def generate_launch_description():
             output='screen'),
 
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(nav2_bringup_dir, 'launch',
-                                                       'localization_launch.py')),
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [pkg_nav2_bringup,
+                     'launch',
+                     'localization_launch.py'])),
             condition=IfCondition(localization),
             launch_arguments={'namespace': namespace,
                               'map': map_yaml_file,
@@ -137,8 +146,11 @@ def generate_launch_description():
                               'container_name': 'nav2_container'}.items()),
 
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(nav2_bringup_dir, 'launch',
-                                                       'navigation_launch.py')),
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [pkg_nav2_bringup,
+                     'launch',
+                     'navigation_launch.py'])),
             launch_arguments={'namespace': namespace,
                               'use_sim_time': use_sim_time,
                               'autostart': autostart,

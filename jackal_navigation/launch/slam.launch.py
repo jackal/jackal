@@ -15,13 +15,13 @@
 # @author Roni Kreinin (rkreinin@clearpathrobotics.com)
 
 
-from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
+
 
 ARGUMENTS = [
     DeclareLaunchArgument('use_sim_time', default_value='false',
@@ -31,7 +31,7 @@ ARGUMENTS = [
 
 
 def generate_launch_description():
-    pkg_jackal_navigation = get_package_share_directory('jackal_navigation')
+    pkg_jackal_navigation = FindPackageShare('jackal_navigation')
 
     slam_config = PathJoinSubstitution(
         [pkg_jackal_navigation, 'config', 'slam.yaml'])

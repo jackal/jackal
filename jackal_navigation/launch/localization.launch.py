@@ -15,19 +15,17 @@
 # @author Roni Kreinin (rkreinin@clearpathrobotics.com)
 
 
-import os
-
-from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
-    pkg_jackal_navigation = get_package_share_directory('jackal_navigation')
+    pkg_nav2_bringup = FindPackageShare('nav2_bringup')
+    pkg_jackal_navigation = FindPackageShare('jackal_navigation')
 
     namespace = LaunchConfiguration('namespace')
     map_yaml_file = LaunchConfiguration('map')
@@ -66,7 +64,10 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(pkg_jackal_navigation, 'maps', 'office.yaml'),
+        default_value=PathJoinSubstitution(
+            [pkg_jackal_navigation,
+             'maps',
+             'office.yaml']),
         description='Full path to map yaml file to load')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
@@ -76,7 +77,10 @@ def generate_launch_description():
 
     declare_params_file_cmd = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(pkg_jackal_navigation, 'config', 'nav2.yaml'),
+        default_value=PathJoinSubstitution(
+            [pkg_jackal_navigation,
+             'config',
+             'nav2.yaml']),
         description='Full path to the ROS2 parameters file to use for all launched nodes')
 
     declare_autostart_cmd = DeclareLaunchArgument(
@@ -88,8 +92,11 @@ def generate_launch_description():
         description='Whether to use composed bringup')
 
     localization = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(nav2_bringup_dir, 'launch',
-                                                       'localization_launch.py')),
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [pkg_nav2_bringup,
+                     'launch',
+                     'localization_launch.py'])),
             launch_arguments={'namespace': namespace,
                               'map': map_yaml_file,
                               'use_sim_time': use_sim_time,
