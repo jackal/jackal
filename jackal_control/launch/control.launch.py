@@ -1,9 +1,11 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, GroupAction
+from launch.conditions import UnlessCondition
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
+
 
 def generate_launch_description():
 
@@ -38,6 +40,12 @@ def generate_launch_description():
             )
         ]
     )
+
+    is_sim = LaunchConfiguration('is_sim', default=False)
+
+    is_sim_arg = DeclareLaunchArgument(
+        'is_sim',
+        default_value=is_sim)
 
     robot_description_content = ParameterValue(
         Command(LaunchConfiguration('robot_description_command')),
@@ -77,6 +85,7 @@ def generate_launch_description():
                 'stdout': 'screen',
                 'stderr': 'screen',
             },
+            condition=UnlessCondition(is_sim)
         ),
 
         # Joint State Broadcaster
@@ -98,6 +107,7 @@ def generate_launch_description():
 
     ld = LaunchDescription()
     ld.add_action(robot_description_command_arg)
+    ld.add_action(is_sim_arg)
     ld.add_action(localization_group_action)
     ld.add_action(control_group_action)
     return ld
