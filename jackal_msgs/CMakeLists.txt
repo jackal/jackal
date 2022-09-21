@@ -19,6 +19,9 @@ rosidl_generate_interfaces(${PROJECT_NAME}
    msg/Drive.msg
    msg/DriveFeedback.msg
    msg/Feedback.msg
+   msg/Power.msg
+   msg/Status.msg
+   msg/StopStatus.msg
    DEPENDENCIES std_msgs builtin_interfaces
 )
 
