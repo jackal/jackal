@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>jackal_diagnostics</name>
+  <version>0.8.1</version>
+  <description>Jackal Diagnostics</description>
+  <maintainer email="rkreinin@clearpathrobotics.com">rkreinin</maintainer>
+  <license>BSD</license>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <depend>diagnostic_updater</depend>
+  <depend>diagnostic_aggregator</depend>
+  <depend>diagnostic_msgs</depend>
+
+  <depend>jackal_msgs</depend>
+  <depend>sensor_msgs</depend>
+
+  <depend>rclpy</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

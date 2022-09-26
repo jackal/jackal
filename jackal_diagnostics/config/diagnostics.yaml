@@ -1,0 +1,43 @@
+analyzers:
+  ros__parameters:
+      path: Jackal
+      general:
+        type: diagnostic_aggregator/AnalyzerGroup
+        path: General
+        analyzers:
+          system:
+              type: diagnostic_aggregator/GenericAnalyzer
+              path: System
+              contains: [ 'System', 'feedback' ]
+          battery:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Battery
+            contains: [ 'Battery' ]
+          user_voltage:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: User Voltage
+            contains: [ 'User' ]
+          current:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Current
+            contains: [ 'Current' ]
+        sensors:
+          type: diagnostic_aggregator/AnalyzerGroup
+          path: Sensor Topics
+          analyzers:
+            imu:
+              type: diagnostic_aggregator/GenericAnalyzer
+              path: IMU
+              contains: [ 'imu' ]
+            navsat:
+              type: diagnostic_aggregator/GenericAnalyzer
+              path: Navsat
+              contains: [ 'nav' ]
+        teleop:
+          type: diagnostic_aggregator/GenericAnalyzer
+          path: Bluetooth Joystick
+          contains: [ 'joy' ]
+        twist:
+          type: diagnostic_aggregator/GenericAnalyzer
+          path: Twist Mux
+          contains: [ 'twist' ]
