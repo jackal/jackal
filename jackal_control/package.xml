@@ -1,7 +1,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>jackal_control</name>
-  <version>0.8.1</version>
+  <version>0.8.5</version>
   <description>Controllers for Jackal</description>
 
   <license>BSD</license>
