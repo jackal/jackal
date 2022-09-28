@@ -14,6 +14,17 @@ Changelog for package jackal_navigation
 0.8.2 (2022-02-15)
 ------------------
 
+Forthcoming
+-----------
+* Use Substitions for launch files
+  Added back CHANGELOG.rst
+* Linter fixes
+* Fixed imu filter node name
+  Updated scan topic to use /front/scan by default
+* Added Nav2 and slam_toolbox to jackal_navigation
+* ROS 2 Port
+* Contributors: David V. Lu, Roni Kreinin
+
 0.8.1 (2022-01-18)
 ------------------
 

@@ -2,6 +2,19 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated all packages to 0.8.5.
+* Added sim support
+* Added Nav2 and slam_toolbox to jackal_navigation
+* Control fixes
+* Minor cleanup
+* Added ros2_control to description
+* Remove RViz Dependency
+* Hack until lms1xx and pointgrey_camera_description are available
+* ROS 2 Port
+* Contributors: David V. Lu, Roni Kreinin, Tony Baltovski
+
 0.8.1 (2022-01-18)
 ------------------
 * Updated to match melodic-devel

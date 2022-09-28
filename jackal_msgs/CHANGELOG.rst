@@ -2,6 +2,18 @@
 Changelog for package jackal_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated all packages to 0.8.5.
+* Moved MCU messages to jackal_msgs
+* Fixed header message
+  Removed COLCON_IGNORE
+* Version number and description
+* Set feedback frequency back to 50hz
+* Foxy updates
+* ROS 2 Port
+* Contributors: David V. Lu, Roni Kreinin, Tony Baltovski
+
 0.8.1 (2022-01-18)
 ------------------
 

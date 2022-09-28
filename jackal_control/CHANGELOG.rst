@@ -2,6 +2,22 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated all packages to 0.8.5.
+* Added sim support
+* Use Substitions for launch files
+  Added back CHANGELOG.rst
+* Fixed imu filter node name
+  Updated scan topic to use /front/scan by default
+* Control fixes
+* Use IMU filter
+* Minor cleanup
+* 50Hz controller
+* ROS2 jackal_control
+* ROS 2 Port
+* Contributors: David V. Lu, Roni Kreinin, Tony Baltovski
+
 0.8.1 (2022-01-18)
 ------------------
 * predict odom->base_link tf to current time
