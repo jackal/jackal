@@ -2,8 +2,8 @@
 Changelog for package jackal_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2022-09-27)
+------------------
 * Updated all packages to 0.8.5.
 * Moved MCU messages to jackal_msgs
 * Fixed header message

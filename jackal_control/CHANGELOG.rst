@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2022-09-27)
+------------------
 * Updated all packages to 0.8.5.
 * Added sim support
 * Use Substitions for launch files

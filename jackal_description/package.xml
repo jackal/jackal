@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>jackal_description</name>
-  <version>0.8.5</version>
+  <version>1.0.0</version>
   <description>URDF robot description for Jackal</description>
 
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>

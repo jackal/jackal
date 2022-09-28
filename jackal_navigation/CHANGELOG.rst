@@ -14,8 +14,8 @@ Changelog for package jackal_navigation
 0.8.2 (2022-02-15)
 ------------------
 
-Forthcoming
------------
+1.0.0 (2022-09-27)
+------------------
 * Use Substitions for launch files
   Added back CHANGELOG.rst
 * Linter fixes
