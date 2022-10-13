@@ -29,8 +29,8 @@
       <frameId>base_link</frameId>
       <topicName>/navsat/fix</topicName>
       <velocityTopicName>/navsat/vel</velocityTopicName>
-      <referenceLatitude>49.9</referenceLatitude>
-      <referenceLongitude>8.9</referenceLongitude>
+      <referenceLatitude>$(optenv GAZEBO_WORLD_LAT 49.9)</referenceLatitude>
+      <referenceLongitude>$(optenv GAZEBO_WORLD_LON 8.9)</referenceLongitude>
       <referenceHeading>0</referenceHeading>
       <referenceAltitude>0</referenceAltitude>
       <drift>0.0001 0.0001 0.0001</drift>
@@ -45,7 +45,7 @@
     <material>Gazebo/DarkGrey</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
-    <gazebo reference="imu_link">
+  <gazebo reference="imu_link">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
