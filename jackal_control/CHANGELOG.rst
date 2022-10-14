@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.1 (2022-10-14)
+------------------
 * [jackal_control] Fixed wrong dependency.
 * Contributors: Tony Baltovski
 
