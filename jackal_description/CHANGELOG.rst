@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.6 (2022-11-16)
+------------------
 * Set the GPS plugin's reference heading to 90 so it's ENU
 * Use xacro properties defined from environment variables for Microstrain URDF (`#123 <https://github.com/jackal/jackal/issues/123>`_)
 * Add GAZEBO_WORLD\_{LAT|LON} envars to change the reference coordinate of the robot's integral GPS
