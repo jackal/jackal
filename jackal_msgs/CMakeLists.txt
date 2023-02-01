@@ -22,6 +22,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
    msg/Power.msg
    msg/Status.msg
    msg/StopStatus.msg
+   srv/SetDomainId.srv
    DEPENDENCIES std_msgs builtin_interfaces
 )
 
