@@ -2,6 +2,11 @@
 Changelog for package jackal_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added SetDomainId service
+* Contributors: Roni Kreinin
+
 1.0.1 (2022-10-14)
 ------------------
 
