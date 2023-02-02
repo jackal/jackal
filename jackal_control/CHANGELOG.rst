@@ -2,8 +2,8 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.2 (2023-02-02)
+------------------
 * Uncomment dependency on imu_filter_madgwick; it is now installable as a deb in Foxy.
 * Contributors: Joey Yang
 
