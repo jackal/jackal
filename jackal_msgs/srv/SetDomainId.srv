@@ -1,0 +1,4 @@
+uint8 domain_id # ROS_DOMAIN_ID
+---
+bool success   # Indicate successful update of domain ID
+string message # Error/Success message
