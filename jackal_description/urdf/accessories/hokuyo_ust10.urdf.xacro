@@ -40,10 +40,12 @@
               <stddev>0.001</stddev>
             </noise>
           </ray>
-          <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-            <topicName>${topic}</topicName>
-            <frameName>${frame}</frameName>
-            <robotNamespace>${robot_namespace}</robotNamespace>
+          <plugin name="gazebo_ros_laser" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+              <namespace>${robot_namespace}</namespace>
+              <remapping>~/out:=${topic}</remapping>
+            </ros>
+            <frame_name>${frame}</frame_name>
           </plugin>
         </sensor>
       </gazebo>
