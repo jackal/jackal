@@ -2,8 +2,8 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.3 (2023-02-08)
+------------------
 * Fixed gazebo_ros_laser plugin
 * Contributors: Roni Kreinin
 
