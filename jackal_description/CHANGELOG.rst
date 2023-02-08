@@ -2,6 +2,11 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed gazebo_ros_laser plugin
+* Contributors: Roni Kreinin
+
 1.0.2 (2023-02-02)
 ------------------
 * Add missing dependency to velodyne_description.
