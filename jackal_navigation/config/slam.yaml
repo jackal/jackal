@@ -13,7 +13,7 @@ slam_toolbox:
     odom_frame: odom
     map_frame: map
     base_frame: base_link
-    scan_topic: /front/scan
+    scan_topic: /scan
     mode: mapping
 
     debug_logging: false

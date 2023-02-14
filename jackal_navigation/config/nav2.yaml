@@ -37,7 +37,7 @@ amcl:
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-    scan_topic: front/scan
+    scan_topic: scan
 
 amcl_map_client:
   ros__parameters:
@@ -183,7 +183,7 @@ local_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /front/scan
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -219,7 +219,7 @@ global_costmap:
         enabled: True
         observation_sources: scan
         scan:
-          topic: /front/scan
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
