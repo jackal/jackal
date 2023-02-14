@@ -45,6 +45,7 @@
               <namespace>${robot_namespace}</namespace>
               <remapping>~/out:=${topic}</remapping>
             </ros>
+            <output_type>sensor_msgs/LaserScan</output_type>
             <frame_name>${frame}</frame_name>
           </plugin>
         </sensor>
