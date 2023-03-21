@@ -26,5 +26,4 @@ ekf_node:
                   true, false, false]
     imu0_differential: false
     imu0_queue_size: 10
-    # Gravitational acceleration is removed in IMU driver
-    imu0_remove_gravitational_acceleration: false
+    imu0_remove_gravitational_acceleration: true
