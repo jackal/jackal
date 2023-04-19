@@ -2,6 +2,11 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added Environment Variables
+* Contributors: luis-camero
+
 0.8.6 (2022-11-16)
 ------------------
 * Set the GPS plugin's reference heading to 90 so it's ENU
