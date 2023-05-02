@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.4 (2023-04-20)
+------------------
+* Remove gravitational acceleration in ekf_node
+* Contributors: Roni Kreinin
+
 1.0.3 (2023-02-08)
 ------------------
 
