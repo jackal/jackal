@@ -55,23 +55,23 @@ def generate_launch_description():
     # Localization
     localization_group_action = GroupAction([
         # Extended Kalman Filter
-        Node(
-            package='robot_localization',
-            executable='ekf_node',
-            name='ekf_node',
-            output='screen',
-            parameters=[config_jackal_ekf],
-        ),
+#        Node(
+#            package='robot_localization',
+#            executable='ekf_node',
+#            name='ekf_node',
+#            output='screen',
+#            parameters=[config_jackal_ekf],
+#        ),
 
         # Madgwick Filter
-        Node(
-            package='imu_filter_madgwick',
-            executable='imu_filter_madgwick_node',
-            name='imu_filter_node',
-            output='screen',
-            parameters=[config_imu_filter]
-        )
-    ])
+#        Node(
+#            package='imu_filter_madgwick',
+#            executable='imu_filter_madgwick_node',
+#            name='imu_filter_node',
+#            output='screen',
+#            parameters=[config_imu_filter]
+#        )
+       ])
 
     # ROS2 Controllers
     control_group_action = GroupAction([
