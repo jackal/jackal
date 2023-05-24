@@ -119,10 +119,10 @@
     - vlp16 (default)  :: Velodyne VLP16
     - hdl32e           :: Velodyne HDL-32E
   -->
-  <xacro:if value="$(optenv JACKAL_LASER_3D 0)">
+  <xacro:if value="$(optenv JACKAL_LASER_3D 1)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_3D_MOUNT mid)" />
     <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC points)" />
-    <xacro:property name="tower" value="$(optenv JACKAL_LASER_3D_TOWER 0)" />
+    <xacro:property name="tower" value="$(optenv JACKAL_LASER_3D_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_3D_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_3D_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_3d_model" value="$(optenv JACKAL_LASER_3D_MODEL vlp16)" />
