@@ -34,11 +34,11 @@
   <!-- Primary 2D Lidar -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_MOUNT front)" />
-    <xacro:property name="topic" value="$(optenv JACKAL_LASER_TOPIC /scan)" />
+    <xacro:property name="topic" value="$(optenv JACKAL_LASER_TOPIC front/scan)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
-    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL lms1xx)" />
+    <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL ust10)" />
     <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
       <!-- Mount Enabled -->
@@ -110,8 +110,6 @@
       </xacro:hokuyo_ust10_mount>
     </xacro:if>
   </xacro:if>
-
-
 
   <!--
     Add a 3D lidar sensor.  By default this is a Velodyne VLP16 but can be changed with the

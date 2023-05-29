@@ -32,7 +32,7 @@ def generate_launch_description():
     )
 
     filepath_config_interactive_markers = PathJoinSubstitution(
-        [FindPackageShare('jackal_control'), 'config', 'teleop_interactive_markers.yaml'],
+        [FindPackageShare('jackal_control'), 'config', 'teleop_interactive_markers.yaml']
     )
 
     node_interactive_marker_twist_server = Node(
