@@ -259,4 +259,14 @@
 
   <!-- Optional for Clearpath internal softwares -->
   <xacro:include filename="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
+
+    <!-- OutdoorNav -->
+  <xacro:arg name="outdoornav_enabled"       default="$(optenv OUTDOORNAV_ENABLED 0)" />
+  <xacro:arg name="outdoornav_configuration" default="$(optenv OUTDOORNAV_CONFIGURATION standard)" />
+
+  <!-- OutdoorNav URDF Config -->
+  <xacro:if value="$(arg outdoornav_enabled)">
+    <xacro:include filename="$(find cpr_onav_description)/urdf/outdoornav_description.urdf.xacro" />
+    <xacro:outdoornav_sensors outdoornav_configuration="$(arg outdoornav_configuration)" />
+  </xacro:if>
 </robot>
