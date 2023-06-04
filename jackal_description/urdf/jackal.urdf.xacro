@@ -254,9 +254,20 @@
        default each one to off.-->
   <xacro:include filename="$(find jackal_description)/urdf/accessories.urdf.xacro" />
 
+  <!-- OutdoorNav -->
+  <xacro:arg name="outdoornav_enabled"       default="$(optenv OUTDOORNAV_ENABLED 0)" />
+  <xacro:arg name="outdoornav_configuration" default="$(optenv OUTDOORNAV_CONFIGURATION standard)" />
+
+  <!-- OutdoorNav URDF Config -->
+  <xacro:if value="$(arg outdoornav_enabled)">
+    <xacro:include filename="$(find cpr_onav_description)/urdf/outdoornav_description.urdf.xacro" />
+    <xacro:outdoornav_sensors outdoornav_configuration="$(arg outdoornav_configuration)" />
+  </xacro:if>
+
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
 
   <!-- Optional for Clearpath internal softwares -->
   <xacro:include filename="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
+
 </robot>
