@@ -2,6 +2,12 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* change location of onav config
+* added outdoornav enable variable and hardware kit selector for urdf
+* Contributors: José Mastrangelo
+
 0.8.7 (2023-04-19)
 ------------------
 * Added Environment Variables
