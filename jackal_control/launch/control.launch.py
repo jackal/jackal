@@ -71,7 +71,7 @@ def generate_launch_description():
             output='screen',
             parameters=[config_imu_filter]
         )
-    ])
+       ])
 
     # ROS2 Controllers
     control_group_action = GroupAction([

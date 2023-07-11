@@ -8,6 +8,9 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+        
+    is_sim_arg = DeclareLaunchArgument('is_sim', default_value='False')
+    is_sim = LaunchConfiguration('is_sim')
 
     robot_description_command_arg = DeclareLaunchArgument(
         'robot_description_command',
@@ -27,11 +30,10 @@ def generate_launch_description():
 
     robot_state_publisher_node = Node(package='robot_state_publisher',
                                       executable='robot_state_publisher',
-                                      parameters=[{
-                                          'robot_description': robot_description_content,
-                                      }])
+                                      parameters=[{'use_sim_time': is_sim}, {'robot_description': robot_description_content},])
 
     ld = LaunchDescription()
+    ld.add_action(is_sim_arg)
     ld.add_action(robot_description_command_arg)
     ld.add_action(robot_state_publisher_node)
     return ld

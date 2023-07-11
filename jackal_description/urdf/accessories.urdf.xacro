@@ -17,8 +17,8 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- 2D Lidars -->
-  <!-- <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" /> 
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />-->
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx.urdf.xacro" /> 
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
@@ -29,6 +29,8 @@
     - lms1xx (default) :: SICK LMS1xx
     - ust10            :: Hokuyo UST10
   -->
+
+  
   <!-- Primary 2D Lidar -->
   <xacro:if value="$(optenv JACKAL_LASER 0)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_MOUNT front)" />
@@ -113,11 +115,11 @@
     Add a 3D lidar sensor.  By default this is a Velodyne VLP16 but can be changed with the
     JACKAL_LASER_3D_MODEL environment variable. Valid model designations are:
     - vlp16 (default)  :: Velodyne VLP16
-    - vlp32e           :: Velodyne HDL-32E
+    - hdl32e           :: Velodyne HDL-32E
   -->
-  <xacro:if value="$(optenv JACKAL_LASER_3D 0)">
+  <xacro:if value="$(optenv JACKAL_LASER_3D 1)">
     <xacro:property name="mount" value="$(optenv JACKAL_LASER_3D_MOUNT mid)" />
-    <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC mid/points)" />
+    <xacro:property name="topic" value="$(optenv JACKAL_LASER_3D_TOPIC points)" />
     <xacro:property name="tower" value="$(optenv JACKAL_LASER_3D_TOWER 1)" />
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_3D_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_3D_PARENT ${mount}_mount)" />
