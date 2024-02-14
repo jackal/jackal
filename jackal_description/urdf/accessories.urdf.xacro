@@ -422,7 +422,7 @@
     <joint name="${prefix}_mount_joint" type="fixed">
       <child link="${prefix}"/>
       <parent link="${parent}"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="${xyz}" rpy="${rpy}" />
     </joint>
   </xacro:if>
 
