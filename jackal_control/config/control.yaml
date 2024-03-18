@@ -11,6 +11,9 @@ jackal_velocity_controller:
   twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
   cmd_vel_timeout: 0.25
 
+  # Publish final output cmd_vel to /jackal_velocity_controller/cmd_vel_out
+  publish_cmd: true
+
   k_l: 0.1
   k_r: 0.1
 
