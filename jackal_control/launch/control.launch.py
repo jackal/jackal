@@ -69,7 +69,8 @@ def generate_launch_description():
             executable='imu_filter_madgwick_node',
             name='imu_filter_node',
             output='screen',
-            parameters=[config_imu_filter]
+            parameters=[config_imu_filter],
+            remappings={('imu', '/sensors/imu_0')},
         )
     ])
 
@@ -91,7 +92,7 @@ def generate_launch_description():
         # Joint State Broadcaster
         Node(
             package='controller_manager',
-            executable='spawner.py',
+            executable='spawner',
             arguments=['joint_state_broadcaster'],
             output='screen',
         ),
@@ -99,7 +100,7 @@ def generate_launch_description():
         # Velocity Controller
         Node(
             package='controller_manager',
-            executable='spawner.py',
+            executable='spawner',
             arguments=['jackal_velocity_controller'],
             output='screen',
         )
